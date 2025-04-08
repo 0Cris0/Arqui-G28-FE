@@ -1,0 +1,31 @@
+import { useState } from 'react'
+import reactLogo from '../assets/imgs/img1.webp'
+import viteLogo from '/vite.svg'
+
+function AboutUsPage() {
+  const [count, setCount] = useState(0)
+  return (
+    <>
+          <div>
+            <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank">
+              <img src={reactLogo} className="img_v1" alt="React logo" />
+            </a>
+            
+          </div>
+          
+          <h1>LegitStonks Team</h1>
+          <lu>
+           <li>Eduardo</li>  
+           <li>Benjamín Peña</li>  
+           <li>Nicolás</li>   
+           <li>Manuel Garretón</li>   
+           <li>Cristóbal Albornoz</li>     
+            
+          </lu>
+
+          <a href='/'>Inicio</a>
+        </>
+  );
+}
+
+export default AboutUsPage;
