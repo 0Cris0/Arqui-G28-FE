@@ -11,3 +11,11 @@ A futuro se considera incluir los módulos:
  - axios
  - react-bootstrap (posiblemente)
  - dotenv
+
+
+ Comandos (no pescar comandos del enunciado)
+ - npm run dev (Inicia un servidor local donde ver en vivo los cambios)
+ - npm run build (Crea en la carpeta build como un condensado del proyecto)
+
+ Hay que revisar si uno tiene una versión actual de Node y npm
+ Ver comando para instalar las cosas del package.json (npm install tal vez???)
