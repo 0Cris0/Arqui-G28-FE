@@ -52,3 +52,50 @@ nav a{
   width: 300px;
   height: 300px;
 }
+
+.contenedor_stock_general{
+  display: inline-block;
+  margin: 1em;
+  background-color: dimgray;
+  padding: 1em;
+  width: auto;
+  border-radius: 1em;
+  align-items: center;
+  
+}
+.contenedor_titulo_stock{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color:black
+}
+.titulo_stock{
+  margin: 0.5em;
+}
+
+.contenedor_info_stock{
+  text-align: left;
+  font-weight: bolder;
+}
+.contenedor_info_stock b{
+  color: #1a1a1a
+}
+
+#precio_stock{
+  color:greenyellow
+}
+
+.boton_stock_individual{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-morado{
+  padding: 0.5em;
+  background-color: greenyellow;
+  border-radius: 0.5em;
+  color: #1a1a1a;
+  font-weight: bolder;
+  border: 0.2em solid #1a1a1a;
+}
