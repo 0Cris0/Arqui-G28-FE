@@ -19,3 +19,9 @@ A futuro se considera incluir los módulos:
 
  Hay que revisar si uno tiene una versión actual de Node y npm
  Ver comando para instalar las cosas del package.json (npm install tal vez???)
+
+
+ TODO
+ - Crear .env
+ - En .env colocar link de backend para auth
+ - Ver cómo implementar sesión a lo largo del FE basado en lo del auth??
