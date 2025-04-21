@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "dotenv": "^16.5.0",
+=======
     "axios": "^1.8.4",
     "bootstrap": "^5.3.5",
+>>>>>>> bd382634f2e5155b3877c136b6dd7eb0b9a72783
     "node": "^23.11.0",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
