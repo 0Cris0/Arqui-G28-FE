@@ -27,7 +27,7 @@ export const StockGeneral = (stock) =>{
             <p><b>Disponible:</b> {stock.quantity}</p>
             <p><b>Actualización:</b> {stock.timestamp}</p>
             <div className='boton_stock_individual'>
-              <Button href={`/stocks/${stock.symbol}`} variant='morado'>Ver stock</Button>
+              <Button href={`/stocks/${stock.symbol}`} variant='detalle'>Ver stock</Button>
             </div>
           </Row>
         </Container>
