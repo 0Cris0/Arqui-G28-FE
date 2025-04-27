@@ -271,3 +271,92 @@ nav a:hover{
   font-weight: bold;
   color: orchid;
 }
+
+
+
+
+.contenedor_stock{
+  display: grid;
+  justify-content: center;
+}
+
+.contenedor_detalles_stock{
+  display: grid;
+  justify-content: center;
+  margin-top: 3em;
+  margin-bottom: 2em;
+  padding: 3em;
+  width: fit-content;
+  align-items: center;
+  text-align: left;
+  background-color: rgba(105, 105, 105);
+  border: 0.5em solid yellowgreen;
+  border-radius: 1em;
+}
+
+.titulo_detalles_stock{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size:x-large;
+}
+
+.formulario_compra{
+  display: flex;
+  margin: 1em;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.form-group{
+  padding: 0.3em;
+  background-color:whitesmoke;
+  border-radius: 0.5em;
+  color: #1a1a1a;
+  font-weight: bolder;
+  border: 0.2em solid #1a1a1a;
+}
+.form-control_cantidad{
+  padding: 0.5em;
+  background-color:whitesmoke;
+  border-radius: 0.5em;
+  color: #1a1a1a;
+  font-weight: bolder;
+  border: 0em solid #1a1a1a;
+}
+.sel_cantidad{
+  text-align: center;
+}
+
+
+
+
+
+.tabla_historial{
+  display: block;
+  justify-content: center;
+  align-items: center;
+  border: 0.5em solid whitesmoke;
+  border-radius: 1rem;
+  margin-bottom: 1em;
+}
+
+.tabla_historial th{
+  background-color: rgba(105, 105, 105);
+  color: white;
+  width: 100%;
+  padding: 2em;
+  font-weight: bolder;
+  font-size: large;
+  border-bottom: 0.3em solid whitesmoke;
+  
+}
+
+.tabla_historial tr{
+  background-color: rgba(105, 105, 105, 0.568);
+  color: white;
+}
+.tabla_historial td{
+  text-align: center;
+  color: white;  
+  padding: 1rem;
+}

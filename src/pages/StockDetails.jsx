@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Row, Col, Table } from 'react-bootstrap';
 
 export const StockDetails = () => { // Stock de ejemplo hardcodeado
   const stock = {
@@ -64,59 +64,80 @@ export const StockDetails = () => { // Stock de ejemplo hardcodeado
   };
 
   return (
-    <div key={stock.symbol}>
-      <Container>
-        <h2>{stock.symbol}</h2>
-        <h3>${stock.price}</h3>
+    <>
+    <div className='contenedor_stock'>
+      <div key={stock.symbol} className="contenedor_detalles_stock">
+        <div className="titulo_detalles_stock">
+          <h2>{stock.symbol}</h2>
+          <h2 id='precio_stock'>${stock.price}</h2>
+        </div>
+        <div className='info_detalles_stock'>
+          <Row>
+            <p><b>Empresa:</b> {stock.longName}</p>
+            <p><b>Disponible:</b> {stock.quantity}</p>
+            <p><b>Última actualización:</b> {stock.timestamp}</p>
+          </Row>
 
-        <Row>
-          <p><b>Empresa:</b> {stock.longName}</p>
-          <p><b>Disponible:</b> {stock.quantity}</p>
-          <p><b>Última actualización:</b> {stock.timestamp}</p>
-        </Row>
-
-        <Row>
-          <Col>
-            <div className="form-group">
-              <label>Cantidad:</label>
-              <input
-                type="number"
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-                min="1"
-                max={stock.quantity} // No puede comprar más de lo disponible
-                className="form-control"
-              />
-            </div>
-          </Col>
-          <br/>
-          <Col>
-            <Button onClick={handlePurchase} variant="success">Comprar</Button>
-          </Col>
-        </Row>
-
-        {purchaseStatus && <div>{purchaseStatus}</div>} {/* Muestra el estado de la compra */}
-
-        {/* Botón para mostrar u ocultar el historial */}
-        <Button onClick={toggleHistory} variant="info" style={{ marginTop: '20px' }}>
-          {showHistory ? "Ocultar historial" : "Ver historial"}
-        </Button>
-
-        {/* Mostrar el historial solo si el estado showHistory es true */}
-        {showHistory && (
-          <div style={{ marginTop: '20px' }}>
-            <h3>Historial de Compras</h3>
-            <ul>
-              {purchaseHistory.map((purchase, index) => (
-                <li key={index}>
-                  <b>Fecha:</b> {purchase.date} <b>Cantidad:</b> {purchase.quantity} <b>Status:</b> {purchase.status}
-                </li>
-              ))}
-            </ul>
+          <div className='formulario_compra'>
+                <div className="form-group">
+                  <label>Cantidad: </label>
+                  <input
+                    type="number"
+                    value={quantity}
+                    onChange={(e) => setQuantity(Number(e.target.value))}
+                    min="1"
+                    max={stock.quantity} // No puede comprar más de lo disponible
+                    className="form-control_cantidad"
+                  />
+                </div>
+                <Button onClick={handlePurchase} type="submit" variant='detalle' className='sel_cantidad'>Comprar</Button>
           </div>
-        )}
-      </Container>
-    </div>
+          {/* {purchaseStatus && <div>{purchaseStatus}</div>} {// Muestra el estado de la comprad} d*/}
+          {/* Botón para mostrar u ocultar el historial */}
+        </div>
+      </div>
+
+      </div>
+      <div className='contenedor_stock'>
+        <div className='historial_compra'>
+            <Button onClick={toggleHistory} variant="detalle" style={{ marginTop: '20px' }}>
+              {showHistory ? "Ocultar historial" : "Ver historial"}
+            </Button>
+
+            {/* Mostrar el historial solo si el estado showHistory es true */}
+            {showHistory && (
+              <div>
+                <h3>Historial de Compras</h3>
+                <Table className='tabla_historial'>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Cantidad</th>
+                            <th>Status</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {purchaseHistory.map((purchase, index) => (
+                      <tr>
+                        <td>{purchase.date}</td>
+                        <td>{purchase.quantity}</td>
+                        <td>{purchase.status}</td>
+                        <td>{stock.symbol}</td>
+                      </tr>
+                    ))} 
+                    </tbody>
+                </Table>
+                
+                  
+                
+              </div>
+            )}
+          </div>
+      </div>
+    </>
+    
+    
   );
 };
 
