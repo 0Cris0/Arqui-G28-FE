@@ -20,7 +20,7 @@ body {
 }
 
 .contenedor_navbar{
-  width:auto;
+  width: max-content;
   margin-top: 0;
   margin-bottom: 2em;
   background-color: dimgray;
@@ -61,7 +61,7 @@ nav a:hover{
   padding: 1em;
   text-align: center  ;
   background-color: rgba(105, 105, 105, 0.768);
-  border: 0.5em solid chocolate;
+  border: 0.5em solid greenyellow;
   border-radius: 1em;
 }
 .contenedor_ingreso a{
@@ -80,7 +80,7 @@ nav a:hover{
 @keyframes border-color-change {
   0% { border: 1rem solid purple; }
   25% { border: 1rem solid yellowgreen; }
-  50% { border: 1rem solid chocolate; }
+  50% { border: 1rem solid greenyellow; }
   75% { border: 1rem solid yellowgreen; }
   100% { border: 1rem solid purple; }
 }
@@ -93,7 +93,7 @@ nav a:hover{
 @keyframes color-change {
   0% { color: purple; }
   25% { color: yellowgreen; }
-  50% { color: chocolate; }
+  50% { color: greenyellow; }
   75% { color: yellowgreen; }
   100% { color: purple; }
 }
@@ -106,7 +106,7 @@ nav a:hover{
   width: auto;
   border-radius: 1em;
   align-items: center;
-  border: 0.2em solid chocolate;
+  border: 0.2em solid greenyellow;
   
 }
 .contenedor_titulo_stock{
@@ -153,7 +153,7 @@ nav a:hover{
 
 .btn-opcion{
   padding: 0.5em;
-  background-color:coral;
+  background-color: greenyellow;
   border-radius: 0.5em;
   color: #1a1a1a;
   font-weight: bolder;
@@ -194,10 +194,10 @@ nav a:hover{
   background-color: rgba(105, 105, 105, 0);
 }
 .paginacion a{
-  color: #1a1a1a;
+  color: whitesmoke;
   border-radius: 0.3rem;
   border: 0.2em solid #1a1a1a;
-  background-color: rgb(255, 127, 80);
+  background-color: #1a1a1a;;
   font-weight: bolder;
   text-decoration: none;
   padding-left: 2em;
@@ -270,4 +270,222 @@ nav a:hover{
 #status_not_valid{
   font-weight: bold;
   color: orchid;
+}
+
+
+
+
+.contenedor_stock{
+  display: grid;
+  justify-content: center;
+}
+
+.contenedor_detalles_stock{
+  display: grid;
+  justify-content: center;
+  margin-top: 3em;
+  margin-bottom: 2em;
+  padding: 3em;
+  width: fit-content;
+  align-items: center;
+  text-align: left;
+  background-color: rgba(105, 105, 105);
+  border: 0.5em solid yellowgreen;
+  border-radius: 1em;
+}
+
+.titulo_detalles_stock{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size:x-large;
+}
+
+.formulario_compra{
+  display: flex;
+  margin: 1em;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.form-group{
+  padding: 0.3em;
+  background-color:whitesmoke;
+  border-radius: 0.5em;
+  color: #1a1a1a;
+  font-weight: bolder;
+  border: 0.2em solid #1a1a1a;
+}
+.form-control_cantidad{
+  padding: 0.5em;
+  background-color:whitesmoke;
+  border-radius: 0.5em;
+  color: #1a1a1a;
+  font-weight: bolder;
+  border: 0em solid #1a1a1a;
+}
+.sel_cantidad{
+  text-align: center;
+}
+
+
+
+
+
+.tabla_historial{
+  display: block;
+  justify-content: center;
+  align-items: center;
+  border: 0.5em solid greenyellow;
+  border-radius: 1rem;
+  margin-bottom: 1em;
+}
+
+.tabla_historial th{
+  background-color: rgba(105, 105, 105);
+  color: white;
+  width: 100%;
+  padding: 2em;
+  font-weight: bolder;
+  font-size: large;
+  border-bottom: 0.3em solid greenyellow;
+  
+}
+
+.tabla_historial tr{
+  background-color: rgba(105, 105, 105, 0.568);
+  color: white;
+}
+.tabla_historial td{
+  text-align: center;
+  color: white;  
+  padding: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.contenedor_auth{
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
+  margin-bottom: 2em;
+  padding: 3em;
+  
+  align-items: center;
+  text-align: left;
+  background-color: rgba(105, 105, 105);
+  
+  border-radius: 1em;
+}
+
+.titulo_auth{
+  color: #1a1a1a;
+  font-size: large;
+}
+
+.form_auth{
+  display: flex;
+  margin: 1em;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.formulario_auth{
+  display: grid;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 0.5em;
+}
+.input_auth_txt{
+  padding: 0.5em;
+  background-color:whitesmoke;
+  border-radius: 0.5em;
+  color: #1a1a1a;
+  margin-top: 0.5em;
+  border: 0.2em solid #1a1a1a;
+}
+
+.btn-form{
+  padding: 0.5em;
+  margin: 1em;
+  background-color: #1a1a1a;
+  border-radius: 0.5em;
+  color: whitesmoke;
+  font-weight: bolder;
+  border: 0.2em solid #1a1a1a;
+}
+
+.btn-form:hover{
+  color: #1a1a1a;
+  background-color: greenyellow;
+  border-radius: 0.5em;
+}
+
+
+
+
+
+
+
+.contenedor_centrado{
+  display: grid;
+  justify-content: center;
+
+}
+.contenedor_wallet{
+  color:#1a1a1a;
+  display: grid;
+  justify-content: center;
+  margin-top: 3em;
+  margin-bottom: 2em;
+  padding: 4em;
+
+  width:20em;
+  align-items: center;
+  text-align: left;
+  background-color: rgba(105, 105, 105);
+  
+  border-radius: 1em;
+  border: 0.5em solid greenyellow;
+}
+.contenedor_titulo_wallet{
+  text-align: center;
+  color: whitesmoke;
+}
+.contenedor_info_wallet{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size:x-large;
+}
+#balance{
+  color: greenyellow;
+  font-weight: bolder;
+  font-size: xxx-large;
+}
+
+.formulario_recarga{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#simbolo_dinero{
+  font-weight: bolder;
+  font-size: x-large;
+}
+.input_recarga_txt{
+  padding: 0.5em;
+  background-color:whitesmoke;
+  border-radius: 0.5em;
+  color: #1a1a1a;
+  font-weight: bold;
+  margin: 0.5em;
+  border: 0.2em solid #1a1a1a;
 }

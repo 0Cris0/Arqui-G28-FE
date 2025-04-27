@@ -19,7 +19,7 @@ export const StocksNavbar = () => {
                             <Nav.Link href="/stocks">Stocks</Nav.Link>
                             <Nav.Link href="/transacciones">Mis transacciones</Nav.Link>
                             <Nav.Link href="/billetera">Mi billetera</Nav.Link>
-                            <Nav.Link href="/perfil">Perfil</Nav.Link>
+                            {/* <Nav.Link href="/perfil">Perfil</Nav.Link> */}
                             {/* <NavDropdown title="Otras Vistas" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/nosotros">Sobre LegitStonks</NavDropdown.Item>
                                 <NavDropdown.Item href="/docs">Documentación</NavDropdown.Item>    
