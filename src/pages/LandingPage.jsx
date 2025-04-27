@@ -19,8 +19,8 @@ function LandingPage() {
       
       <div className='contenedor_ingreso'>
         <h3>Regístrate o inicia sesión para acceder a todas las funcionalidades</h3> 
-        <Button href='/login' variant='opcion'>Login</Button>
-        <Button href='/register' variant='opcion'>Registrarse</Button>
+        <Button href='/login' variant='detalle'>Log-in</Button>
+        <Button href='/register' variant='detalle'>Sign-up</Button>
       </div>
 
 

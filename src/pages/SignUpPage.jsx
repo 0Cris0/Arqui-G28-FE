@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {Button} from 'react-bootstrap';
+import StonksLogo from '../assets/imgs/logo.webp';
 
 const SignUpPage = () => {
   const [username, setUsername] = useState('');
@@ -39,41 +41,52 @@ const SignUpPage = () => {
   };
 
   return (
-    <div>
-      <h2>Crear cuenta</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      <form onSubmit={handleSignUp}>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Nombre de usuario"
-          required
-        />
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Contraseña"
-          required
-        />
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          placeholder="Confirmar Contraseña"
-          required
-        />
-        <button type="submit">Crear cuenta</button>
-      </form>
+    <div className='contenedor_auth'>
+      <div className='titulo_auth'>
+        <img id='StonksLogo' src={StonksLogo}></img>
+        <h2>Sign-up</h2>
+        
+        <p>Bienvenido, registrate para continuar.</p>
+      </div>
+      <div className='form_auth'>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {message && <p style={{ color: 'green' }}>{message}</p>}
+        <form onSubmit={handleSignUp} className='formulario_auth'>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Nombre de usuario"
+            className='input_auth_txt'
+            required
+          />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            className='input_auth_txt'
+            required
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Contraseña"
+            className='input_auth_txt'
+            required
+          />
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Confirmar Contraseña"
+            className='input_auth_txt'
+            required
+          />
+          <Button type="submit" variant='form'>Registrarse</Button>
+        </form>
+     </div> 
     </div>
   );
 };
