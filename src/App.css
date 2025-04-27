@@ -20,7 +20,7 @@ body {
 }
 
 .contenedor_navbar{
-  width:auto;
+  width: max-content;
   margin-top: 0;
   margin-bottom: 2em;
   background-color: dimgray;
@@ -426,4 +426,66 @@ nav a:hover{
   color: #1a1a1a;
   background-color: greenyellow;
   border-radius: 0.5em;
+}
+
+
+
+
+
+
+
+.contenedor_centrado{
+  display: grid;
+  justify-content: center;
+
+}
+.contenedor_wallet{
+  color:#1a1a1a;
+  display: grid;
+  justify-content: center;
+  margin-top: 3em;
+  margin-bottom: 2em;
+  padding: 4em;
+
+  width:20em;
+  align-items: center;
+  text-align: left;
+  background-color: rgba(105, 105, 105);
+  
+  border-radius: 1em;
+  border: 0.5em solid greenyellow;
+}
+.contenedor_titulo_wallet{
+  text-align: center;
+  color: whitesmoke;
+}
+.contenedor_info_wallet{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size:x-large;
+}
+#balance{
+  color: greenyellow;
+  font-weight: bolder;
+  font-size: xxx-large;
+}
+
+.formulario_recarga{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#simbolo_dinero{
+  font-weight: bolder;
+  font-size: x-large;
+}
+.input_recarga_txt{
+  padding: 0.5em;
+  background-color:whitesmoke;
+  border-radius: 0.5em;
+  color: #1a1a1a;
+  font-weight: bold;
+  margin: 0.5em;
+  border: 0.2em solid #1a1a1a;
 }
