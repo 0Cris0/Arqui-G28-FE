@@ -1,35 +1,69 @@
-import { Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
-import React, { useState, useEffect, useContext } from 'react';
+import { Container, Nav, Navbar } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StonksLogo from '../assets/imgs/logo.webp';
+import { useNavigate } from 'react-router-dom';
+import '../styles/navbar.css';
 
 export const StocksNavbar = () => {
-    return (
-        <div className='contenedor_navbar'>
-            <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
-                <Container>
-                    <Navbar.Brand href="/" className="nombre-logo">
-                        <img id='StonksLogo' src={StonksLogo}></img>
-                    </Navbar.Brand>
-                    </Container>
-                    
-                    <Container>
-                        <Nav className="me-auto">
-                            <Nav.Link href="/">Inicio</Nav.Link>
-                            <Nav.Link href="/stocks">Stocks</Nav.Link>
-                            <Nav.Link href="/transacciones">Mis transacciones</Nav.Link>
-                            <Nav.Link href="/billetera">Mi billetera</Nav.Link>
-                            <Nav.Link href="/perfil">Perfil</Nav.Link>
-                            {/* <NavDropdown title="Otras Vistas" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="/nosotros">Sobre LegitStonks</NavDropdown.Item>
-                                <NavDropdown.Item href="/docs">Documentación</NavDropdown.Item>    
-                            </NavDropdown> */}
-                        </Nav>
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
-                </Container>
-            </Navbar>
-        </div>
-    );
-}
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios.get(`${import.meta.env.VITE_BACKEND_URL}/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      })
+      .then(response => {
+        setUser(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener los datos del usuario', error);
+        localStorage.removeItem('token');
+      });
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+    navigate('/login');
+  };
+
+  return (
+    <div className="contenedor_navbar">
+      <div className="contenedor_izquierda">
+        <Navbar.Brand href="/" className="nombre-logo">
+          <img id='StonksLogo' src={StonksLogo} alt="Stonks Logo" />
+        </Navbar.Brand>
+
+        {/* Primer grupo de enlaces (Nav1) */}
+        <Nav className="nav-left active nabvar.left">
+          <a className="navbar-nav active linksnavbar" href="/">Inicio</a>
+          <a className="navbar-nav active linksnavbar" href="/stocks">Stocks</a>
+          <a className="navbar-nav active linksnavbar" href="/transactions">Mis transacciones</a>
+          <a className="navbar-nav active linksnavbar" href="/wallet">Mi billetera</a>
+        </Nav>
+      </div>
+
+      {/* Contenedor de la parte derecha (usuario y logout) */}
+      <div className="contenedor_derecha">
+        <Nav className="nav-right active nabvar-right">
+          {user ? (
+            <>
+              <a className="navbar-nav active linksnavbarName" href="/profile">{user.username}</a>
+              <a className="navbar-nav active linksnavbar" onClick={handleLogout}>Cerrar sesión</a>
+            </>
+          ) : (
+            <a className="navbar-nav active linksnavbar" href="/login">Iniciar sesión</a>
+          )}
+        </Nav>
+      </div>
+    </div>
+  );
+};
 
 export default StocksNavbar;

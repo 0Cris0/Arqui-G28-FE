@@ -1,0 +1,35 @@
+/* Contenedor principal de la página */
+.page-container-stocks {
+  display: flex; /* Usamos Flexbox para la distribución */
+  justify-content: space-between;
+  align-items: center; /* Alinea los elementos verticalmente */
+  gap: 0px; /* Espacio entre las columnas */
+  flex-wrap: wrap; /* Asegura que las columnas no se solapen */
+}
+
+/* Columna izquierda, central y derecha */
+.left-column-stocks, .center-column-stocks, .right-column-stocks {
+  flex: 1 1 33%; /* Cada columna ocupará un 33% del espacio disponible */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Espacio entre los elementos dentro de la columna */
+  text-align: center; /* Centra el texto dentro de las columnas */
+  box-sizing: border-box; /* Asegura que el padding y el borde no afecten el ancho de las columnas */
+}
+
+/* Ajuste para cada stock dentro de las columnas */
+.stock-item {
+  width: 100%; /* Asegura que cada stock ocupe el 100% del espacio disponible dentro de la columna */
+  margin-bottom: 20px;
+}
+
+/* Responsive: Asegura que todo se vea bien en pantallas pequeñas */
+@media (max-width: 768px) {
+  .page-container {
+    flex-direction: column; /* En pantallas pequeñas, colocamos las columnas en una sola fila */
+  }
+  .left-column-stocks, .center-column-stocks, .right-column-stocks {
+    width: 100%; /* Cada columna ocupará el 100% en pantallas pequeñas */
+    margin-right: 0;
+  }
+}

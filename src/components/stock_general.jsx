@@ -1,39 +1,36 @@
 import React from 'react';
-import {Button, Container, Row, Col} from 'react-bootstrap';
-import axios from 'axios';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 
-/* TODO: Ver si esto sirve, si termina quedando en este formato y cómo se ve, para poder modificarlo en CSS 
-    TODO: Idea de hardcodear un stock cosa de ir probando todo esto*/
-
-export const StockGeneral = (stock) =>{
-    return (
-      <div className='contenedor_stock_general' key={stock.id}> 
-        <Container className='contenedor_titulo_stock'>
-          <h2 className='titulo_stock' >{stock.symbol}</h2>
-          <h2 className='titulo_stock' id='precio_stock'>${stock.price}</h2>
-                
-                
-
-
-            
-
-
-        </Container>
-        
-        <Container className='contenedor_info_stock'>
-          <Row>
-            <hr></hr>
+export const StockGeneral = (stock) => {
+  return (
+    <div className='contenedor_stock_general' key={stock.symbol}> 
+      <Container className='contenedor_titulo_stock'>
+        <Row>
+          <Col>
+            <h2 className='titulo_stock'>{stock.symbol}</h2>
+          </Col>
+          <Col className='text-end'>
+            <h2 className='titulo_stock' id='precio_stock'>${stock.price}</h2>
+          </Col>
+        </Row>
+      </Container>
+      
+      <Container className='contenedor_info_stock'>
+        <Row>
+          <Col>
             <p><b>Empresa:</b> {stock.longName}</p>
             <p><b>Disponible:</b> {stock.quantity}</p>
-            <p><b>Actualización:</b> {stock.timestamp}</p>
+            <p><b>Última actualización:</b> {stock.formattedTimestamp}</p>
+          </Col>
+          <Col className='text-end'>
             <div className='boton_stock_individual'>
               <Button href={`/stocks/${stock.symbol}`} variant='detalle'>Ver stock</Button>
             </div>
-          </Row>
-        </Container>
-        
+          </Col>
+        </Row>
+      </Container>
     </div>
-    )
-} 
+  );
+};
 
 export default StockGeneral;

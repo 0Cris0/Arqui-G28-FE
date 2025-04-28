@@ -1,99 +1,179 @@
 import axios from 'axios';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
-import {Button, Row, Col, Form, InputGroup} from 'react-bootstrap';
-
-import {StockGeneral} from '../components/stock_general';
+import { Button, Row, Col, Form, InputGroup } from 'react-bootstrap';
+import { StockGeneral } from '../components/stock_general';
+import '../styles/stockGeneral.css'
 
 function StocksPage() {
-    const ej_stocks = [
-        { id: 1, symbol: 'AAPL', price: 145.09, longName: 'Apple Inc.', quantity: 100, timestamp: '2023-10-01' },
-        { id: 2, symbol: 'GOOGL', price: 2735.55, longName: 'Alphabet Inc.', quantity: 50, timestamp: '2023-10-01' },
-        { id: 3, symbol: 'AMZN', price: 3344.94, longName: 'Amazon.com Inc.', quantity: 30, timestamp: '2023-10-01' },
-        { id: 4, symbol: 'AMZN', price: 3344.94, longName: 'Amazon.com Inc.', quantity: 30, timestamp: '2023-10-01' },
-        { id: 5, symbol: 'AMZN', price: 3344.94, longName: 'Amazon.com Inc.', quantity: 30, timestamp: '2023-10-01' },
-        { id: 6, symbol: 'AMZN', price: 3344.94, longName: 'Amazon.com Inc.', quantity: 30, timestamp: '2023-10-01' },
-        { id: 7, symbol: 'AMZN', price: 3344.94, longName: 'Amazon.com Inc.', quantity: 30, timestamp: '2023-10-01' }
-    ];
-    const [stocks, setStocks] = useState(ej_stocks);
-    const [currentPage, setCurrentPage] = useState(1);
+  const [stocks, setStocks] = useState([]); // Almacenamos los stocks obtenidos
+  const [currentPage, setCurrentPage] = useState(1); // Página actual
+  const [totalPages, setTotalPages] = useState(1); // Total de páginas
+  const [filters, setFilters] = useState({
+    quantity: '',
+    price: '',
+    date: ''
+  }); // Filtros
 
+  useEffect(() => {
+    // Función para obtener los stocks con paginación
+    const fetchStocks = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/grouped`, {
+          params: {
+            page: currentPage,
+            count: 12,
+            quantity: filters.quantity,
+            price: filters.price,
+            date: filters.date
+          }
+        });
 
-/*     useEffect(() => {
-        const ObtenerStocks = async () => {
-            try {
-                const response = await axios.get('http://localhost:3000/stocks');
-                // Parsear y mapear los stocks si es necesario
-                setStocks(response.data);
-            } catch (error) {
-                console.error('Error fetching stocks:', error);
-            }
-        };
+        setStocks(response.data.data);
 
-        fetchStocks();
-    }, []); */
+        const dataTotalPages = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/grouped`)
+        const totalPages = dataTotalPages.data.totalEntries
+        setTotalPages(Math.ceil(totalPages / 12));
+      } catch (error) {
+        console.error('Error fetching stocks:', error);
+      }
+    };
 
-    return (
-        <>
-            <div className='titulo_page'>
-                <h1>Mercado de Stocks</h1>
+    fetchStocks(); // Llamamos a la función para obtener los stocks
+
+  }, [currentPage, filters]); // Se ejecuta cuando cambia la página o los filtros
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage); // Cambiamos la página actual si es válida
+    }
+  };
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters({
+      ...filters,
+      [name]: value
+    });
+  };
+
+  // Dividimos los stocks en tres columnas de manera ordenada
+  const leftColumnStocks = [];
+  const centerColumnStocks = [];
+  const rightColumnStocks = [];
+
+  stocks.forEach((stock, index) => {
+    // Distribuimos los stocks en las tres columnas
+    if (index % 3 === 0) {
+      leftColumnStocks.push(stock); // Índices 0, 3, 6, 9, ...
+    } else if (index % 3 === 1) {
+      centerColumnStocks.push(stock); // Índices 1, 4, 7, 10, ...
+    } else {
+      rightColumnStocks.push(stock); // Índices 2, 5, 8, 11, ...
+    }
+  });
+
+  return (
+    <>
+      <div className='filtros'>
+        <Form className="grupo_filtros">
+          <div>
+            <Form.Label>Stocks disponibles: </Form.Label>
+            <Form.Control
+              type="number"
+              name="quantity"
+              value={filters.quantity}
+              onChange={handleFilterChange}
+              placeholder="Cantidad"
+            />
+          </div>
+          <div>
+            <Form.Label>Precio: </Form.Label>
+            <InputGroup.Text>$</InputGroup.Text>
+            <Form.Control
+              type="number"
+              name="price"
+              value={filters.price}
+              onChange={handleFilterChange}
+              placeholder="#"
+            />
+          </div>
+          <div>
+            <Form.Label>Fecha: </Form.Label>
+            <Form.Control
+              type="date"
+              name="date"
+              value={filters.date}
+              onChange={handleFilterChange}
+              placeholder="Fecha"
+            />
+          </div>
+          <Button
+            type="button"
+            variant="opcion"
+            id="boton_filtrar"
+            onClick={() => setCurrentPage(1)} // Resetear a la primera página
+          >
+            Filtrar
+          </Button>
+        </Form>
+      </div>
+      <div className='titulo-page'>
+        <h1>Mercado de Stocks</h1>
+      </div>
+
+      {/* Contenedor de stocks en tres columnas */}
+      <div className="page-container-stocks">
+        <div className="left-column-stocks">
+          {/* Mostrar los stocks en la columna izquierda */}
+          {leftColumnStocks.map((stock) => (
+            <div key={stock.symbol} className="stock-item">
+              <StockGeneral {...stock} />
             </div>
+          ))}
+        </div>
 
-            <div className='filtros'>
-                <Form className="grupo_filtros">
-                    <div> 
-                        <Form.Label>Stocks disponibles: </Form.Label>
-                        <Form.Control type="number" placeholder="Cantidad" />
-                    </div> 
-                    <div> 
-                        <Form.Label>Precio: </Form.Label>
-                        <InputGroup.Text>$</InputGroup.Text>
-                        <Form.Control type="number" placeholder="$" />
-                        
-                    </div>
-                    <div>
-                        <Form.Label>Fecha: </Form.Label>
-                        <Form.Control type="date" placeholder="Fecha" />
-                    </div>
-                    
-                    
-                    <Button type="submit" variant="opcion" id="boton_filtrar">Filtrar</Button>
-                </Form>
+        <div className="center-column-stocks">
+          {/* Mostrar los stocks en la columna central */}
+          {centerColumnStocks.map((stock) => (
+            <div key={stock.symbol} className="stock-item">
+              <StockGeneral {...stock} />
+            </div>
+          ))}
+        </div>
 
+        <div className="right-column-stocks">
+          {/* Mostrar los stocks en la columna derecha */}
+          {rightColumnStocks.map((stock) => (
+            <div key={stock.symbol} className="stock-item">
+              <StockGeneral {...stock} />
             </div>
+          ))}
+        </div>
+      </div>
 
-            <div className='contenedor_stocks'> 
-                <div className='stocks'>
-                    {Object.values(ej_stocks).map(stock => (
-                        <StockGeneral key={stock.id} {...stock} />
-                    ))}
-                    {/* {stocks.map(stock => (
-                        <StockGeneral key={stock.id} {...stock} />
-                    ))} */}
-                </div>
-            </div>
-            <div className='paginacion'>
-                <Pagination className='paginacion'>
-                    <Col className='col_paginacion'>
-                        <Pagination.First onClick={() => setCurrentPage(1)} />
-                    </Col>
-                    <Col className='col_paginacion'>
-                        <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} />
-                    </Col>
-                    <Col className='col_paginacion'>
-                        <Pagination.Item className='actual_paginacion'>{currentPage}</Pagination.Item>
-                    </Col>
-                    <Col className='col_paginacion'>
-                        <Pagination.Next onClick={() => setCurrentPage(currentPage + 1)} />
-                    </Col>
-                    <Col className='col_paginacion'>
-                        <Pagination.Last onClick={() => setCurrentPage(Math.ceil(stocks.length / 10))} />
-                    </Col>
-                </Pagination>
-            </div>
-        </>
-        
-    );
+      {/* Paginación */}
+      <div className='paginacion'>
+        <Pagination className='paginacion'>
+          <Col className='col_paginacion'>
+            <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
+          </Col>
+          <Col className='col_paginacion'>
+            <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
+          </Col>
+          <Col className='col_paginacion'>
+            <Pagination.Item className='actual_paginacion'>{currentPage}</Pagination.Item>
+          </Col>
+          <Col className='col_paginacion'>
+            <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
+          </Col>
+          <Col className='col_paginacion'>
+            <Pagination.Last onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
+          </Col>
+        </Pagination>
+      </div>
+    </>
+  );
 }
 
 export default StocksPage;

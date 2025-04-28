@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.3.0",
     "axios": "^1.8.4",
     "bootstrap": "^5.3.5",
+    "dotenv": "^16.5.0",
+    "newrelic": "^12.18.0",
     "node": "^23.11.0",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
