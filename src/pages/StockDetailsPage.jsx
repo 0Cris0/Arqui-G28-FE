@@ -1,36 +1,49 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import Pagination from 'react-bootstrap/Pagination';
-import { Button, Row, Col, Form, InputGroup } from 'react-bootstrap';
-import { StockGeneral } from '../components/stock_general';
+import { Button, Container, Row, Col, Table, Pagination } from 'react-bootstrap';
+import axios from 'axios';
+import { useParams } from 'react-router-dom'; // Importamos useParams para obtener el 'symbol' de la URL
+import '../styles/stockDetails.css'
 
-function StocksPage() {
-  const [stocks, setStocks] = useState([]); // Almacenamos los stocks obtenidos
+export const StockDetails = () => {
+  const { symbol } = useParams(); // Obtenemos el símbolo del stock de la URL
+  const [stock, setStock] = useState(null); // Para almacenar los detalles del stock
+  const [quantity, setQuantity] = useState(1); // Cantidad que el usuario quiere comprar
+  const [purchaseStatus, setPurchaseStatus] = useState(null); // Estado para mostrar el resultado de la compra
+  const [purchaseHistory, setPurchaseHistory] = useState([]); // Histórico de compras
+  const [showHistory, setShowHistory] = useState(false); // Estado para controlar la visibilidad del historial
+
   const [currentPage, setCurrentPage] = useState(1); // Página actual
-  const [totalPages, setTotalPages] = useState(1); // Total de páginas
-  const [filters, setFilters] = useState({
-    quantity: '',
-    price: '',
-    date: ''
-  }); // Filtros
+  const [totalPages, setTotalPages] = useState(1); // Total de páginas (usaremos para los botones de paginación)
 
   useEffect(() => {
-    // Función para obtener los stocks con paginación
-    const fetchStocks = async () => {
+    const fetchStockDetails = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/grouped`, {
-          params: {
-            page: currentPage,
-            count: 12,
-            quantity: filters.quantity,
-            price: filters.price,
-            date: filters.date
-          }
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/stocks/${symbol}?count=1`
+        );
+        
+        if (response.data.data.length === 1) {
+          const stockData = response.data.data[0];
+          setStock(stockData);
+        } else {
+          console.log("No se encontró stock");
+        }
+      } catch (error) {
+        console.error("Error al obtener los detalles del stock", error);
+      }
+    };
 
-        const formattedStocks = response.data.data.map(stock => {
-          // Formateamos la fecha de cada stock
-          const formattedTimestamp = new Date(stock.timestamp).toLocaleString('en-GB', {
+    // Función para cargar el historial de compras con paginación
+    const fetchPurchaseHistory = async () => {
+      try {
+        const historyResponse = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/history/${symbol}?page=${currentPage}&count=10`
+        );
+
+        console.log(historyResponse)
+        const historyData = historyResponse.data.results.map(purchase => {
+          // Formateamos la fecha
+          const formattedDate = new Date(purchase.timestamp).toLocaleString('en-GB', {
             year: 'numeric',
             month: '2-digit',
             day: '2-digit',
@@ -40,141 +53,164 @@ function StocksPage() {
             hour12: false,
           }).replace(",", "");
 
-          return { ...stock, formattedTimestamp };
+          // Asignamos el autor según el source
+          const author = purchase.source === "request" ? "Desconocido" : "Broken";
+
+          return {
+            date: formattedDate,
+            quantity: purchase.quantity,
+            source: purchase.source,
+            author: author,
+          };
         });
 
-        setStocks(formattedStocks);
+        setPurchaseHistory(historyData); // Guardamos el historial de compras en el estado
 
-        const dataTotalPages = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/grouped`)
-        const totalPages = dataTotalPages.data.totalEntries
-        setTotalPages(Math.ceil(totalPages / 12));
+        const dataTotalResults = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/history/${symbol}?count=10`
+        );
+        const totalResults = dataTotalResults.data.pages
+        setTotalPages(totalResults);
+        console.log("xd", totalResults)
       } catch (error) {
-        console.error('Error fetching stocks:', error);
+        console.error("Error al obtener el historial de compras", error);
       }
     };
 
-    fetchStocks(); // Llamamos a la función para obtener los stocks
+    fetchStockDetails(); // Llamamos a la función cuando el componente se monta
+    fetchPurchaseHistory(); // Llamamos a la función para obtener el historial de compras
 
-  }, [currentPage, filters]); // Se ejecuta cuando cambia la página o los filtros
+  }, [symbol, currentPage]); // Solo se ejecuta cuando cambia el símbolo del stock o la página actual
 
-  const handlePageChange = (newPage) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage); // Cambiamos la página actual si es válida
+  const handlePurchase = () => {
+    if (quantity <= stock.quantity) {
+      setPurchaseStatus('Compra exitosa');
+      const newPurchase = {
+        date: new Date().toLocaleString('en-GB', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        }).replace(",", ""),
+        quantity,
+        status: 'Compra exitosa',
+      };
+      setPurchaseHistory([newPurchase, ...purchaseHistory]); // Agregar al historial de compras
+    } else {
+      setPurchaseStatus('Error: No hay suficiente stock disponible');
     }
   };
 
-  const handleFilterChange = (e) => {
-    const { name, value } = e.target;
-    setFilters({
-      ...filters,
-      [name]: value
-    });
+  const toggleHistory = () => {
+    setShowHistory(!showHistory); // Alternar la visibilidad del historial
   };
 
-  // Dividimos los stocks en tres columnas
-  const thirdIndex = Math.ceil(stocks.length / 3); // Dividimos los stocks en 3 partes
-  const leftColumnStocks = stocks.slice(0, thirdIndex); // Stocks de la columna izquierda
-  const centerColumnStocks = stocks.slice(thirdIndex, thirdIndex * 2); // Stocks de la columna central
-  const rightColumnStocks = stocks.slice(thirdIndex * 2); // Stocks de la columna derecha
+  // Lógica de paginación para evitar páginas negativas o mayores que el número total de páginas
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage); // Cambiar a la nueva página si es válida
+    }
+  };
+
+  // Si no se ha obtenido la información del stock aún, mostramos un cargando
+  if (!stock) {
+    return <div>Cargando...</div>;
+  }
 
   return (
     <>
-      <div className='titulo_page'>
-        <h1>Mercado de Stocks</h1>
+      <br /><br /><br /><br /><br />
+      <div className='contenedor_stock'>
+        <div key={stock.symbol} className="contenedor_detalles_stock">
+          <div className="titulo_detalles_stock">
+            <h2>{stock.symbol}</h2>
+            <h2 id='precio_stock'>${stock.price}</h2>
+          </div>
+          <div className='info_detalles_stock'>
+            <Row>
+              <p><b>Empresa:</b> {stock.longName}</p>
+              <p><b>Disponible:</b> {stock.quantity}</p>
+              <p><b>Última actualización:</b> {stock.timestamp}</p>
+            </Row>
+
+            <div className='formulario_compra'>
+              <div className="form-group">
+                <label>Cantidad: </label>
+                <input
+                  type="number"
+                  value={quantity}
+                  onChange={(e) => setQuantity(Number(e.target.value))}
+                  min="1"
+                  max={stock.quantity} // No puede comprar más de lo disponible
+                  className="form-control_cantidad"
+                />
+              </div>
+              <Button onClick={handlePurchase} type="submit" variant='detalle' className='sel_cantidad'>Comprar</Button>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className='filtros'>
-        <Form className="grupo_filtros">
-          <div>
-            <Form.Label>Stocks disponibles: </Form.Label>
-            <Form.Control
-              type="number"
-              name="quantity"
-              value={filters.quantity}
-              onChange={handleFilterChange}
-              placeholder="Cantidad"
-            />
-          </div>
-          <div>
-            <Form.Label>Precio: </Form.Label>
-            <InputGroup.Text>$</InputGroup.Text>
-            <Form.Control
-              type="number"
-              name="price"
-              value={filters.price}
-              onChange={handleFilterChange}
-              placeholder="$"
-            />
-          </div>
-          <div>
-            <Form.Label>Fecha: </Form.Label>
-            <Form.Control
-              type="date"
-              name="date"
-              value={filters.date}
-              onChange={handleFilterChange}
-              placeholder="Fecha"
-            />
-          </div>
-          <Button
-            type="button"
-            variant="opcion"
-            id="boton_filtrar"
-            onClick={() => setCurrentPage(1)} // Resetear a la primera página
-          >
-            Filtrar
+      <div className='contenedor_stock'>
+        <div className='historial_compra'>
+          <Button onClick={toggleHistory} variant="detalle" style={{ marginTop: '20px' }}>
+            {showHistory ? "Ocultar historial" : "Ver historial"}
           </Button>
-        </Form>
-      </div>
 
-      <div className="page-container">
-        <div className="left-column">
-          {leftColumnStocks.map((stock) => (
-            <div key={stock.symbol} className="stock-item">
-              <StockGeneral {...stock} />
+          {showHistory && (
+            <div>
+              <h3>Historial de Compras</h3>
+              <Table className='tabla_historial'>
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Cantidad</th>
+                    <th>Autor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {purchaseHistory.map((purchase, index) => (
+                    <tr key={index}>
+                      <td>{purchase.date}</td>
+                      <td>{purchase.source}</td>
+                      <td>{purchase.quantity}</td>
+                      <td>{purchase.author}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+
+              {/* Paginación */}
+              <div className='paginacion'>
+                <Pagination>
+                  <Col className='col_paginacion'>
+                    <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
+                  </Col>
+                  <Col className='col_paginacion'>
+                    <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
+                  </Col>
+                  <Col className='col_paginacion'>
+                    <Pagination.Item className='actual_paginacion'>{currentPage}</Pagination.Item>
+                  </Col>
+                  <Col className='col_paginacion'>
+                    <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
+                  </Col>
+                  <Col className='col_paginacion'>
+                    <Pagination.Last onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
+                  </Col>
+                </Pagination>
+              </div>
             </div>
-          ))}
-        </div>
-
-        <div className="center-column">
-          {centerColumnStocks.map((stock) => (
-            <div key={stock.symbol} className="stock-item">
-              <StockGeneral {...stock} />
-            </div>
-          ))}
-        </div>
-
-        <div className="right-column">
-          {rightColumnStocks.map((stock) => (
-            <div key={stock.symbol} className="stock-item">
-              <StockGeneral {...stock} />
-            </div>
-          ))}
+          )}
         </div>
       </div>
-
-      {/* Paginación */}
-      <div className='paginacion'>
-        <Pagination className='paginacion'>
-          <Col className='col_paginacion'>
-            <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
-          </Col>
-          <Col className='col_paginacion'>
-            <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
-          </Col>
-          <Col className='col_paginacion'>
-            <Pagination.Item className='actual_paginacion'>{currentPage}</Pagination.Item>
-          </Col>
-          <Col className='col_paginacion'>
-            <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
-          </Col>
-          <Col className='col_paginacion'>
-            <Pagination.Last onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
-          </Col>
-        </Pagination>
-      </div>
+      <br /><br />
     </>
   );
-}
+};
 
-export default StocksPage;
+export default StockDetails;

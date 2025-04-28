@@ -24,7 +24,7 @@ function App() {
         <Route path="/stocks/:symbol" element={<StockDetails />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/billetera" element={<WalletDetails />} />
+        <Route path="/wallet" element={<WalletDetails />} />
       </Routes>
     </Router>
   );

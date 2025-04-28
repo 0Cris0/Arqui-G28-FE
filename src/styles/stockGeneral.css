@@ -1,33 +1,35 @@
 /* Contenedor principal de la página */
-.page-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10%; /* Ajusta el espacio desde la parte superior */
+.page-container-stocks {
+  display: flex; /* Usamos Flexbox para la distribución */
+  justify-content: space-between;
+  align-items: center; /* Alinea los elementos verticalmente */
+  gap: 0px; /* Espacio entre las columnas */
+  flex-wrap: wrap; /* Asegura que las columnas no se solapen */
+}
+
+/* Columna izquierda, central y derecha */
+.left-column-stocks, .center-column-stocks, .right-column-stocks {
+  flex: 1 1 33%; /* Cada columna ocupará un 33% del espacio disponible */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Espacio entre los elementos dentro de la columna */
+  text-align: center; /* Centra el texto dentro de las columnas */
+  box-sizing: border-box; /* Asegura que el padding y el borde no afecten el ancho de las columnas */
+}
+
+/* Ajuste para cada stock dentro de las columnas */
+.stock-item {
+  width: 100%; /* Asegura que cada stock ocupe el 100% del espacio disponible dentro de la columna */
+  margin-bottom: 20px;
+}
+
+/* Responsive: Asegura que todo se vea bien en pantallas pequeñas */
+@media (max-width: 768px) {
+  .page-container {
+    flex-direction: column; /* En pantallas pequeñas, colocamos las columnas en una sola fila */
   }
-  
-  /* Columna izquierda */
-  .left-column, .center-column, .right-column {
-    flex: 1;
-    margin-right: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  .left-column-stocks, .center-column-stocks, .right-column-stocks {
+    width: 100%; /* Cada columna ocupará el 100% en pantallas pequeñas */
+    margin-right: 0;
   }
-  
-  /* Ajuste para cada stock */
-  .stock-item {
-    width: 30%; /* Cada stock ocupará un 30% del espacio */
-    margin-bottom: 20px;
-  }
-  
-  /* Ajustamos para evitar que las columnas se solapen en pantallas pequeñas */
-  @media (max-width: 1500) {
-    .page-container {
-      flex-direction: column; /* Colocamos las columnas en una sola fila */
-    }
-    .left-column, .center-column, .right-column {
-      width: 120%; /* Cada columna ocupará el 100% */
-      margin-right: 0;
-    }
-  }
-  
+}

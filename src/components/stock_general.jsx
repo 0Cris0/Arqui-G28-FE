@@ -3,7 +3,7 @@ import { Button, Container, Row, Col } from 'react-bootstrap';
 
 export const StockGeneral = (stock) => {
   return (
-    <div className='contenedor_stock_general' key={stock.id}> 
+    <div className='contenedor_stock_general' key={stock.symbol}> 
       <Container className='contenedor_titulo_stock'>
         <Row>
           <Col>

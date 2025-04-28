@@ -45,7 +45,7 @@ export const StocksNavbar = () => {
           <a className="navbar-nav active linksnavbar" href="/">Inicio</a>
           <a className="navbar-nav active linksnavbar" href="/stocks">Stocks</a>
           <a className="navbar-nav active linksnavbar" href="/transacciones">Mis transacciones</a>
-          <a className="navbar-nav active linksnavbar" href="/billetera">Mi billetera</a>
+          <a className="navbar-nav active linksnavbar" href="/wallet">Mi billetera</a>
         </Nav>
       </div>
 

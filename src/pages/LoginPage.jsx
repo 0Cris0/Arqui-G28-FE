@@ -23,7 +23,8 @@ const LoginPage = () => {
       localStorage.setItem('token', response.data.access_token);
       
       // Redirigir a la página de Stocks
-      navigate('/stocks');
+      location.replace('/stocks')
+
 
     } catch (error) {
       console.error('Error al iniciar sesión', error);

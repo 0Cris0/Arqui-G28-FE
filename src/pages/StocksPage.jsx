@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import { Button, Row, Col, Form, InputGroup } from 'react-bootstrap';
 import { StockGeneral } from '../components/stock_general';
+import '../styles/stockGeneral.css'
 
 function StocksPage() {
   const [stocks, setStocks] = useState([]); // Almacenamos los stocks obtenidos
@@ -28,22 +29,7 @@ function StocksPage() {
           }
         });
 
-        const formattedStocks = response.data.data.map(stock => {
-          // Formateamos la fecha de cada stock
-          const formattedTimestamp = new Date(stock.timestamp).toLocaleString('en-GB', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false,
-          }).replace(",", "");
-
-          return { ...stock, formattedTimestamp };
-        });
-
-        setStocks(formattedStocks);
+        setStocks(response.data.data);
 
         const dataTotalPages = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/grouped`)
         const totalPages = dataTotalPages.data.totalEntries
@@ -71,18 +57,24 @@ function StocksPage() {
     });
   };
 
-  // Dividimos los stocks en tres columnas
-  const thirdIndex = Math.ceil(stocks.length / 3); // Dividimos los stocks en 3 partes
-  const leftColumnStocks = stocks.slice(0, thirdIndex); // Stocks de la columna izquierda
-  const centerColumnStocks = stocks.slice(thirdIndex, thirdIndex * 2); // Stocks de la columna central
-  const rightColumnStocks = stocks.slice(thirdIndex * 2); // Stocks de la columna derecha
+  // Dividimos los stocks en tres columnas de manera ordenada
+  const leftColumnStocks = [];
+  const centerColumnStocks = [];
+  const rightColumnStocks = [];
+
+  stocks.forEach((stock, index) => {
+    // Distribuimos los stocks en las tres columnas
+    if (index % 3 === 0) {
+      leftColumnStocks.push(stock); // Índices 0, 3, 6, 9, ...
+    } else if (index % 3 === 1) {
+      centerColumnStocks.push(stock); // Índices 1, 4, 7, 10, ...
+    } else {
+      rightColumnStocks.push(stock); // Índices 2, 5, 8, 11, ...
+    }
+  });
 
   return (
     <>
-      <div className='titulo_page'>
-        <h1>Mercado de Stocks</h1>
-      </div>
-
       <div className='filtros'>
         <Form className="grupo_filtros">
           <div>
@@ -103,7 +95,7 @@ function StocksPage() {
               name="price"
               value={filters.price}
               onChange={handleFilterChange}
-              placeholder="$"
+              placeholder="#"
             />
           </div>
           <div>
@@ -126,9 +118,13 @@ function StocksPage() {
           </Button>
         </Form>
       </div>
+      <div className='titulo-page'>
+        <h1>Mercado de Stocks</h1>
+      </div>
 
-      <div className="page-container">
-        <div className="left-column">
+      {/* Contenedor de stocks en tres columnas */}
+      <div className="page-container-stocks">
+        <div className="left-column-stocks">
           {/* Mostrar los stocks en la columna izquierda */}
           {leftColumnStocks.map((stock) => (
             <div key={stock.symbol} className="stock-item">
@@ -137,7 +133,7 @@ function StocksPage() {
           ))}
         </div>
 
-        <div className="center-column">
+        <div className="center-column-stocks">
           {/* Mostrar los stocks en la columna central */}
           {centerColumnStocks.map((stock) => (
             <div key={stock.symbol} className="stock-item">
@@ -146,7 +142,7 @@ function StocksPage() {
           ))}
         </div>
 
-        <div className="right-column">
+        <div className="right-column-stocks">
           {/* Mostrar los stocks en la columna derecha */}
           {rightColumnStocks.map((stock) => (
             <div key={stock.symbol} className="stock-item">

@@ -75,8 +75,8 @@ nav a:hover{
 .img_v1 {
   animation: border-color-change 4s infinite;
   border-radius: 3rem;
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
 }
 
 @keyframes border-color-change {
@@ -101,7 +101,6 @@ nav a:hover{
 }
 
 .contenedor_stock_general {
-  display: inline-block;
   margin: 1em;
   background-color: dimgray;
   padding: 1em;
@@ -210,7 +209,7 @@ nav a:hover{
 .filtros{
   background-color: rgba(105, 105, 105, 0.768);
   display: grid;
-  padding-top: 1px;
+  padding-top: 12%;
   align-items: center;
   border-radius: 0.3rem;
 }

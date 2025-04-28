@@ -45,7 +45,7 @@ const SignUpPage = () => {
       localStorage.setItem('token', responseLogin.data.access_token);
 
       // Redirigir a la página de Stocks
-      navigate('/stocks');
+      location.replace('/stocks')
 
     } catch (error) {
       setMessage('');

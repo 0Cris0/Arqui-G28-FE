@@ -1,7 +1,7 @@
-/* import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Row, Col, Table } from 'react-bootstrap';
 
-export const Perfil = () => {
+export const Profile = () => {
     const usuario = {
         id: 1,
         username: "roraima775",
@@ -36,4 +36,4 @@ export const Perfil = () => {
             
     );
 }
-export default Perfil; */
+export default Profile;

@@ -6,7 +6,7 @@ import '../styles/landingPage.css'
 function LandingPage() {
   return (
     <div>
-      <br /><br /><br /><br />
+      <br /><br />
       <div className="page-container">
         <div className="left-column">
           <div>
@@ -14,7 +14,7 @@ function LandingPage() {
               <img src={reactLogo} className="img_v1" alt="Logo" />
             </a>
           </div>
-          <br /><br /><br />
+          <br />
           <Button href='/nosotros' variant='opcion'>Nuestro equipo</Button>
         </div>
         
@@ -22,7 +22,7 @@ function LandingPage() {
           <h1>Bienvenido a</h1>
           <title1 id="mega_title">LegitStonks</title1>
           <h3>Tu herramienta preferida para el mercado de acciones</h3> 
-          <br /><br />
+          <br />
           <div className='contenedor_ingreso active contenedor_ingreso'>
             <h3>Regístrate o inicia sesión para acceder a todas las funcionalidades</h3> 
             <Button href='/login' variant='detalle'>Log-in</Button>
