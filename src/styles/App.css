@@ -1,15 +1,17 @@
 #root {
-  padding-left: 25%;
-  padding-right: 25%;
+  padding-left: 5%;
+  padding-right: 5%;
   text-align: center;
   align-items: center;
+  display: grid;
+  justify-content: center;
 }
 body {
   margin: 0;
   right: auto;
   left: auto;
   margin: auto;
-  display: ruby-base;
+  display: grid;
 }
 #StonksLogo{
   width: 5em;
@@ -98,17 +100,58 @@ nav a:hover{
   100% { color: purple; }
 }
 
-.contenedor_stock_general{
+.contenedor_stock_general {
   display: inline-block;
   margin: 1em;
   background-color: dimgray;
   padding: 1em;
-  width: auto;
   border-radius: 1em;
-  align-items: center;
   border: 0.2em solid greenyellow;
-  
+  box-sizing: border-box;
+  transition: transform 0.3s ease-in-out;
 }
+
+.contenedor_stock_general:hover {
+  transform: scale(1.05); /* Efecto de hover para resaltar el stock */
+}
+
+.contenedor_titulo_stock {
+  padding-bottom: 1em;
+}
+
+.titulo_stock {
+  color: white;
+  font-size: 1.5rem;
+}
+
+#precio_stock {
+  color: yellowgreen;
+  font-size: 1.2rem;
+}
+
+.contenedor_info_stock {
+  padding-top: 1em;
+  color: white;
+}
+
+.botón_stock_individual {
+  padding-top: 1em;
+}
+
+.botón_stock_individual button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.botón_stock_individual button:hover {
+  background-color: #45a049;
+}
+
+
 .contenedor_titulo_stock{
   display: flex;
   justify-content: space-between;

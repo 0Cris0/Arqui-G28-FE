@@ -1,0 +1,33 @@
+/* Contenedor principal de la página */
+.page-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10%; /* Ajusta el espacio desde la parte superior */
+  }
+  
+  /* Columna izquierda */
+  .left-column, .center-column, .right-column {
+    flex: 1;
+    margin-right: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* Ajuste para cada stock */
+  .stock-item {
+    width: 30%; /* Cada stock ocupará un 30% del espacio */
+    margin-bottom: 20px;
+  }
+  
+  /* Ajustamos para evitar que las columnas se solapen en pantallas pequeñas */
+  @media (max-width: 1500) {
+    .page-container {
+      flex-direction: column; /* Colocamos las columnas en una sola fila */
+    }
+    .left-column, .center-column, .right-column {
+      width: 120%; /* Cada columna ocupará el 100% */
+      margin-right: 0;
+    }
+  }
+  
