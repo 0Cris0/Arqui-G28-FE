@@ -6,7 +6,7 @@ import '../styles/landingPage.css'
 function LandingPage() {
   return (
     <div>
-      <br /><br />
+      <br /><br /><br /><br /><br /><br />
       <div className="page-container">
         <div className="left-column">
           <div>
@@ -20,7 +20,7 @@ function LandingPage() {
         
         <div className="right-column">
           <h1>Bienvenido a</h1>
-          <title1 id="mega_title">LegitStonks</title1>
+          <h1 id="mega_title" className='title1'>LegitStonks</h1>
           <h3>Tu herramienta preferida para el mercado de acciones</h3> 
           <br />
           <div className='contenedor_ingreso active contenedor_ingreso'>

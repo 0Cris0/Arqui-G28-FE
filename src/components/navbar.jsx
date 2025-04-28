@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StonksLogo from '../assets/imgs/logo.webp';
 import { useNavigate } from 'react-router-dom';
-import '../styles/navbar.css'; // Asegúrate de que el CSS esté importado
+import '../styles/navbar.css';
 
 export const StocksNavbar = () => {
   const [user, setUser] = useState(null);
@@ -44,7 +44,7 @@ export const StocksNavbar = () => {
         <Nav className="nav-left active nabvar.left">
           <a className="navbar-nav active linksnavbar" href="/">Inicio</a>
           <a className="navbar-nav active linksnavbar" href="/stocks">Stocks</a>
-          <a className="navbar-nav active linksnavbar" href="/transacciones">Mis transacciones</a>
+          <a className="navbar-nav active linksnavbar" href="/transactions">Mis transacciones</a>
           <a className="navbar-nav active linksnavbar" href="/wallet">Mi billetera</a>
         </Nav>
       </div>

@@ -44,8 +44,9 @@ button:hover {
   background-color: #45a049; /* Cambio de color al pasar el mouse */
 }
 
-title1 {
+.title1 {
   font-size: 4rem;
+  margin-top: 0px;
 }
 
 .titulo-page {
