@@ -3,8 +3,10 @@ import { Button, Container, Row, Col, Table, Pagination } from 'react-bootstrap'
 import axios from 'axios';
 import { useParams } from 'react-router-dom'; // Importamos useParams para obtener el 'symbol' de la URL
 import '../styles/stockDetails.css'
+import { useNavigate } from 'react-router-dom';
 
 export const StockDetails = () => {
+  const navigate = useNavigate();
   const { symbol } = useParams(); // Obtenemos el símbolo del stock de la URL
   const [stock, setStock] = useState(null); // Para almacenar los detalles del stock
   const [quantity, setQuantity] = useState(1); // Cantidad que el usuario quiere comprar
@@ -14,7 +16,7 @@ export const StockDetails = () => {
 
   const [currentPage, setCurrentPage] = useState(1); // Página actual
   const [totalPages, setTotalPages] = useState(1); // Total de páginas (usaremos para los botones de paginación)
-
+  const [n_pedido, setN_pedido] = useState(0); // Número de pedido (no se usa en este código, pero se puede usar para otras funcionalidades)
   useEffect(() => {
     const fetchStockDetails = async () => {
       try {
@@ -80,17 +82,36 @@ export const StockDetails = () => {
 
   }, [symbol, currentPage]); // Solo se ejecuta cuando cambia el símbolo del stock o la página actual
 
-  const handlePurchase = () => {
+  const handlePurchase = (e) => {
+    e.preventDefault();
     const token = localStorage.getItem('token');
     if (!token) {
       location.replace('/login')
     }
     else {
       console.log("xd")
+      console.log(quantity);
+      console.log(token)
+      const responseRegister = axios.post(`${import.meta.env.VITE_BACKEND_URL}/requests`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        
+          symbol: stock.symbol,
+          quantity: quantity,
+        
+      })
+      .then(response => {
+        console.log(response);
+        //navigate('/transactions');
+      })
+      .catch(error => {
+        console.error('Error al realizar la compra', error);
+      });
     }
 
 
-    if (quantity <= stock.quantity) {
+    /* if (quantity <= stock.quantity) {
       setPurchaseStatus('Compra exitosa');
       const newPurchase = {
         date: new Date().toLocaleString('en-GB', {
@@ -105,10 +126,10 @@ export const StockDetails = () => {
         quantity,
         status: 'Compra exitosa',
       };
-      setPurchaseHistory([newPurchase, ...purchaseHistory]); // Agregar al historial de compras
-    } else {
+      setPurchaseHistory([newPurchase, ...purchaseHistory]);  */// Agregar al historial de compras
+/*     } else {
       setPurchaseStatus('Error: No hay suficiente stock disponible');
-    }
+    } */
   };
 
   const toggleHistory = () => {
@@ -151,7 +172,7 @@ export const StockDetails = () => {
                 }).replace(",", "")}</p>
             </Row>
             <div className='formulario_compra'>
-              <div className="form-group">
+              <form className="form-group">
                 <label>Cantidad: </label>
                 <input
                   type="number"
@@ -161,7 +182,7 @@ export const StockDetails = () => {
                   max={stock.quantity} // No puede comprar más de lo disponible
                   className="form-control_cantidad"
                 />
-              </div>
+              </form>
               <Button onClick={handlePurchase} type="submit" variant='detalle' className='sel_cantidad'>Comprar</Button>
             </div>
           </div>
