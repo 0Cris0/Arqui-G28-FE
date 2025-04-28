@@ -28,15 +28,16 @@ export const TransactionsPage = () => {
         });
 
         // Actualizamos el estado con las transacciones obtenidas
-        setTransacciones(response.data.results);
-
+        //setTransacciones(response.data.results);
+        setTransacciones(Array.isArray(response.data.results) ? response.data.results : []);
+        console.log(response.data);
         // Actualizamos el total de páginas para la paginación
         setTotalPages(Math.ceil(response.data.totalEntries / 10)); // Total de páginas
       } catch (error) {
         console.error('Error al obtener las transacciones', error);
       }
     };
-
+    console.log(transacciones);
     fetchTransacciones(); // Llamamos a la función para obtener las transacciones
 
   }, [currentPage, navigate]);
