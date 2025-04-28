@@ -6,20 +6,25 @@ import { StockGeneral } from '../components/stock_general';
 import '../styles/stockGeneral.css'
 
 function StocksPage() {
+  let counter = 0;
   const [stocks, setStocks] = useState([]); // Almacenamos los stocks obtenidos
   const [currentPage, setCurrentPage] = useState(1); // Página actual
   const [totalPages, setTotalPages] = useState(1); // Total de páginas
-  const [filters, setFilters] = useState({
+  const [filtersTemp, setFiltersTemp] = useState({
     quantity: '',
     price: '',
     date: ''
   }); // Filtros
-
+  const [filters, setFilters] = useState({
+    quantity: '',
+    price: '',
+    date: ''
+  });
   useEffect(() => {
     // Función para obtener los stocks con paginación
     const fetchStocks = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/grouped`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/`, {
           params: {
             page: currentPage,
             count: 12,
@@ -30,8 +35,8 @@ function StocksPage() {
         });
 
         setStocks(response.data.data);
-
-        const dataTotalPages = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/grouped`)
+        
+        const dataTotalPages = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/`)
         const totalPages = dataTotalPages.data.totalEntries
         setTotalPages(Math.ceil(totalPages / 12));
       } catch (error) {
@@ -49,13 +54,41 @@ function StocksPage() {
     }
   };
 
-  const handleFilterChange = (e) => {
+  const handleFilterTempChange = (e) => {
     const { name, value } = e.target;
     setFilters({
       ...filters,
       [name]: value
     });
+    console.log(filters);
   };
+
+  const applyFilters = async () => {
+    setFilters(filtersTemp); // Aplicamos los filtros temporales
+    console.log("Actualizando filtros...");
+    console.log(filters);
+    //setCurrentPage(1); // Reiniciamos a la primera página
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/grouped`, {
+      params: {
+        page: currentPage,
+        count: 12,
+        quantity: filters.quantity,
+        price: filters.price,
+        date: filters.date
+      }
+    })
+    .then((response) => {
+      setStocks(response.data.data);
+
+      const dataTotalPages = axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/grouped`)
+      const totalPages = dataTotalPages.data.totalEntries
+      setTotalPages(Math.ceil(totalPages / 12));
+    })
+    .catch((error) => {
+      console.error('Error fetching stocks:', error);
+    });
+  }
+
 
   // Dividimos los stocks en tres columnas de manera ordenada
   const leftColumnStocks = [];
@@ -83,7 +116,7 @@ function StocksPage() {
               type="number"
               name="quantity"
               value={filters.quantity}
-              onChange={handleFilterChange}
+              onChange={handleFilterTempChange}
               placeholder="Cantidad"
             />
           </div>
@@ -94,7 +127,7 @@ function StocksPage() {
               type="number"
               name="price"
               value={filters.price}
-              onChange={handleFilterChange}
+              onChange={handleFilterTempChange}
               placeholder="#"
             />
           </div>
@@ -104,7 +137,7 @@ function StocksPage() {
               type="date"
               name="date"
               value={filters.date}
-              onChange={handleFilterChange}
+              onChange={handleFilterTempChange}
               placeholder="Fecha"
             />
           </div>
@@ -112,7 +145,7 @@ function StocksPage() {
             type="button"
             variant="opcion"
             id="boton_filtrar"
-            onClick={() => setCurrentPage(1)} // Resetear a la primera página
+            onClick={() => applyFilters()} // Resetear a la primera página
           >
             Filtrar
           </Button>
@@ -127,7 +160,8 @@ function StocksPage() {
         <div className="left-column-stocks">
           {/* Mostrar los stocks en la columna izquierda */}
           {leftColumnStocks.map((stock) => (
-            <div key={stock.symbol} className="stock-item">
+            counter++,
+            <div key={counter} className="stock-item">
               <StockGeneral {...stock} />
             </div>
           ))}
@@ -136,7 +170,8 @@ function StocksPage() {
         <div className="center-column-stocks">
           {/* Mostrar los stocks en la columna central */}
           {centerColumnStocks.map((stock) => (
-            <div key={stock.symbol} className="stock-item">
+            counter++,
+            <div key={counter} className="stock-item">
               <StockGeneral {...stock} />
             </div>
           ))}
@@ -145,7 +180,8 @@ function StocksPage() {
         <div className="right-column-stocks">
           {/* Mostrar los stocks en la columna derecha */}
           {rightColumnStocks.map((stock) => (
-            <div key={stock.symbol} className="stock-item">
+            counter++,
+            <div key={counter} className="stock-item">
               <StockGeneral {...stock} />
             </div>
           ))}

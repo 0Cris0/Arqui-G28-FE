@@ -20,7 +20,7 @@ export const StockGeneral = (stock) => {
           <Col>
             <p><b>Empresa:</b> {stock.longName}</p>
             <p><b>Disponible:</b> {stock.quantity}</p>
-            <p><b>Última actualización:</b> {stock.formattedTimestamp}</p>
+            <p><b>Última actualización:</b> {(stock.timestamp)}</p>
           </Col>
           <Col className='text-end'>
             <div className='boton_stock_individual'>
