@@ -89,21 +89,18 @@ export const StockDetails = () => {
       location.replace('/login')
     }
     else {
-      console.log("xd")
-      console.log(quantity);
-      console.log(token)
-      const responseRegister = axios.post(`${import.meta.env.VITE_BACKEND_URL}/requests`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        
-          symbol: stock.symbol,
-          quantity: quantity,
-        
-      })
+      const responseRegister = axios.post(`${import.meta.env.VITE_BACKEND_URL}/requests`,
+        { symbol:stock.symbol, quantity: quantity },               // body como objeto JS
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      )
       .then(response => {
         console.log(response);
-        //navigate('/transactions');
+        navigate('/transactions');
       })
       .catch(error => {
         console.error('Error al realizar la compra', error);
