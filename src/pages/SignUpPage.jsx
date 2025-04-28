@@ -32,20 +32,23 @@ const SignUpPage = () => {
 
       setMessage('Cuenta creada exitosamente');
       setError('');
+      
+        setError('Error al crear la cuenta');
+        
+        const responseLogin = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/session/login`, {
+          email: email,
+          password: password,
+        });
+        console.log('Login exitoso', responseLogin.data);
+        // Guardar el token en localStorage
+        localStorage.setItem('token', responseLogin.data.access_token);
 
+        // Redirigir a la página de Stocks
+        location.replace('/stocks')
       // Debuguiar
       // console.log('Registro exitoso', responseRegister.data);  
 
-      const responseLogin = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/session/login`, {
-        email: email,
-        password: password,
-      });
-
-      // Guardar el token en localStorage
-      localStorage.setItem('token', responseLogin.data.access_token);
-
-      // Redirigir a la página de Stocks
-      location.replace('/stocks')
+      
 
     } catch (error) {
       setMessage('');

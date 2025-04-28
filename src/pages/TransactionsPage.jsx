@@ -24,6 +24,7 @@ export const TransactionsPage = () => {
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/profile/requests`, {
           headers: {
             Authorization: `Bearer ${token}`, // Enviamos el token en los headers
+            customAuthToken: token,
           }
         });
 

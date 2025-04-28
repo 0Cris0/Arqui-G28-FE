@@ -20,6 +20,7 @@ function StocksPage() {
     const fetchStocks = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/grouped`, {
+          
           params: {
             page: currentPage,
             count: 12,

@@ -15,6 +15,7 @@ export const StocksNavbar = () => {
       axios.get(`${import.meta.env.VITE_BACKEND_URL}/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
+          customAuthToken: token,
         }
       })
       .then(response => {

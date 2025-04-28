@@ -18,6 +18,7 @@ export const WalletDetails = () => {
       axios.get(`${import.meta.env.VITE_BACKEND_URL}/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
+          customAuthToken: token,
         }
       })
       .then(response => {
@@ -60,6 +61,7 @@ export const WalletDetails = () => {
         {
           headers: {
             Authorization: `Bearer ${token}`, // Enviamos el token en los headers
+            customAuthToken: token,
           }
         }
       );
