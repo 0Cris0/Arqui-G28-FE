@@ -52,8 +52,7 @@ export const WalletDetails = () => {
 
     try {
       // Hacemos la solicitud PUT para actualizar el saldo
-      const response = await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/profile/wallet`,
+      const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/profile/wallet`,
         {
           addedAmount: amountToAdd // Monto a agregar al saldo
         },
@@ -62,16 +61,31 @@ export const WalletDetails = () => {
             Authorization: `Bearer ${token}`, // Enviamos el token en los headers
           }
         }
-      );
+      )
+      .then(response => {
+        console.log(response.data);
+        setBalance(response.data.wallet);
+        setAmountToAdd(0);
+        alert("Saldo recargado exitosamente");
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/profile`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        })
+        .then(response => {
+          setUser(response.data); // Guardamos los detalles del usuario
+          setBalance(response.data.wallet); // Establecemos el saldo de la billetera
+        })
+      });
 
       // Actualizamos el saldo del usuario en el frontend con la nueva cantidad
-      setBalance(response.data.wallet); // Suponiendo que la respuesta contiene el nuevo saldo
+       // Suponiendo que la respuesta contiene el nuevo saldo
 
       // Limpiamos el campo de monto a recargar
-      setAmountToAdd(0);
       
-      alert("Saldo recargado exitosamente");
-      location.replace('/wallet')
+      
+      
+      //location.replace('/wallet')
 
     } catch (error) {
       console.error('Error al recargar el saldo', error);

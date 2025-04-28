@@ -489,7 +489,7 @@ nav a:hover{
   margin-bottom: 2em;
   padding: 4em;
 
-  width:20em;
+  width:max-content;
   align-items: center;
   text-align: left;
   background-color: rgba(105, 105, 105);
@@ -499,6 +499,7 @@ nav a:hover{
 }
 .contenedor_titulo_wallet{
   text-align: center;
+  font-size: xx-large;
   color: whitesmoke;
 }
 .contenedor_info_wallet{

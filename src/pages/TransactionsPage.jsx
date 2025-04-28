@@ -10,6 +10,15 @@ export const TransactionsPage = () => {
   const [totalPages, setTotalPages] = useState(1); // Total de páginas
   const navigate = useNavigate();
 
+  const transaccion_ref = {
+    "group_id": "28",
+    "operation": "BUY",
+    "quantity": 1,
+    "request_id": "630c8018-d8e7-47f2-9add-eabdc808c39a",
+    "stock_origin": "0",
+    "symbol": "TNXP",
+    "timestamp": "2025-04-28T21:24:59.410Z",
+  };
   useEffect(() => {
     const token = localStorage.getItem('token'); // Obtenemos el token de localStorage
 
@@ -17,6 +26,8 @@ export const TransactionsPage = () => {
       navigate('/login'); // Si no hay token, redirigimos al login
       return;
     }
+    //console.log(token);
+
 
     const fetchTransacciones = async () => {
       try {
@@ -29,16 +40,26 @@ export const TransactionsPage = () => {
 
         // Actualizamos el estado con las transacciones obtenidas
         //setTransacciones(response.data.results);
-        setTransacciones(Array.isArray(response.data.results) ? response.data.results : []);
+        setTransacciones(Array.isArray(response.data) ? response.data : []);
         console.log(response.data);
         // Actualizamos el total de páginas para la paginación
         setTotalPages(Math.ceil(response.data.totalEntries / 10)); // Total de páginas
+
+
+        
+
+
       } catch (error) {
         console.error('Error al obtener las transacciones', error);
       }
     };
-    console.log(transacciones);
+    /* console.log("Token: ", token);
+    console.log(transacciones); */
     fetchTransacciones(); // Llamamos a la función para obtener las transacciones
+    /* transacciones.map((transaccion) => {
+      console.log(transaccion.timestamp);
+      console.log(transaccion);
+    }); */
 
   }, [currentPage, navigate]);
 
@@ -58,18 +79,20 @@ export const TransactionsPage = () => {
         <Table className='tabla_transacciones'>
           <thead>
             <tr>
-              <th>Id</th>
+              {/* <th>Id</th> */}
               <th>Fecha</th>
               <th>Stock</th>
               <th>Cantidad</th>
-              <th>Status</th>
-              <th>Razón</th>
+              <th>Operación</th>
+             {/*  <th>Status</th>
+              <th>Razón</th> */}
             </tr>
           </thead>
           <tbody>
             {/* Mapeamos las transacciones obtenidas del backend */}
-            {transacciones.map((transaccion) => (
-              <TransaccionGeneral key={transaccion.id} {...transaccion} />
+            {transacciones.map((transaccion) => ( 
+              <TransaccionGeneral key={transaccion.timestamp} {...transaccion} />
+              //console.log("A")
             ))}
           </tbody>
         </Table>

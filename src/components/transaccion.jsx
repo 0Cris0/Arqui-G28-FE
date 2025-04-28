@@ -5,20 +5,31 @@ import axios from 'axios';
 
     // status enum("ACCEPTED","OK","NOT_VALID","REJECTED"),
 
+    const transaccion_ref = {
+        "group_id": "28",
+        "operation": "BUY",
+        "quantity": 1,
+        "request_id": "630c8018-d8e7-47f2-9add-eabdc808c39a",
+        "stock_origin": "0",
+        "symbol": "TNXP",
+        "timestamp": "2025-04-28T21:24:59.410Z",
+      };
+
 export const TransaccionGeneral = (transaccion) =>{
     return (
       
         <tr>
-            <td>{transaccion.id}</td>
+            {/* <td>{transaccion.id}</td> */}
             <td>{transaccion.timestamp}</td>
             <td>{transaccion.symbol}</td>
             <td>{transaccion.quantity}</td>
-            {transaccion.status == "ACCEPTED"? <td id='status_accepted'>{transaccion.status}</td> :
+            <td>{transaccion.operation}</td>
+            {/* {transaccion.status == "ACCEPTED"? <td id='status_accepted'>{transaccion.status}</td> :
              transaccion.status === "OK" ? <td id='status_ok'>{transaccion.status}</td> :
              transaccion.status === "NOT_VALID" ? <td id='status_not_valid'>{transaccion.status}</td> :
-              <td id='status_rejected'>{transaccion.status}</td>}
+              <td id='status_rejected'>{transaccion.status}</td>} */}
             {/* <td>{transaccion.status}</td> */}
-            <td>{transaccion.reason}</td>
+            {/* <td>{transaccion.reason}</td> */}
         </tr>        
     
     )
