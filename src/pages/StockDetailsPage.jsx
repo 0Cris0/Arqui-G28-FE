@@ -40,7 +40,6 @@ export const StockDetails = () => {
           `${import.meta.env.VITE_BACKEND_URL}/history/${symbol}?page=${currentPage}&count=10`
         );
 
-        console.log(historyResponse)
         const historyData = historyResponse.data.results.map(purchase => {
           // Formateamos la fecha
           const formattedDate = new Date(purchase.timestamp).toLocaleString('en-GB', {
@@ -71,7 +70,6 @@ export const StockDetails = () => {
         );
         const totalResults = dataTotalResults.data.pages
         setTotalPages(totalResults);
-        console.log("xd", totalResults)
       } catch (error) {
         console.error("Error al obtener el historial de compras", error);
       }
@@ -83,6 +81,15 @@ export const StockDetails = () => {
   }, [symbol, currentPage]); // Solo se ejecuta cuando cambia el símbolo del stock o la página actual
 
   const handlePurchase = () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      location.replace('/login')
+    }
+    else {
+      console.log("xd")
+    }
+
+
     if (quantity <= stock.quantity) {
       setPurchaseStatus('Compra exitosa');
       const newPurchase = {
@@ -133,9 +140,16 @@ export const StockDetails = () => {
             <Row>
               <p><b>Empresa:</b> {stock.longName}</p>
               <p><b>Disponible:</b> {stock.quantity}</p>
-              <p><b>Última actualización:</b> {stock.timestamp}</p>
+              <p><b>Última actualización:</b> {new Date(stock.timestamp).toLocaleString('en-GB', {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  second: '2-digit',
+                  hour12: false,
+                }).replace(",", "")}</p>
             </Row>
-
             <div className='formulario_compra'>
               <div className="form-group">
                 <label>Cantidad: </label>
