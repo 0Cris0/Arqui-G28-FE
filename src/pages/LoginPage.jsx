@@ -14,17 +14,16 @@ const LoginPage = () => {
 
     try {
       // Enviar las credenciales al backend para obtener el token
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/session/login`, {
+      const responseLogin = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/session/login`, {
         email: email,
         password: password,
       });
 
       // Guardar el token en localStorage
-      localStorage.setItem('token', response.data.access_token);
-      
+      localStorage.setItem('token', responseLogin.data.access_token);
+
       // Redirigir a la página de Stocks
       location.replace('/stocks')
-
 
     } catch (error) {
       console.error('Error al iniciar sesión', error);
