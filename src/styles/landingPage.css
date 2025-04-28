@@ -1,0 +1,50 @@
+/* Contenedor principal de la página */
+.page-container {
+  display: flex; /* Usamos Flexbox para la distribución */
+  justify-content: space-between;
+  margin-top: 10%; /* Ajusta el espacio desde la parte superior */
+  align-items: center; /* Alinea los elementos verticalmente */
+}
+
+/* Columna izquierda */
+.left-column {
+  flex: 1; /* Ocupa el 50% del ancho */
+  margin-right: 20px;
+}
+
+/* Columna derecha */
+.right-column {
+  flex: 1; /* Ocupa el 50% del ancho */
+  display: flex;
+  flex-direction: column; /* Coloca el texto y los botones en una columna */
+  align-items: center; /* Centra los elementos dentro de la columna */
+  justify-content: center; /* Alinea los elementos verticalmente */
+  text-align: center; /* Centra el texto */
+}
+
+/* Contenedor de los botones */
+.contenedor_ingreso {
+  width: 50%;
+  gap: 20px; /* Añade espacio entre los botones */
+  justify-content: center; /* Centra los botones */
+  margin-top: 20px; /* Espacio entre el texto y los botones */
+}
+
+/* Estilo para los botones */
+button {
+  padding: 10px 20px; /* Tamaño de los botones */
+  font-size: 1rem; /* Tamaño de la fuente dentro de los botones */
+  background-color: #4CAF50; /* Color de fondo verde */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  color: white; /* Texto blanco */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+button:hover {
+  background-color: #45a049; /* Cambio de color al pasar el mouse */
+}
+
+title1 {
+  font-size: 8rem;
+}

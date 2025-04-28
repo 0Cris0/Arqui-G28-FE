@@ -1,0 +1,79 @@
+/* Asegura que la navbar ocupe el 100% del ancho de la página */
+.contenedor_navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: #333; /* Fondo oscuro */
+  padding: 10px 0; /* Espaciado en la parte superior e inferior */
+  display: flex; /* Usamos Flexbox */
+  justify-content: space-between; /* Espacio entre la parte izquierda y derecha */
+  align-items: center; /* Alineamos verticalmente los elementos */
+}
+
+/* Contenedor izquierdo: logo y primeros enlaces */
+.contenedor_izquierda {
+  display: flex;
+  align-items: center; /* Alineamos el contenido verticalmente */
+  gap: 30px; /* Aumenta el espacio entre los elementos */
+}
+
+/* Estilo para el primer grupo de enlaces (Nav1) */
+.nav-left {
+  display: flex;
+  gap: 30px; /* Aumenta el espacio entre los enlaces */
+}
+
+
+.linksnavbar:hover {
+  background-color: #555 !important; /* Fondo oscuro al pasar el mouse */
+  border-radius: 5px; /* Bordes redondeados al pasar el mouse */
+}
+
+.linksnavbarName:hover {
+  background-color: #555 !important; /* Fondo oscuro al pasar el mouse */
+  border-radius: 5px; /* Bordes redondeados al pasar el mouse */
+}
+
+/* Contenedor derecho: para el nombre de usuario y el botón de cerrar sesión */
+.contenedor_derecha {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-right: 50px;
+}
+
+/* Estilo para los enlaces de la parte derecha */
+.nav-right {
+  display: flex;
+  gap: 30px; /* Espacio entre los enlaces de la derecha */
+  align-items: center;
+}
+
+.linksnavbar {
+  color: white !important; /* Asegura que los enlaces de la derecha sean blancos */
+  font-size: 1.5rem;  /* Tamaño de fuente estándar */
+  text-decoration: none !important; /* Elimina el subrayado */
+}
+
+.linksnavbarName {
+  color: white !important; /* Asegura que los enlaces de la derecha sean blancos */
+  font-size: 1.2rem;  /* Tamaño de fuente estándar */
+  text-decoration: none !important; /* Elimina el subrayado */
+}
+
+
+/* Responsive: Asegúrate de que todo se vea bien en pantallas pequeñas */
+@media (max-width: 768px) {
+  .contenedor_navbar {
+    flex-direction: column; /* En pantallas pequeñas, ponemos todo en una columna */
+    align-items: flex-start; /* Alineamos los elementos a la izquierda */
+  }
+
+  .contenedor_izquierda,
+  .contenedor_derecha {
+    width: 100%; /* Asegura que los contenedores tomen todo el ancho en pantallas pequeñas */
+    margin-bottom: 10px;
+  }
+}

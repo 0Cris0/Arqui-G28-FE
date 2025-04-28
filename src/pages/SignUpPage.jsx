@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import StonksLogo from '../assets/imgs/logo.webp';
+import { useNavigate } from 'react-router-dom'; // Importamos useNavigate
 
 const SignUpPage = () => {
   const [username, setUsername] = useState('');
@@ -10,6 +11,7 @@ const SignUpPage = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate(); // Inicializamos el hook de navegación
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -22,17 +24,29 @@ const SignUpPage = () => {
 
     try {
       // Enviar los datos de registro al backend
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/session/register`, {
+      const responseRegister = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/session/signup`, {
         username,
         email,
         password
       });
 
       setMessage('Cuenta creada exitosamente');
-      console.log('Cuenta creada exitosamente')
       setError('');
 
-      // Aquí puedes redirigir al usuario al login o hacer algo más
+      // Debuguiar
+      // console.log('Registro exitoso', responseRegister.data);  
+
+      const responseLogin = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/session/login`, {
+        email: email,
+        password: password,
+      });
+
+      // Guardar el token en localStorage
+      localStorage.setItem('token', responseLogin.data.access_token);
+
+      // Redirigir a la página de Stocks
+      navigate('/stocks');
+
     } catch (error) {
       setMessage('');
       setError('Error al crear la cuenta');
@@ -40,11 +54,16 @@ const SignUpPage = () => {
     }
   };
 
+  // Función para redirigir al login
+  const handleLoginRedirect = () => {
+    navigate('/login');
+  };
+
   return (
     <div className='contenedor_auth'>
       <div className='titulo_auth'>
-        <img id='StonksLogo' src={StonksLogo}></img>
-        <h2>Sign-up</h2>
+        <img id='StonksLogo' src={StonksLogo} alt="Logo" />
+        <h2>Registrarse</h2>
         
         <p>Bienvenido, registrate para continuar.</p>
       </div>
@@ -86,7 +105,19 @@ const SignUpPage = () => {
           />
           <Button type="submit" variant='form'>Registrarse</Button>
         </form>
-     </div> 
+        
+        <div className="register-link" style={{ marginTop: '20px' }}>
+          <p>
+            ¿Ya tienes una cuenta? 
+            <span 
+              onClick={handleLoginRedirect} 
+              style={{ color: 'blue', cursor: 'pointer' }}
+            >
+              ¡Ingresa aquí!
+            </span>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

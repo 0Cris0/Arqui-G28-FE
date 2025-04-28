@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import './App.css'
-import {StocksNavbar} from './components/navbar'
+import './styles/App.css'
 
 import Router from './router';
 
@@ -8,7 +7,6 @@ function App() {
   
   return (
     <>
-    <StocksNavbar/> 
       <Router/>
     </>
   )
