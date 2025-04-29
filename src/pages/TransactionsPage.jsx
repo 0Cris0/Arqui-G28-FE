@@ -40,12 +40,20 @@ export const TransactionsPage = () => {
 
         // Actualizamos el estado con las transacciones obtenidas
         //setTransacciones(response.data.results);
+        /* console.log("Response: ", response);
+        console.log("Transacciones: ", response.data); */
+        console.log("Transacciones data: ", response.data.data);
         setTransacciones(Array.isArray(response.data) ? response.data : []);
-        console.log(response.data);
+
+        
+        /* setTransacciones(Array.isArray(response.data) ? response.data : []);
         // Actualizamos el total de páginas para la paginación
-        setTotalPages(Math.ceil(response.data.totalEntries / 10)); // Total de páginas
+        setTotalPages(Math.ceil(response.data.totalEntries / 10)); // Total de páginas */
 
-
+        
+        /* transacciones.map((transaccion) => {
+          console.log(transaccion)
+        }); */
         
 
 
@@ -56,12 +64,17 @@ export const TransactionsPage = () => {
     /* console.log("Token: ", token);
     console.log(transacciones); */
     fetchTransacciones(); // Llamamos a la función para obtener las transacciones
-    /* transacciones.map((transaccion) => {
+    transacciones.map((transaccion) => {
       console.log(transaccion.timestamp);
       console.log(transaccion);
-    }); */
+    }); 
 
+    
   }, [currentPage, navigate]);
+
+    /* console.log("Antes de transacciones");
+    console.log(transacciones);
+    console.log("Despues"); */
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
@@ -70,6 +83,7 @@ export const TransactionsPage = () => {
   };
 
   return (
+    
     <>
       <div className='titulo_page'>
         <h1>Mis transacciones</h1>
@@ -84,8 +98,8 @@ export const TransactionsPage = () => {
               <th>Stock</th>
               <th>Cantidad</th>
               <th>Operación</th>
-             {/*  <th>Status</th>
-              <th>Razón</th> */}
+              <th>Status</th>
+              {/*<th>Razón</th> */}
             </tr>
           </thead>
           <tbody>

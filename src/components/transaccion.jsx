@@ -24,10 +24,11 @@ export const TransaccionGeneral = (transaccion) =>{
             <td>{transaccion.symbol}</td>
             <td>{transaccion.quantity}</td>
             <td>{transaccion.operation}</td>
-            {/* {transaccion.status == "ACCEPTED"? <td id='status_accepted'>{transaccion.status}</td> :
+            {transaccion.status == "ACCEPTED"? <td id='status_accepted'>{transaccion.status}</td> :
              transaccion.status === "OK" ? <td id='status_ok'>{transaccion.status}</td> :
-             transaccion.status === "NOT_VALID" ? <td id='status_not_valid'>{transaccion.status}</td> :
-              <td id='status_rejected'>{transaccion.status}</td>} */}
+             transaccion.status === "PENDING" ? <td id='status_not_valid'>{transaccion.status}</td> :
+             transaccion.status === "error" ? <td id='status_rejected'>{transaccion.status}</td> :
+              <td id='status_rejected'>{transaccion.status}</td>}
             {/* <td>{transaccion.status}</td> */}
             {/* <td>{transaccion.reason}</td> */}
         </tr>        
