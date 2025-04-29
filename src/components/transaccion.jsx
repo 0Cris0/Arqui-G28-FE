@@ -16,6 +16,7 @@ import axios from 'axios';
       };
 
 export const TransaccionGeneral = (transaccion) =>{
+    console.log("Transaccion actual: ", transaccion);
     return (
       
         <tr>

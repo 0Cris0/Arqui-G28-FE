@@ -11,14 +11,18 @@ export const TransactionsPage = () => {
   const navigate = useNavigate();
 
   const transaccion_ref = {
-    "group_id": "28",
+    "group_id": "00",
     "operation": "BUY",
-    "quantity": 1,
-    "request_id": "630c8018-d8e7-47f2-9add-eabdc808c39a",
+    "quantity": 0,
+    "request_id": "630c8018-d8e7-47f2-9add-eabdc808c39atest",
     "stock_origin": "0",
-    "symbol": "TNXP",
-    "timestamp": "2025-04-28T21:24:59.410Z",
+    "symbol": "TEST",
+    "timestamp": "2020-04-28T21:24:59.410Z",
   };
+
+
+
+  
   useEffect(() => {
     const token = localStorage.getItem('token'); // Obtenemos el token de localStorage
 
@@ -43,7 +47,8 @@ export const TransactionsPage = () => {
         /* console.log("Response: ", response);
         console.log("Transacciones: ", response.data); */
         console.log("Transacciones data: ", response.data.data);
-        setTransacciones(Array.isArray(response.data) ? response.data : []);
+        setTransacciones(response.data.data);
+        //setTransacciones(Array.isArray(response.data) ? response.data : []);
 
         
         /* setTransacciones(Array.isArray(response.data) ? response.data : []);
@@ -60,21 +65,21 @@ export const TransactionsPage = () => {
       } catch (error) {
         console.error('Error al obtener las transacciones', error);
       }
+      
     };
     /* console.log("Token: ", token);
     console.log(transacciones); */
     fetchTransacciones(); // Llamamos a la función para obtener las transacciones
-    transacciones.map((transaccion) => {
-      console.log(transaccion.timestamp);
-      console.log(transaccion);
-    }); 
 
     
-  }, [currentPage, navigate]);
-
-    /* console.log("Antes de transacciones");
+  }, [currentPage, ]);
+  
+    console.log("Antes de transacciones");
     console.log(transacciones);
-    console.log("Despues"); */
+    console.log("Despues");
+    transacciones.map((transaccion) => {
+      console.log(transaccion)
+    });
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
