@@ -1,19 +1,12 @@
-import React from 'react';
-import {Button, Container, Row, Col} from 'react-bootstrap';
-import axios from 'axios';
-
-
-    // status enum("ACCEPTED","OK","NOT_VALID","REJECTED"),
-
-    const transaccion_ref = {
-        "group_id": "28",
-        "operation": "BUY",
-        "quantity": 1,
-        "request_id": "630c8018-d8e7-47f2-9add-eabdc808c39a",
-        "stock_origin": "0",
-        "symbol": "TNXP",
-        "timestamp": "2025-04-28T21:24:59.410Z",
-      };
+/* const transaccion_ref = {
+    "group_id": "28",
+    "operation": "BUY",
+    "quantity": 1,
+    "request_id": "630c8018-d8e7-47f2-9add-eabdc808c39a",
+    "stock_origin": "0",
+    "symbol": "TNXP",
+    "timestamp": "2025-04-28T21:24:59.410Z",
+}; */
 
 export const TransaccionGeneral = (transaccion) =>{
     console.log("Transaccion actual: ", transaccion);
@@ -30,7 +23,6 @@ export const TransaccionGeneral = (transaccion) =>{
              transaccion.status === "PENDING" ? <td id='status_not_valid'>{transaccion.status}</td> :
              transaccion.status === "error" ? <td id='status_rejected'>{transaccion.status}</td> :
               <td id='status_rejected'>{transaccion.status}</td>}
-            {/* <td>{transaccion.status}</td> */}
             {/* <td>{transaccion.reason}</td> */}
         </tr>        
     

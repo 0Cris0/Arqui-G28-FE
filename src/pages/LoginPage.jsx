@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import StonksLogo from '../assets/imgs/logo.webp';
@@ -11,20 +11,16 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault(); 
-
     try {
       // Enviar las credenciales al backend para obtener el token
       const responseLogin = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/session/login`, {
         email: email,
         password: password,
       });
-
       // Guardar el token en localStorage
       localStorage.setItem('token', responseLogin.data.access_token);
-
       // Redirigir a la página de Stocks
       location.replace('/stocks')
-
     } catch (error) {
       console.error('Error al iniciar sesión', error);
     }

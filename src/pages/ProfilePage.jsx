@@ -5,7 +5,6 @@ export const ProfilePage = () => {
   return (
     <div className='contenedor_centrado'>
       <div className='contenedor_wallet'>
-        {/* Botones dentro de la caja de perfil */}
         <Button 
           variant="opcion" 
           onClick={() => window.location.href = '/wallet'} // Redirige a la página de billetera

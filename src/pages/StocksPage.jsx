@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
-import { Button, Row, Col, Form, InputGroup } from 'react-bootstrap';
+import { Button, Col, Form, InputGroup } from 'react-bootstrap';
 import { StockGeneral } from '../components/stock_general';
 import '../styles/stockGeneral.css'
 
@@ -65,9 +65,8 @@ function StocksPage() {
 
   const applyFilters = async () => {
     setFilters(filtersTemp); // Aplicamos los filtros temporales
-    console.log("Actualizando filtros...");
-    console.log(filters);
-    //setCurrentPage(1); // Reiniciamos a la primera página
+/*     console.log("Actualizando filtros...");
+    console.log(filters); */
     const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/grouped`, {
       params: {
         page: currentPage,

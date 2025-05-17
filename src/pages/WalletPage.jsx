@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Container, Row, Col, Table } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Para redirigir al usuario si no está autenticado
 
@@ -12,7 +12,6 @@ export const WalletDetails = () => {
   // Usamos useEffect para obtener la información del usuario
   useEffect(() => {
     const token = localStorage.getItem('token'); // Obtenemos el token del localStorage
-
     if (token) {
       // Si hay un token, hacemos la solicitud para obtener el perfil del usuario
       axios.get(`${import.meta.env.VITE_BACKEND_URL}/profile`, {
@@ -34,22 +33,21 @@ export const WalletDetails = () => {
     }
   }, [navigate]); // Solo se ejecuta una vez cuando se monta el componente
 
+
   // Si no hay usuario, mostramos un mensaje de carga
   if (!user) {
     return <div>Cargando...</div>;
   }
 
   const handleRecharge = async (e) => {
+    // Handler de sistema de recarga de fondos de la wallet
     e.preventDefault(); // Evita el comportamiento por defecto del formulario
-
     const token = localStorage.getItem('token'); // Obtenemos el token del localStorage
-
     // Verificamos que el monto a recargar sea válido
     if (amountToAdd <= 0) {
       alert("El monto debe ser mayor a 0");
       return;
     }
-
     try {
       // Hacemos la solicitud PUT para actualizar el saldo
       const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/profile/wallet`,
@@ -63,7 +61,7 @@ export const WalletDetails = () => {
         }
       )
       .then(response => {
-        console.log(response.data);
+        //console.log(response.data);
         setBalance(response.data.wallet);
         setAmountToAdd(0);
         alert("Saldo recargado exitosamente");
@@ -77,22 +75,16 @@ export const WalletDetails = () => {
           setBalance(response.data.wallet); // Establecemos el saldo de la billetera
         })
       });
-
       // Actualizamos el saldo del usuario en el frontend con la nueva cantidad
-       // Suponiendo que la respuesta contiene el nuevo saldo
-
-      // Limpiamos el campo de monto a recargar
-      
-      
-      
       //location.replace('/wallet')
-
     } catch (error) {
       console.error('Error al recargar el saldo', error);
       alert("Hubo un error al recargar el saldo. Intente nuevamente.");
     }
   };
 
+
+  
   return (
     <div className='contenedor_centrado'>
       <div className='contenedor_wallet'>

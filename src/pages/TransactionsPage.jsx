@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Container, Row, Col, Table, Pagination } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Button, Col, Table, Pagination } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { TransaccionGeneral } from '../components/transaccion'; // Asegúrate de tener este componente
@@ -25,13 +25,10 @@ export const TransactionsPage = () => {
   
   useEffect(() => {
     const token = localStorage.getItem('token'); // Obtenemos el token de localStorage
-
     if (!token) {
       navigate('/login'); // Si no hay token, redirigimos al login
       return;
     }
-    //console.log(token);
-
 
     const fetchTransacciones = async () => {
       try {
@@ -41,45 +38,25 @@ export const TransactionsPage = () => {
             Authorization: `Bearer ${token}`, // Enviamos el token en los headers
           }
         });
-
-        // Actualizamos el estado con las transacciones obtenidas
-        //setTransacciones(response.data.results);
-        /* console.log("Response: ", response);
-        console.log("Transacciones: ", response.data); */
         console.log("Transacciones data: ", response.data.data);
-        setTransacciones(response.data.data);
-        //setTransacciones(Array.isArray(response.data) ? response.data : []);
-
-        
+        setTransacciones(response.data.data);        
         /* setTransacciones(Array.isArray(response.data) ? response.data : []);
         // Actualizamos el total de páginas para la paginación
         setTotalPages(Math.ceil(response.data.totalEntries / 10)); // Total de páginas */
-
-        
-        /* transacciones.map((transaccion) => {
-          console.log(transaccion)
-        }); */
-        
-
-
       } catch (error) {
         console.error('Error al obtener las transacciones', error);
       }
-      
     };
-    /* console.log("Token: ", token);
-    console.log(transacciones); */
-    fetchTransacciones(); // Llamamos a la función para obtener las transacciones
 
-    
+    fetchTransacciones(); // Llamamos a la función para obtener las transacciones
   }, [currentPage, ]);
   
-    console.log("Antes de transacciones");
+/*     console.log("Antes de transacciones");
     console.log(transacciones);
     console.log("Despues");
     transacciones.map((transaccion) => {
       console.log(transaccion)
-    });
+    }); */
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
@@ -87,8 +64,9 @@ export const TransactionsPage = () => {
     }
   };
 
+
+
   return (
-    
     <>
       <div className='titulo_page'>
         <h1>Mis transacciones</h1>
@@ -98,7 +76,6 @@ export const TransactionsPage = () => {
         <Table className='tabla_transacciones'>
           <thead>
             <tr>
-              {/* <th>Id</th> */}
               <th>Fecha</th>
               <th>Stock</th>
               <th>Cantidad</th>
@@ -108,10 +85,8 @@ export const TransactionsPage = () => {
             </tr>
           </thead>
           <tbody>
-            {/* Mapeamos las transacciones obtenidas del backend */}
             {transacciones.map((transaccion) => ( 
               <TransaccionGeneral key={transaccion.timestamp} {...transaccion} />
-              //console.log("A")
             ))}
           </tbody>
         </Table>

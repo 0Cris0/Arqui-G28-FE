@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Container, Row, Col, Table, Pagination } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Button, Row, Col, Table, Pagination } from 'react-bootstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom'; // Importamos useParams para obtener el 'symbol' de la URL
 import '../styles/stockDetails.css'
@@ -9,21 +9,20 @@ export const StockDetails = () => {
   const navigate = useNavigate();
   const { symbol } = useParams(); // Obtenemos el símbolo del stock de la URL
   const [stock, setStock] = useState(null); // Para almacenar los detalles del stock
+  
   const [quantity, setQuantity] = useState(1); // Cantidad que el usuario quiere comprar
-  const [purchaseStatus, setPurchaseStatus] = useState(null); // Estado para mostrar el resultado de la compra
   const [purchaseHistory, setPurchaseHistory] = useState([]); // Histórico de compras
   const [showHistory, setShowHistory] = useState(false); // Estado para controlar la visibilidad del historial
 
   const [currentPage, setCurrentPage] = useState(1); // Página actual
   const [totalPages, setTotalPages] = useState(1); // Total de páginas (usaremos para los botones de paginación)
-  const [n_pedido, setN_pedido] = useState(0); // Número de pedido (no se usa en este código, pero se puede usar para otras funcionalidades)
+
   useEffect(() => {
     const fetchStockDetails = async () => {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/stocks/${symbol}?count=1`
         );
-        
         if (response.data.data.length === 1) {
           const stockData = response.data.data[0];
           setStock(stockData);
@@ -41,7 +40,6 @@ export const StockDetails = () => {
         const historyResponse = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/history/${symbol}?page=${currentPage}&count=10`
         );
-
         const historyData = historyResponse.data.results.map(purchase => {
           // Formateamos la fecha
           const formattedDate = new Date(purchase.timestamp).toLocaleString('en-GB', {
@@ -55,7 +53,7 @@ export const StockDetails = () => {
           }).replace(",", "");
 
           // Asignamos el autor según el source
-          const author = purchase.source === "request" ? "Desconocido" : "Broken";
+          const author = purchase.source === "request" ? "Desconocido" : "Externo";
 
           return {
             date: formattedDate,
@@ -106,27 +104,6 @@ export const StockDetails = () => {
         console.error('Error al realizar la compra', error);
       });
     }
-
-
-    /* if (quantity <= stock.quantity) {
-      setPurchaseStatus('Compra exitosa');
-      const newPurchase = {
-        date: new Date().toLocaleString('en-GB', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false,
-        }).replace(",", ""),
-        quantity,
-        status: 'Compra exitosa',
-      };
-      setPurchaseHistory([newPurchase, ...purchaseHistory]);  */// Agregar al historial de compras
-/*     } else {
-      setPurchaseStatus('Error: No hay suficiente stock disponible');
-    } */
   };
 
   const toggleHistory = () => {

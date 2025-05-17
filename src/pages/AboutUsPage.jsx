@@ -1,10 +1,7 @@
-import { useState } from 'react'
 import reactLogo from '../assets/imgs/img1.webp'
-
 import Button from "react-bootstrap/Button";
 
 function AboutUsPage() {
-  const [count, setCount] = useState(0)
   return (
     <>
           <div>

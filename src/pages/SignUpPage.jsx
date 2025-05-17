@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import StonksLogo from '../assets/imgs/logo.webp';
@@ -32,10 +32,6 @@ const SignUpPage = () => {
 
       setMessage('Cuenta creada exitosamente');
       setError('');
-
-      // Debuguiar
-      // console.log('Registro exitoso', responseRegister.data);  
-
       const responseLogin = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/session/login`, {
         email: email,
         password: password,
