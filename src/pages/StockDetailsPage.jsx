@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { Button, Row, Col, Table, Pagination } from 'react-bootstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom'; // Importamos useParams para obtener el 'symbol' de la URL
-import '../styles/stockDetails.css'
 import { useNavigate } from 'react-router-dom';
+
+import '../styles/pages/stockDetails.css'
+import '../styles/buttons.css'
 
 export const StockDetails = () => {
   const navigate = useNavigate();

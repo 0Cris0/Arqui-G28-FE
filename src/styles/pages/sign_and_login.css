@@ -1,0 +1,55 @@
+.contenedor_auth{
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
+  margin-bottom: 2em;
+  padding: 3em;
+  
+  align-items: center;
+  text-align: left;
+  background-color: rgba(105, 105, 105);
+  
+  border-radius: 1em;
+}
+
+.titulo_auth{
+  color: #1a1a1a;
+  font-size: large;
+}
+
+.form_auth{
+  display: flex;
+  margin: 1em;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.formulario_auth{
+  display: grid;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 0.5em;
+}
+.input_auth_txt{
+  padding: 0.5em;
+  background-color:whitesmoke;
+  border-radius: 0.5em;
+  color: #1a1a1a;
+  margin-top: 0.5em;
+  border: 0.2em solid #1a1a1a;
+}
+
+.btn-form{
+  padding: 0.5em;
+  margin: 1em;
+  background-color: #1a1a1a;
+  border-radius: 0.5em;
+  color: whitesmoke;
+  font-weight: bolder;
+  border: 0.2em solid #1a1a1a;
+}
+
+.btn-form:hover{
+  color: #1a1a1a;
+  background-color: greenyellow;
+  border-radius: 0.5em;
+}

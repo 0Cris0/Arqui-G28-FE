@@ -3,6 +3,8 @@ import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Para redirigir al usuario si no está autenticado
 
+import '../styles/pages/wallet.css'
+
 export const WalletDetails = () => {
   const [user, setUser] = useState(null); // Estado para almacenar los detalles del usuario
   const [balance, setBalance] = useState(0); // Estado para almacenar el saldo de la billetera

@@ -1,0 +1,50 @@
+.tabla_transacciones{
+  display: block;
+  justify-content: center;
+  align-items: center;
+  border: 1em solid yellowgreen;
+  border-radius: 1rem;
+  margin-bottom: 1em;
+}
+
+.tabla_transacciones th{
+  background-color: rgba(105, 105, 105);
+  color: white;
+  width: 100%;
+  padding: 2em;
+  font-weight: bolder;
+  font-size: large;
+  border-bottom: 0.5em solid yellowgreen;
+  
+}
+
+.tabla_transacciones tr{
+  background-color: rgba(105, 105, 105, 0.568);
+  color: white;
+}
+
+.tabla_transacciones td{
+  text-align: center;
+  color: white;  
+  padding: 1rem;
+}
+
+#status_accepted{
+  font-weight: bold;
+  color: greenyellow;
+}
+
+#status_ok{
+  font-weight: bold;
+  color: whitesmoke;
+}
+
+#status_rejected{
+  font-weight: bold;
+  color:tomato;
+}
+
+#status_not_valid{
+  font-weight: bold;
+  color: orchid;
+}

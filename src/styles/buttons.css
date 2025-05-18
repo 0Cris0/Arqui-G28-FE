@@ -1,0 +1,57 @@
+
+/* Botón de detalle */
+.btn-detalle{
+  padding: 0.5em;
+  background-color: whitesmoke;
+  border-radius: 0.5em;
+  color: #1a1a1a;
+  font-weight: bolder;
+  border: 0.2em solid #1a1a1a;
+}
+
+.btn-detalle:hover{
+  color: white;
+  background-color: #1a1a1a;
+}
+
+/* Botón de opciones */
+.btn-opcion{
+  padding: 0.5em;
+  background-color: greenyellow;
+  border-radius: 0.5em;
+  color: #1a1a1a;
+  font-weight: bolder;
+  border: 0.2em solid #1a1a1a;
+}
+.btn-opcion:hover{
+  color: white;
+  background-color: #1a1a1a;
+}
+
+/* Página Stocks */
+
+.boton_stock_individual{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Esto solo aparece cuando no se presonaliza (En wallet y StockDetails) */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

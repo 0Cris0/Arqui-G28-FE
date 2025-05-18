@@ -33,3 +33,77 @@
     margin-right: 0;
   }
 }
+
+
+.contenedor_stock_general {
+  margin: 1em;
+  background-color: dimgray;
+  padding: 1em;
+  border-radius: 1em;
+  border: 0.2em solid greenyellow;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-in-out;
+}
+
+.contenedor_stock_general:hover {
+  transform: scale(1.05); /* Efecto de hover para resaltar el stock */
+}
+
+.contenedor_titulo_stock {
+  padding-bottom: 1em;
+}
+
+.titulo_stock {
+  color: white;
+  font-size: 1.5rem;
+}
+
+#precio_stock {
+  color: yellowgreen;
+  font-size: 1.2rem;
+}
+
+.contenedor_info_stock {
+  padding-top: 1em;
+  color: white;
+}
+
+.contenedor_titulo_stock{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color:black
+}
+.titulo_stock{
+  margin: 0.5em;
+}
+
+.contenedor_info_stock{
+  text-align: left;
+  font-weight: bolder;
+}
+
+.contenedor_info_stock b{
+  color: #1a1a1a
+}
+
+#precio_stock{
+  color:greenyellow
+}
+
+.filtros{
+  background-color: rgba(105, 105, 105, 0.768);
+  display: grid;
+  padding-top: 12%;
+  align-items: center;
+  border-radius: 0.3rem;
+}
+
+.grupo_filtros{
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  align-items: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}

@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { TransaccionGeneral } from '../components/transaccion'; // Asegúrate de tener este componente
 
+import '../styles/pages/transactions.css'
+
 export const TransactionsPage = () => {
   const [transacciones, setTransacciones] = useState([]); // Almacena las transacciones
   const [currentPage, setCurrentPage] = useState(1); // Página actual

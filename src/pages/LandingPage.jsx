@@ -1,6 +1,8 @@
 import { Button } from 'react-bootstrap';
-import Logo from '../assets/imgs/img1.webp';
-import '../styles/landingPage.css'
+import reactLogo from '../assets/imgs/img1.webp';
+
+import '../styles/pages/landing.css'
+import '../styles/buttons.css'
 
 function LandingPage() {
   return (
@@ -10,7 +12,7 @@ function LandingPage() {
         <div className="left-column">
           <div>
             <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank" rel="noopener noreferrer">
-              <img src={Logo} className="img_v1" alt="Logo" />
+              <img src={reactLogo} className="img_v1" alt="Logo" />
             </a>
           </div>
           <br />
