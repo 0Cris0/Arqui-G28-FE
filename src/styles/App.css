@@ -6,6 +6,7 @@
   display: grid;
   justify-content: center;
 }
+
 body {
   margin: 0;
   right: auto;
@@ -13,6 +14,7 @@ body {
   margin: auto;
   display: grid;
 }
+
 #StonksLogo{
   width: 5em;
   height: 5em;
@@ -21,63 +23,11 @@ body {
   border: 0.2em solid greenyellow;
 }
 
-.contenedor_navbar{
-  width: max-content;
-  margin-top: 0;
-  margin-bottom: 2em;
-  background-color: dimgray;
-  
-}
-
-nav{
-  font-size: large;
-  font-weight: bolder;
-  width:auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-nav a{
-  color: white;
-  align-self: center;
-  font-weight: bolder;
-  text-decoration: none;
-  padding-left: 2em;
-  padding-right: 2em;  
-}
-nav a:hover{
-  color: #1a1a1a;
-}
 .me-auto{
   display: flex;
   align-items: center;
 }
 
-.contenedor_ingreso{
-  display: grid;
-  justify-content: center;
-  margin-top: 2em;
-  margin-bottom: 2em;
-  margin-left: 15em;
-  margin-right: 15em;
-  padding: 1em;
-  text-align: center  ;
-  background-color: rgba(105, 105, 105, 0.768);
-  border: 0.5em solid greenyellow;
-  border-radius: 1em;
-}
-.contenedor_ingreso a{
-  text-align: center;
-  margin-left: 5em;
-  margin-right: 5em;
-  margin-bottom: 1em;
-}
-.img_v1 {
-  animation: border-color-change 4s infinite;
-  border-radius: 3rem;
-  width: 400px;
-  height: 400px;
-}
 
 @keyframes border-color-change {
   0% { border: 1rem solid purple; }
@@ -100,128 +50,6 @@ nav a:hover{
   100% { color: purple; }
 }
 
-.contenedor_stock_general {
-  margin: 1em;
-  background-color: dimgray;
-  padding: 1em;
-  border-radius: 1em;
-  border: 0.2em solid greenyellow;
-  box-sizing: border-box;
-  transition: transform 0.3s ease-in-out;
-}
-
-.contenedor_stock_general:hover {
-  transform: scale(1.05); /* Efecto de hover para resaltar el stock */
-}
-
-.contenedor_titulo_stock {
-  padding-bottom: 1em;
-}
-
-.titulo_stock {
-  color: white;
-  font-size: 1.5rem;
-}
-
-#precio_stock {
-  color: yellowgreen;
-  font-size: 1.2rem;
-}
-
-.contenedor_info_stock {
-  padding-top: 1em;
-  color: white;
-}
-
-.botón_stock_individual {
-  padding-top: 1em;
-}
-
-.botón_stock_individual button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.botón_stock_individual button:hover {
-  background-color: #45a049;
-}
-
-
-.contenedor_titulo_stock{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color:black
-}
-.titulo_stock{
-  margin: 0.5em;
-}
-
-.contenedor_info_stock{
-  text-align: left;
-  font-weight: bolder;
-}
-.contenedor_info_stock b{
-  color: #1a1a1a
-}
-
-#precio_stock{
-  color:greenyellow
-}
-
-.boton_stock_individual{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.btn-detalle{
-  padding: 0.5em;
-  background-color: whitesmoke;
-  border-radius: 0.5em;
-  color: #1a1a1a;
-  font-weight: bolder;
-  border: 0.2em solid #1a1a1a;
-}
-
-.btn-detalle:hover{
-  color: white;
-  background-color: #1a1a1a;
-}
-
-.btn-opcion{
-  padding: 0.5em;
-  background-color: greenyellow;
-  border-radius: 0.5em;
-  color: #1a1a1a;
-  font-weight: bolder;
-  border: 0.2em solid #1a1a1a;
-}
-.btn-opcion:hover{
-  color: white;
-  background-color: #1a1a1a;
-}
-
-.filtros{
-  background-color: rgba(105, 105, 105, 0.768);
-  display: grid;
-  padding-top: 12%;
-  align-items: center;
-  border-radius: 0.3rem;
-}
-
-.grupo_filtros{
-  display: flex;
-  justify-content: space-around;
-  font-weight: bold;
-  align-items: center;
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
 
 .paginacion{
   background-color: rgba(105, 105, 105, 0.768);
@@ -232,9 +60,11 @@ nav a:hover{
   border-top-left-radius: 0.3rem;
   
 }
+
 .paginacion ul{
   background-color: rgba(105, 105, 105, 0);
 }
+
 .paginacion a{
   color: whitesmoke;
   border-radius: 0.3rem;
@@ -246,289 +76,27 @@ nav a:hover{
   padding-right: 2em;  
   
 }
+
 .paginacion a:hover{
   color: white;
   background-color: #1a1a1a;
   border-radius: 0.5em;
 }
+
 .actual_paginacion{
   font-weight: bold;
   color: #1a1a1a;
   text-align: center;
   border-radius: 0.5em;
 }
+
 .col_paginacion{
   margin-left: 1rem;
   list-style-type: none;
   margin-right: 1rem;
 }
 
-
-.tabla_transacciones{
-  display: block;
-  justify-content: center;
-  align-items: center;
-  border: 1em solid yellowgreen;
-  border-radius: 1rem;
-  margin-bottom: 1em;
-}
-
-.tabla_transacciones th{
-  background-color: rgba(105, 105, 105);
-  color: white;
-  width: 100%;
-  padding: 2em;
-  font-weight: bolder;
-  font-size: large;
-  border-bottom: 0.5em solid yellowgreen;
-  
-}
-
-.tabla_transacciones tr{
-  background-color: rgba(105, 105, 105, 0.568);
-  color: white;
-}
-.tabla_transacciones td{
-  text-align: center;
-  color: white;  
-  padding: 1rem;
-}
-
-#status_accepted{
-  font-weight: bold;
-  color: greenyellow;
-}
-
-#status_ok{
-  font-weight: bold;
-  color: whitesmoke;
-}
-
-#status_rejected{
-  font-weight: bold;
-  color:tomato;
-}
-
-#status_not_valid{
-  font-weight: bold;
-  color: orchid;
-}
-
-
-
-
-.contenedor_stock{
-  display: grid;
-  justify-content: center;
-}
-
-.contenedor_detalles_stock{
-  display: grid;
-  justify-content: center;
-  margin-top: 3em;
-  margin-bottom: 2em;
-  padding: 3em;
-  width: fit-content;
-  align-items: center;
-  text-align: left;
-  background-color: rgba(105, 105, 105);
-  border: 0.5em solid yellowgreen;
-  border-radius: 1em;
-}
-
-.titulo_detalles_stock{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size:x-large;
-}
-
-.formulario_compra{
-  display: flex;
-  margin: 1em;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.form-group{
-  padding: 0.3em;
-  background-color:whitesmoke;
-  border-radius: 0.5em;
-  color: #1a1a1a;
-  font-weight: bolder;
-  border: 0.2em solid #1a1a1a;
-}
-.form-control_cantidad{
-  padding: 0.5em;
-  background-color:whitesmoke;
-  border-radius: 0.5em;
-  color: #1a1a1a;
-  font-weight: bolder;
-  border: 0em solid #1a1a1a;
-}
-.sel_cantidad{
-  text-align: center;
-}
-
-
-
-
-
-.tabla_historial{
-  display: block;
-  justify-content: center;
-  align-items: center;
-  border: 0.5em solid greenyellow;
-  border-radius: 1rem;
-  margin-bottom: 1em;
-}
-
-.tabla_historial th{
-  background-color: rgba(105, 105, 105);
-  color: white;
-  width: 100%;
-  padding: 2em;
-  font-weight: bolder;
-  font-size: large;
-  border-bottom: 0.3em solid greenyellow;
-  
-}
-
-.tabla_historial tr{
-  background-color: rgba(105, 105, 105, 0.568);
-  color: white;
-}
-.tabla_historial td{
-  text-align: center;
-  color: white;  
-  padding: 1rem;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-.contenedor_auth{
-  display: flex;
-  justify-content: center;
-  margin-top: 3em;
-  margin-bottom: 2em;
-  padding: 3em;
-  
-  align-items: center;
-  text-align: left;
-  background-color: rgba(105, 105, 105);
-  
-  border-radius: 1em;
-}
-
-.titulo_auth{
-  color: #1a1a1a;
-  font-size: large;
-}
-
-.form_auth{
-  display: flex;
-  margin: 1em;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.formulario_auth{
-  display: grid;
-  padding: 1em;
-  margin: 1em;
-  border-radius: 0.5em;
-}
-.input_auth_txt{
-  padding: 0.5em;
-  background-color:whitesmoke;
-  border-radius: 0.5em;
-  color: #1a1a1a;
-  margin-top: 0.5em;
-  border: 0.2em solid #1a1a1a;
-}
-
-.btn-form{
-  padding: 0.5em;
-  margin: 1em;
-  background-color: #1a1a1a;
-  border-radius: 0.5em;
-  color: whitesmoke;
-  font-weight: bolder;
-  border: 0.2em solid #1a1a1a;
-}
-
-.btn-form:hover{
-  color: #1a1a1a;
-  background-color: greenyellow;
-  border-radius: 0.5em;
-}
-
-
-
-
-
-
-
 .contenedor_centrado{
   display: grid;
   justify-content: center;
-
-}
-.contenedor_wallet{
-  color:#1a1a1a;
-  display: grid;
-  justify-content: center;
-  margin-top: 3em;
-  margin-bottom: 2em;
-  padding: 4em;
-
-  width:max-content;
-  align-items: center;
-  text-align: left;
-  background-color: rgba(105, 105, 105);
-  
-  border-radius: 1em;
-  border: 0.5em solid greenyellow;
-}
-.contenedor_titulo_wallet{
-  text-align: center;
-  font-size: xx-large;
-  color: whitesmoke;
-}
-.contenedor_info_wallet{
-  display:flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size:x-large;
-}
-#balance{
-  color: greenyellow;
-  font-weight: bolder;
-  font-size: xxx-large;
-}
-
-.formulario_recarga{
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-#simbolo_dinero{
-  font-weight: bolder;
-  font-size: x-large;
-}
-.input_recarga_txt{
-  padding: 0.5em;
-  background-color:whitesmoke;
-  border-radius: 0.5em;
-  color: #1a1a1a;
-  font-weight: bold;
-  margin: 0.5em;
-  border: 0.2em solid #1a1a1a;
 }

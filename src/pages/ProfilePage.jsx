@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap'; // Importamos el componente Button de React-Bootstrap
 
+import '../styles/buttons.css'
+
 export const ProfilePage = () => {
   return (
     <div className='contenedor_centrado'>

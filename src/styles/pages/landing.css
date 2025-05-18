@@ -22,26 +22,33 @@
 }
 
 /* Contenedor de los botones */
-.contenedor_ingreso {
+.contenedor_ingreso{
   width: 50%;
-  gap: 10px; /* Añade espacio entre los botones */
-  justify-content: center; /* Centra los botones */
-  margin-top: 20px; /* Espacio entre el texto y los botones */
+  gap: 10px;
+  display: grid;
+  justify-content: center;
+  margin-bottom: 2em;
+  margin-left: 15em;
+  margin-right: 15em;
+  padding: 1em;
+  text-align: center  ;
+  background-color: rgba(105, 105, 105, 0.768);
+  border: 0.5em solid greenyellow;
+  border-radius: 1em;
 }
 
-/* Estilo para los botones */
-button {
-  padding: 10px 20px; /* Tamaño de los botones */
-  font-size: 1rem; /* Tamaño de la fuente dentro de los botones */
-  background-color: #4CAF50; /* Color de fondo verde */
-  border: none; /* Sin borde */
-  border-radius: 5px; /* Bordes redondeados */
-  color: white; /* Texto blanco */
-  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+.contenedor_ingreso a{
+  text-align: center;
+  margin-left: 5em;
+  margin-right: 5em;
+  margin-bottom: 1em;
 }
 
-button:hover {
-  background-color: #45a049; /* Cambio de color al pasar el mouse */
+.img_v1 {
+  animation: border-color-change 4s infinite;
+  border-radius: 3rem;
+  width: 400px;
+  height: 400px;
 }
 
 .title1 {

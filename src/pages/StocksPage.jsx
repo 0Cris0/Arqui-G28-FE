@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import { Button, Row, Col, Form, InputGroup } from 'react-bootstrap';
 import { StockGeneral } from '../components/stock_general';
-import '../styles/stockGeneral.css'
+
+import '../styles/pages/stockGeneral.css'
+import '../styles/buttons.css'
 
 function StocksPage() {
   let counter = 0;

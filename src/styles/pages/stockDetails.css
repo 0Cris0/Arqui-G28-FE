@@ -1,0 +1,143 @@
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.col_paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination {
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  display: flex;
+  height: 50px;
+
+}
+
+.pagination .page-item {
+  background-color: #555;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.pagination .page-link {
+  color: white !important;
+  background-color: #555;
+  border: none;
+  padding: 8px 15px;
+}
+
+.pagination .page-link:hover {
+  background-color: #777;
+  border-radius: 5px;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #4CAF50;
+  border: none;
+}
+
+.pagination .page-item.disabled .page-link {
+  background-color: #444;
+  pointer-events: none;
+}
+  
+  #precio_stock{
+  color:greenyellow
+}
+
+.contenedor_stock{
+  display: grid;
+  justify-content: center;
+}
+
+.contenedor_detalles_stock{
+  display: grid;
+  justify-content: center;
+  margin-top: 3em;
+  margin-bottom: 2em;
+  padding: 3em;
+  width: fit-content;
+  align-items: center;
+  text-align: left;
+  background-color: rgba(105, 105, 105);
+  border: 0.5em solid yellowgreen;
+  border-radius: 1em;
+}
+
+.titulo_detalles_stock{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size:x-large;
+}
+
+.formulario_compra{
+  display: flex;
+  margin: 1em;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.form-group{
+  padding: 0.3em;
+  background-color:whitesmoke;
+  border-radius: 0.5em;
+  color: #1a1a1a;
+  font-weight: bolder;
+  border: 0.2em solid #1a1a1a;
+}
+
+.form-control_cantidad{
+  padding: 0.5em;
+  background-color:whitesmoke;
+  border-radius: 0.5em;
+  color: #1a1a1a;
+  font-weight: bolder;
+  border: 0em solid #1a1a1a;
+}
+
+.sel_cantidad{
+  text-align: center;
+}
+
+/* Historial de compras */
+.tabla_historial{
+  display: block;
+  justify-content: center;
+  align-items: center;
+  border: 0.5em solid greenyellow;
+  border-radius: 1rem;
+  margin-bottom: 1em;
+}
+
+.tabla_historial th{
+  background-color: rgba(105, 105, 105);
+  color: white;
+  width: 100%;
+  padding: 2em;
+  font-weight: bolder;
+  font-size: large;
+  border-bottom: 0.3em solid greenyellow;
+  
+}
+
+.tabla_historial tr{
+  background-color: rgba(105, 105, 105, 0.568);
+  color: white;
+}
+
+.tabla_historial td{
+  text-align: center;
+  color: white;  
+  padding: 1rem;
+}
+/* ----------------------------------- */

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import reactLogo from '../assets/imgs/img1.webp';
-import '../styles/landingPage.css'
+
+import '../styles/pages/landing.css'
+import '../styles/buttons.css'
 
 function LandingPage() {
   return (

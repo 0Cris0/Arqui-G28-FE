@@ -1,6 +1,9 @@
 import React from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 
+import '../styles/pages/stockGeneral.css'
+import '../styles/buttons.css'
+
 export const StockGeneral = (stock) => {
   return (
     <div className='contenedor_stock_general' key={stock.symbol}> 

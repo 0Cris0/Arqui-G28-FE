@@ -4,6 +4,8 @@ import { Button } from 'react-bootstrap';
 import StonksLogo from '../assets/imgs/logo.webp';
 import { useNavigate } from 'react-router-dom'; // Importamos useNavigate
 
+import '../styles/pages/sign_and_login.css'
+
 const SignUpPage = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
