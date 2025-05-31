@@ -1,0 +1,16 @@
+.contenedor_message{
+  color:#1a1a1a;
+  display: grid;
+  justify-content: center;
+  margin-top: 3em;
+  margin-bottom: 2em;
+  padding: 4em;
+
+  width:max-content;
+  align-items: center;
+  text-align: left;
+  background-color: rgba(105, 105, 105);
+  
+  border-radius: 1em;
+  border: 0.5em solid greenyellow;
+}

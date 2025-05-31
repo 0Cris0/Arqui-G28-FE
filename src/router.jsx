@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import WalletDetails from './pages/WalletPage';
 import ProfilePage from './pages/ProfilePage';
+import WebPay from './pages/WebPay';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/nosotros" element={<AboutUsPage />} />
+        <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/stocks" element={<StocksPage />} />
         <Route path="/transactions" element={<TransactionsPage />} />
         <Route path="/stocks/:symbol" element={<StockDetails />} />
@@ -26,6 +27,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/wallet" element={<WalletDetails />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/webpay" element={<WebPay />} />
       </Routes>
     </Router>
   );
