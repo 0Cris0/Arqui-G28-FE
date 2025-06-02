@@ -13,7 +13,7 @@ const MessageBox = ({ children }) => {
   );
 };
 
-export const WebPay = () => {
+export const WebPayFail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export const WebPay = () => {
     }
   }, [navigate]);
 
-  return <MessageBox> Mensaje variado si se aprobo o no </MessageBox>;
+  return <MessageBox> Oh oh, falló la compra ._.</MessageBox>;
 };
 
-export default WebPay;
+export default WebPayFail;

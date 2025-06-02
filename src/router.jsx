@@ -10,7 +10,8 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import WalletDetails from './pages/WalletPage';
 import ProfilePage from './pages/ProfilePage';
-import WebPay from './pages/WebPay';
+import WebPayApprove from './pages/WebPayApprove';
+import WebPayFail from './pages/WebPayFail';
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/wallet" element={<WalletDetails />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/webpay" element={<WebPay />} />
+        <Route path="/webpay/approve" element={<WebPayApprove />} />
+        <Route path="/webpay/fail" element={<WebPayFail />} />
       </Routes>
     </Router>
   );

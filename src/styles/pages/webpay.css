@@ -13,4 +13,8 @@
   
   border-radius: 1em;
   border: 0.5em solid greenyellow;
+
+  /* Texto dentro del contenedor */
+  color: white;
+  font-size: 1.4rem;
 }
