@@ -88,7 +88,7 @@ export const TransactionsPage = () => {
           </thead>
           <tbody>
             {transacciones.map((transaccion) => ( 
-              <TransaccionGeneral key={transaccion.timestamp} {...transaccion} />
+              <TransaccionGeneral key={transaccion.timestamp} transaccion={transaccion} />
             ))}
           </tbody>
         </Table>

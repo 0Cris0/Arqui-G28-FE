@@ -8,25 +8,35 @@
     "timestamp": "2025-04-28T21:24:59.410Z",
 }; */
 
-export const TransaccionGeneral = (transaccion) =>{
-    console.log("Transaccion actual: ", transaccion);
-    return (
-      
-        <tr>
-            {/* <td>{transaccion.id}</td> */}
-            <td>{transaccion.timestamp}</td>
-            <td>{transaccion.symbol}</td>
-            <td>{transaccion.quantity}</td>
-            <td>{transaccion.operation}</td>
-            {transaccion.status == "ACCEPTED"? <td id='status_accepted'>{transaccion.status}</td> :
-             transaccion.status === "OK" ? <td id='status_ok'>{transaccion.status}</td> :
-             transaccion.status === "PENDING" ? <td id='status_not_valid'>{transaccion.status}</td> :
-             transaccion.status === "error" ? <td id='status_rejected'>{transaccion.status}</td> :
-              <td id='status_rejected'>{transaccion.status}</td>}
-            {/* <td>{transaccion.reason}</td> */}
-        </tr>        
-    
-    )
-} 
+import { useNavigate } from 'react-router-dom';
+
+export const TransaccionGeneral = ({ transaccion }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    // Send `transaccion.id` through state
+    navigate(`/request`, { state: { id: transaccion.request_id } });
+  };
+
+  return (
+    <tr onClick={handleClick} style={{ cursor: 'pointer' }}>
+      <td>{transaccion.timestamp}</td>
+      <td>{transaccion.symbol}</td>
+      <td>{transaccion.quantity}</td>
+      <td>{transaccion.operation}</td>
+      {transaccion.status === "ACCEPTED" ? (
+        <td id="status_accepted">{transaccion.status}</td>
+      ) : transaccion.status === "OK" ? (
+        <td id="status_ok">{transaccion.status}</td>
+      ) : transaccion.status === "PENDING" ? (
+        <td id="status_not_valid">{transaccion.status}</td>
+      ) : transaccion.status === "error" ? (
+        <td id="status_rejected">{transaccion.status}</td>
+      ) : (
+        <td id="status_rejected">{transaccion.status}</td>
+      )}
+    </tr>
+  );
+};
 
 export default TransaccionGeneral;

@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import WalletDetails from './pages/WalletPage';
 import ProfilePage from './pages/ProfilePage';
+import RequestFullData from './pages/RequestFullData';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/wallet" element={<WalletDetails />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/request" element={<RequestFullData />} />
       </Routes>
     </Router>
   );
