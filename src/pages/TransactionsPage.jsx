@@ -78,11 +78,11 @@ export const TransactionsPage = () => {
         <Table className='tabla_transacciones'>
           <thead>
             <tr>
-              <th>Fecha</th>
+              <th>Fecha y hora</th>
               <th>Stock</th>
               <th>Cantidad</th>
               <th>Operación</th>
-              <th>Status</th>
+              <th>Estatus</th>
               {/*<th>Razón</th> */}
             </tr>
           </thead>

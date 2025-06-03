@@ -40,22 +40,36 @@
   font-size: 1rem;
 }
 
-#status_accepted {
+.status-accepted {
   font-weight: bold;
   color: greenyellow;
 }
 
-#status_ok {
+.status-ok {
   font-weight: bold;
   color: whitesmoke;
 }
 
-#status_rejected {
+.status-pending {
+  font-weight: bold;
+  color: orchid;
+}
+
+.status-error {
   font-weight: bold;
   color: tomato;
 }
 
-#status_not_valid {
+.download-button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: yellowgreen;
+  color: rgb(0, 0, 0);
   font-weight: bold;
-  color: orchid;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: not-allowed;
+  opacity: 0.7;
+  font-size: 1rem;
 }
+

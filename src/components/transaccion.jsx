@@ -10,6 +10,8 @@
 
 import { useNavigate } from 'react-router-dom';
 
+import { formatDate } from '../helpers/formatDate';
+
 export const TransaccionGeneral = ({ transaccion }) => {
   const navigate = useNavigate();
 
@@ -20,7 +22,7 @@ export const TransaccionGeneral = ({ transaccion }) => {
 
   return (
     <tr onClick={handleClick} style={{ cursor: 'pointer' }}>
-      <td>{transaccion.timestamp}</td>
+      <td>{formatDate(transaccion?.timestamp)}</td>
       <td>{transaccion.symbol}</td>
       <td>{transaccion.quantity}</td>
       <td>{transaccion.operation}</td>
