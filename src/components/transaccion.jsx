@@ -16,7 +16,6 @@ export const TransaccionGeneral = ({ transaccion }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    // Send `transaccion.id` through state
     navigate(`/transaction`, { state: { request: transaccion } });
   };
 

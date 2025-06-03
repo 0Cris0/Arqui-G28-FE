@@ -12,6 +12,7 @@ import WalletDetails from './pages/WalletPage';
 import ProfilePage from './pages/ProfilePage';
 import RequestDetailPage from './pages/RequestDetailPage';
 import PredictionsPage from './pages/PredictionsPage';
+import PredictionDetailPage from './pages/PredictionDetailPage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/transaction" element={<RequestDetailPage />} />
         <Route path="/predictions" element={<PredictionsPage />} />
+        <Route path="/prediction" element={<PredictionDetailPage />} />
       </Routes>
     </Router>
   );

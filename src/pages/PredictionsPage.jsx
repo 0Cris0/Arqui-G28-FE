@@ -5,12 +5,12 @@ import PredictionCardSummary from '../components/PredictionCardSummary';
 const PredictionsPage = () => {
 
   const mockPrediction = {
-    stock: 'AAPL',
-    cantidad: 10,
-    precioAntiguo: 140.5,
-    precioActual: 150.0,
-    precioFuturo: 162.3,
-    prediccionDinero: 1623.0,
+    symbol: 'AAPL',
+    n_stocks: 10,
+    precio_antiguo: 140.5,
+    precio_actual: 150.0,
+    prediccion_precio: 162.3,
+    prediccion_dinero: 1623.0,
   };
 
   return (
