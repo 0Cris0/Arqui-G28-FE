@@ -8,6 +8,11 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: transform 0.2s ease-in-out;
+}
+
+.prediction-card:hover {
+  transform: scale(1.05);
 }
 
 .prediction-title {
@@ -20,6 +25,7 @@
 .prediction-row {
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 0.5rem;
@@ -33,4 +39,21 @@
 .value {
   color: white;
   font-size: 1rem;
+}
+
+.prediction-button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: yellowgreen;
+  border: none;
+  border-radius: 0.5rem;
+  color: #1a1a1a;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.prediction-button:hover {
+  background-color: #b2ff59;
 }

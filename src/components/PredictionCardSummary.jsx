@@ -19,6 +19,8 @@ const PredictionCardSummary = ({ prediction }) => {
         <span className="label">Predicción dinero:</span>
         <span className="value">${prediction.prediccionDinero}</span>
       </div>
+
+      <button className="prediction-button">Ver Predicción</button>
     </div>
   );
 };

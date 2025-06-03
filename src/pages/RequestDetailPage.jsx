@@ -1,11 +1,11 @@
 import { useLocation } from 'react-router-dom';
-import '../styles/pages/RequestFullDataPage.css';
+import '../styles/pages/DetailPage.css';
 import { formatDate } from '../helpers/formatDate';
 
 const normalizeStatus = (status = '') =>
   status.toLowerCase().replace(/\s+/g, '_');
 
-const RequestFullDataPage = () => {
+const RequestDetailPage = () => {
   const location = useLocation();
   const { request } = location.state || {};
 
@@ -50,4 +50,4 @@ const RequestFullDataPage = () => {
   );
 };
 
-export default RequestFullDataPage;
+export default RequestDetailPage;

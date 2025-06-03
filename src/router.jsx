@@ -10,7 +10,7 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import WalletDetails from './pages/WalletPage';
 import ProfilePage from './pages/ProfilePage';
-import RequestFullDataPage from './pages/RequestFullDataPage';
+import RequestDetailPage from './pages/RequestDetailPage';
 import PredictionsPage from './pages/PredictionsPage';
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/wallet" element={<WalletDetails />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/transaction" element={<RequestFullDataPage />} />
+        <Route path="/transaction" element={<RequestDetailPage />} />
         <Route path="/predictions" element={<PredictionsPage />} />
       </Routes>
     </Router>
