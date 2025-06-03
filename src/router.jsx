@@ -27,7 +27,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/wallet" element={<WalletDetails />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/request" element={<RequestFullData />} />
+        <Route path="/transaction" element={<RequestFullData />} />
       </Routes>
     </Router>
   );

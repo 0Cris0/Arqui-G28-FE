@@ -1,50 +1,61 @@
-.tabla_transacciones {
-    display: block;
-    justify-content: center;
-    align-items: center;
-    border: 1em solid yellowgreen;
-    border-radius: 1rem;
-    margin-bottom: 1em;
-  }
-  
-  .tabla_transacciones th {
-    background-color: rgba(105, 105, 105);
-    color: white;
-    width: 100%;
-    padding: 2em;
-    font-weight: bolder;
-    font-size: large;
-    border-bottom: 0.5em solid yellowgreen;
-  }
-  
-  .tabla_transacciones tr {
-    background-color: rgba(105, 105, 105, 0.568);
-    color: white;
-  }
-  
-  .tabla_transacciones td {
-    text-align: center;
-    color: white;
-    padding: 1rem;
-  }
-  
-  #status_accepted {
-    font-weight: bold;
-    color: greenyellow;
-  }
-  
-  #status_ok {
-    font-weight: bold;
-    color: whitesmoke;
-  }
-  
-  #status_rejected {
-    font-weight: bold;
-    color: tomato;
-  }
-  
-  #status_not_valid {
-    font-weight: bold;
-    color: orchid;
-  }
-  
+.request-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.title {
+  font-size: 2rem;
+  color: #fdfdfd;
+  margin-bottom: 1.5rem;
+}
+
+.request-card {
+  background-color: #2d2d2d;
+  border: 2px solid yellowgreen;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.request-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.label {
+  color: #c0c0c0;
+  font-weight: bold;
+}
+
+.value {
+  color: white;
+  font-size: 1rem;
+}
+
+#status_accepted {
+  font-weight: bold;
+  color: greenyellow;
+}
+
+#status_ok {
+  font-weight: bold;
+  color: whitesmoke;
+}
+
+#status_rejected {
+  font-weight: bold;
+  color: tomato;
+}
+
+#status_not_valid {
+  font-weight: bold;
+  color: orchid;
+}
