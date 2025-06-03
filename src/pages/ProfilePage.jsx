@@ -20,6 +20,13 @@ export const ProfilePage = () => {
         >
           Mis transacciones
         </Button>
+        <br /><br />
+        <Button 
+          variant="opcion" 
+          onClick={() => window.location.href = '/predictions'}
+        >
+          Predicciones de dinero
+        </Button>
       </div>
     </div>
   );

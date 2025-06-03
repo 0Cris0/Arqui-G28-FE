@@ -1,0 +1,36 @@
+.prediction-card {
+  background-color: #2d2d2d;
+  border: 2px solid yellowgreen;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 1rem auto;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.prediction-title {
+  font-size: 1.5rem;
+  color: #fdfdfd;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.prediction-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.label {
+  color: #c0c0c0;
+  font-weight: bold;
+}
+
+.value {
+  color: white;
+  font-size: 1rem;
+}
