@@ -1,10 +1,24 @@
+import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import reactLogo from '../assets/imgs/img1.webp';
 
 import '../styles/pages/landing.css'
 import '../styles/buttons.css'
 
+import { getHeartbeat } from '../helpers/getHeartbeat';
+
 function LandingPage() {
+  const [status, setStatus] = useState("CARGANDO...");
+
+  useEffect(() => {
+    async function fetchHeartbeat() {
+      const heartbeat = await getHeartbeat();
+      setStatus(heartbeat ? "ACTIVO" : "INACTIVO");
+    }
+
+    fetchHeartbeat();
+  }, []);
+
   return (
     <div>
       <br /><br /><br /><br /><br /><br />
@@ -30,10 +44,9 @@ function LandingPage() {
             <Button href='/signup' variant='detalle'>Sign-up</Button>
           </div>
 
-          <h3>Workers está {'/heartbeat'}</h3> 
+          <h3>Workers está <span className={status === "ACTIVO" ? "activo-text" : ""}>{status}</span></h3>
         </div>
       </div>
-
     </div>
   );
 }

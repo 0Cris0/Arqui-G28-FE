@@ -61,3 +61,89 @@
   display: flex;
   justify-content: center;
 }
+
+/* ACTIVO */
+
+/* Add glowing, color-changing and dynamic effect to "ACTIVO" */
+.activo-text {
+  font-size: 2rem;
+  animation: crazyActiveEffect 1s infinite, inflateDeflate 3s ease-in-out infinite, colorChange 2s ease-in-out infinite;
+  color: #ff00ff;  /* Start with neon pink */
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 75px #ff00ff, 0 0 100px #ff00ff;
+  opacity: 1;
+  font-weight: bold;
+  padding: 5px;
+  display: inline-block; /* Prevents it from affecting other elements */
+  -webkit-background-clip: text;
+}
+
+/* Animation for "ACTIVO" (scaling, rotating, opacity) */
+@keyframes crazyActiveEffect {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(1.2) rotate(15deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.5) rotate(-15deg);
+    opacity: 0.6;
+  }
+  75% {
+    transform: scale(1.2) rotate(15deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Inflate and deflate effect for "ACTIVO" */
+@keyframes inflateDeflate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);  /* Inflates */
+  }
+  100% {
+    transform: scale(1);  /* Deflates */
+  }
+}
+
+/* Color change with fade effect */
+@keyframes colorChange {
+  0% {
+    color: #ff00ff;  /* Neon Pink */
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 75px #ff00ff, 0 0 100px #ff00ff;
+    opacity: 1;
+  }
+  20% {
+    color: #ff0000;  /* Red */
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000, 0 0 75px #ff0000, 0 0 100px #ff0000;
+    opacity: 1;
+  }
+  40% {
+    color: #00ff00;  /* Green */
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 75px #00ff00, 0 0 100px #00ff00;
+    opacity: 1;
+  }
+  60% {
+    color: #0000ff;  /* Blue */
+    text-shadow: 0 0 10px #0000ff, 0 0 20px #0000ff, 0 0 30px #0000ff, 0 0 40px #0000ff, 0 0 50px #0000ff, 0 0 75px #0000ff, 0 0 100px #0000ff;
+    opacity: 1;
+  }
+  80% {
+    color: #ffff00;  /* Yellow */
+    text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00, 0 0 40px #ffff00, 0 0 50px #ffff00, 0 0 75px #ffff00, 0 0 100px #ffff00;
+    opacity: 1;
+  }
+  100% {
+    color: #ff00ff;  /* Neon Pink */
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 75px #ff00ff, 0 0 100px #ff00ff;
+    opacity: 1;
+  }
+}

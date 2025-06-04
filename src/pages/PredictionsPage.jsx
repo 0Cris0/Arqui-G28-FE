@@ -20,7 +20,7 @@ const PredictionsPage = () => {
   return (
     <div className="predictions-page">
         <div className="predictions-title-wrapper">
-            <h1 className="predictions-title">Predicciones {userId}</h1>
+            <h1 className="predictions-title">Predicciones</h1>
         </div>
         <div className="prediction-cards-container">
             {predictions.length > 0 ? (

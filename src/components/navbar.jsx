@@ -3,34 +3,17 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import StonksLogo from '../assets/imgs/logo.webp';
 import { useNavigate } from 'react-router-dom';
+import { useCurrentUser } from '../helpers/useCurrentUser';
 import '../styles/navbar.css';
 
 export const StocksNavbar = () => {
-  const [user, setUser] = useState(null);
+  const { user } = useCurrentUser();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      axios.get(`${import.meta.env.VITE_BACKEND_URL}/profile`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
-      })
-      .then(response => {
-        setUser(response.data);
-      })
-      .catch(error => {
-        console.error('Error al obtener los datos del usuario', error);
-        localStorage.removeItem('token');
-      });
-    }
-  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    setUser(null);
     navigate('/login');
+    window.location.reload();
   };
 
   return (
