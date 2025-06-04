@@ -3,10 +3,13 @@ import '../styles/pages/PredictionsPage.css';
 
 import PredictionCardSummary from '../components/PredictionCardSummary';
 import { getPredictions } from '../helpers/getPredictions';
+import { useCurrentUser } from '../helpers/useCurrentUser';
 
 const PredictionsPage = () => {
+  const { user } = useCurrentUser();
+  const userId = user?.id;
+
   const [predictions, setPredictions] = useState([]);
-  const userId = 3;
 
   useEffect(() => {
     getPredictions(userId)
@@ -17,7 +20,7 @@ const PredictionsPage = () => {
   return (
     <div className="predictions-page">
         <div className="predictions-title-wrapper">
-            <h1 className="predictions-title">Predicciones</h1>
+            <h1 className="predictions-title">Predicciones {userId}</h1>
         </div>
         <div className="prediction-cards-container">
             {predictions.length > 0 ? (
