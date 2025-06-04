@@ -16,7 +16,7 @@ function LandingPage() {
             </a>
           </div>
           <br />
-          <Button href='/nosotros' variant='opcion'>Nuestro equipo</Button>
+          <Button href='/aboutus' variant='opcion'>Nuestro equipo</Button>
         </div>
         
         <div className="right-column">
