@@ -1,6 +1,10 @@
+/* const dotenv = require('dotenv');
+dotenv.config() */
+const workersURL = "https://primordialdomain.me"; //import.meta.env.WORKERS_URL;
+
 export async function getHeartbeat() {
     try {
-        const response = await fetch(`${import.meta.env.WORKERS_URL}/heartbeat`);
+        const response = await fetch(`${workersURL}/heartbeat`);
 
         if (!response.ok) {
             throw new Error(`Workers not working: ${response.statusText}`);

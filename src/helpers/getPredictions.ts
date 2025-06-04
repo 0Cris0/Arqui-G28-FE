@@ -5,9 +5,15 @@
  * @returns {Promise<Array>} Array of prediction objects.
  * @throws Will throw an error if the request fails.
  */
+
+/* const dotenv = require('dotenv');
+dotenv.config() */
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
+
 export async function getPredictions(userId) {
   try {
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/prediction/user/${userId}`);
+    const response = await fetch(`${backendURL}/prediction/user/${userId}`);
 
     if (!response.ok) {
       throw new Error(`Error fetching predictions: ${response.statusText}`);

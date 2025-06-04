@@ -85,14 +85,16 @@ export const StockDetails = () => {
 const handlePurchase = async (e) => {
   e.preventDefault();
   const token = localStorage.getItem('token');
+  console.log(token)
+  console.log("Ese era el token")
   if (!token) {
     location.replace('/login')
   } else {
     try {
-      const responseBuy = await fetch('http://localhost:3000/requests', {
+      const responseBuy = await fetch(`${import.meta.env.VITE_BACKEND_URL}/requests`, {
         method: 'POST',
         headers: {
-          'Access-Control-Allow-Origin': '*',
+          //'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },

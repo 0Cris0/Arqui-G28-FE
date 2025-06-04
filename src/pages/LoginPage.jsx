@@ -19,6 +19,7 @@ const LoginPage = () => {
         email: email,
         password: password,
       });
+      console.log(responseLogin)
       // Guardar el token en localStorage
       localStorage.setItem('token', responseLogin.data.access_token);
       // Redirigir a la página de Stocks

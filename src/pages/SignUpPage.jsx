@@ -41,7 +41,7 @@ const SignUpPage = () => {
 
       // Guardar el token en localStorage
       localStorage.setItem('token', responseLogin.data.access_token);
-
+      console.log(responseLogin)
       // Redirigir a la página de Stocks
       location.replace('/stocks')
 

@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { formatDate } from '../helpers/formatDate';
 
-export const TransaccionGeneral = ({ transaccion }) => {
+export const TransaccionGeneral = ( transaccion ) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
