@@ -67,7 +67,7 @@ export const TransactionsPage = () => {
         <Table className='tabla_transacciones'>
           <thead>
             <tr>
-              <th>Fecha</th>
+              <th>Fecha y hora</th>
               <th>Stock</th>
               <th>Cantidad</th>
               <th>Operación</th>
