@@ -78,17 +78,17 @@ export const TransactionsPage = () => {
         <Table className='tabla_transacciones'>
           <thead>
             <tr>
-              <th>Fecha</th>
+              <th>Fecha y hora</th>
               <th>Stock</th>
               <th>Cantidad</th>
               <th>Operación</th>
-              <th>Status</th>
+              <th>Estatus</th>
               {/*<th>Razón</th> */}
             </tr>
           </thead>
           <tbody>
             {transacciones.map((transaccion) => ( 
-              <TransaccionGeneral key={transaccion.timestamp} {...transaccion} />
+              <TransaccionGeneral key={transaccion.timestamp} transaccion={transaccion} />
             ))}
           </tbody>
         </Table>

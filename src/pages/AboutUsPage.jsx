@@ -16,9 +16,9 @@ function AboutUsPage() {
       
       <h1>LegitStonks Team</h1>
       <lu>
-        <li>Eduardo</li>  
+        <li>Eduardo Soto</li>  
         <li>Benjamín Peña</li>  
-        <li>Nicolás</li>   
+        <li>Nicolás Maturana</li>   
         <li>Manuel Garretón</li>   
         <li>Cristóbal Albornoz</li>     
         
