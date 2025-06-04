@@ -4,14 +4,14 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom'; // Importamos useParams para obtener el 'symbol' de la URL
 import { useNavigate } from 'react-router-dom';
 
-import '../styles/pages/stockDetails.css'
-import '../styles/buttons.css'
+import '../styles/pages/stockDetails.css';
+import '../styles/buttons.css';
 
 export const StockDetails = () => {
   const navigate = useNavigate();
   const { symbol } = useParams(); // Obtenemos el símbolo del stock de la URL
   const [stock, setStock] = useState(null); // Para almacenar los detalles del stock
-  
+
   const [quantity, setQuantity] = useState(1); // Cantidad que el usuario quiere comprar
   const [purchaseHistory, setPurchaseHistory] = useState([]); // Histórico de compras
   const [showHistory, setShowHistory] = useState(false); // Estado para controlar la visibilidad del historial
@@ -42,7 +42,7 @@ export const StockDetails = () => {
         const historyResponse = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/history/${symbol}?page=${currentPage}&count=10`
         );
-        const historyData = historyResponse.data.results.map(purchase => {
+        const historyData = historyResponse.data.results.map((purchase) => {
           // Formateamos la fecha
           const formattedDate = new Date(purchase.timestamp).toLocaleString('en-GB', {
             year: 'numeric',
@@ -70,7 +70,7 @@ export const StockDetails = () => {
         const dataTotalResults = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/history/${symbol}?count=10`
         );
-        const totalResults = dataTotalResults.data.pages
+        const totalResults = dataTotalResults.data.pages;
         setTotalPages(totalResults);
       } catch (error) {
         console.error("Error al obtener el historial de compras", error);
@@ -79,32 +79,37 @@ export const StockDetails = () => {
 
     fetchStockDetails(); // Llamamos a la función cuando el componente se monta
     fetchPurchaseHistory(); // Llamamos a la función para obtener el historial de compras
-
   }, [symbol, currentPage]); // Solo se ejecuta cuando cambia el símbolo del stock o la página actual
 
-  const handlePurchase = (e) => {
+  const handlePurchase = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      location.replace('/login')
-    }
-    else {
-      const responseRegister = axios.post(`${import.meta.env.VITE_BACKEND_URL}/requests`,
-        { symbol:stock.symbol, quantity: quantity },               // body como objeto JS
-        {
+      navigate("/login"); // Redirigir al login si no hay token
+    } else {
+      try {
+        const res = await fetch("http://localhost:3000/requests", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          }
-        }
-      )
-      .then(response => {
-        console.log(response);
-        navigate('/transactions');
-      })
-      .catch(error => {
-        console.error('Error al realizar la compra', error);
-      });
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ symbol, quantity }),
+        });
+
+        // grab the HTML form Webpay returns
+        const html = await res.text();
+
+        // Use a Blob and URL.createObjectURL to handle the returned HTML safely
+        const blob = new Blob([html], { type: "text/html" });
+        const url = URL.createObjectURL(blob);
+
+        // Redirect the user to the generated URL
+        window.location.href = url;
+      } catch (error) {
+        console.error("Error al realizar la compra", error);
+      }
     }
   };
 
@@ -138,14 +143,14 @@ export const StockDetails = () => {
               <p><b>Empresa:</b> {stock.longName}</p>
               <p><b>Disponible:</b> {stock.quantity}</p>
               <p><b>Última actualización:</b> {new Date(stock.timestamp).toLocaleString('en-GB', {
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  second: '2-digit',
-                  hour12: false,
-                }).replace(",", "")}</p>
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+              }).replace(",", "")}</p>
             </Row>
             <div className='formulario_compra'>
               <form className="form-group">
