@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-import '../styles/pages/webpay.css'
+import { useNavigate, Link } from 'react-router-dom'; // Importamos Link
+import '../styles/pages/webpay.css';
 import '../styles/buttons.css';
 
 // Componente MessageBox con la clase que diste
@@ -23,7 +22,14 @@ export const WebPayApprove = () => {
     }
   }, [navigate]);
 
-  return <MessageBox> ¡Se realizó la compra con exito! </MessageBox>;
+  return (
+    <MessageBox>
+      <p>¡Se realizó la compra con éxito!</p>
+      <p className="mensaje-secundario">
+        Ver <Link to="/transactions" style={{ textDecoration: 'none', color: 'blue' }}>mis transacciones</Link>
+      </p>
+    </MessageBox>
+  );
 };
 
 export default WebPayApprove;

@@ -18,3 +18,11 @@
   color: white;
   font-size: 1.4rem;
 }
+
+/* Clase personalizada para la segunda línea */
+.mensaje-secundario {
+  text-align: center; /* Centra el texto */
+  font-size: 16px;    /* Tamaño de fuente más pequeño */
+  color: #ffffff;     /* Cambia el color a un azul (opcional) */
+  margin-top: 10px;   /* Añade un margen superior para separar las líneas */
+}

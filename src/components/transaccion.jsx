@@ -14,7 +14,7 @@ export const TransaccionGeneral = (transaccion) =>{
       
         <tr>
             {/* <td>{transaccion.id}</td> */}
-            <td>{transaccion.timestamp}</td>
+            <td>{transaccion.formattedDate}</td>
             <td>{transaccion.symbol}</td>
             <td>{transaccion.quantity}</td>
             <td>{transaccion.operation}</td>

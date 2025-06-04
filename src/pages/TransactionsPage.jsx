@@ -12,19 +12,6 @@ export const TransactionsPage = () => {
   const [totalPages, setTotalPages] = useState(1); // Total de páginas
   const navigate = useNavigate();
 
-  const transaccion_ref = {
-    "group_id": "00",
-    "operation": "BUY",
-    "quantity": 0,
-    "request_id": "630c8018-d8e7-47f2-9add-eabdc808c39atest",
-    "stock_origin": "0",
-    "symbol": "TEST",
-    "timestamp": "2020-04-28T21:24:59.410Z",
-  };
-
-
-
-  
   useEffect(() => {
     const token = localStorage.getItem('token'); // Obtenemos el token de localStorage
     if (!token) {
@@ -41,32 +28,34 @@ export const TransactionsPage = () => {
           }
         });
         console.log("Transacciones data: ", response.data.data);
-        setTransacciones(response.data.data);        
-        /* setTransacciones(Array.isArray(response.data) ? response.data : []);
-        // Actualizamos el total de páginas para la paginación
-        setTotalPages(Math.ceil(response.data.totalEntries / 10)); // Total de páginas */
+
+        // Formateamos la fecha para cada transacción
+        const formattedTransactions = response.data.data.map((transaccion) => {
+          // Formato de la fecha (YYYY-MM-DD)
+          const date = new Date(transaccion.timestamp);
+          const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} (${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')})`;
+
+          // Agregar la fecha formateada a cada transacción
+          return {
+            ...transaccion,
+            formattedDate, // Asignamos la fecha formateada
+          };
+        });
+
+        setTransacciones(formattedTransactions); // Guardamos las transacciones con las fechas formateadas
       } catch (error) {
         console.error('Error al obtener las transacciones', error);
       }
     };
 
     fetchTransacciones(); // Llamamos a la función para obtener las transacciones
-  }, [currentPage, ]);
-  
-/*     console.log("Antes de transacciones");
-    console.log(transacciones);
-    console.log("Despues");
-    transacciones.map((transaccion) => {
-      console.log(transaccion)
-    }); */
+  }, [currentPage]);
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setCurrentPage(newPage); // Cambiar a la nueva página si es válida
     }
   };
-
-
 
   return (
     <>
@@ -83,12 +72,11 @@ export const TransactionsPage = () => {
               <th>Cantidad</th>
               <th>Operación</th>
               <th>Status</th>
-              {/*<th>Razón</th> */}
             </tr>
           </thead>
           <tbody>
-            {transacciones.map((transaccion) => ( 
-              <TransaccionGeneral key={transaccion.timestamp} {...transaccion} />
+            {transacciones.map((transaccion) => (
+              <TransaccionGeneral key={transaccion.timestamp} {...transaccion} formattedDate={transaccion.formattedDate} />
             ))}
           </tbody>
         </Table>

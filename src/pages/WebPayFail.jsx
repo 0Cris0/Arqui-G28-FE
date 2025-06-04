@@ -23,7 +23,14 @@ export const WebPayFail = () => {
     }
   }, [navigate]);
 
-  return <MessageBox> Oh oh, falló la compra ._.</MessageBox>;
+  return (
+      <MessageBox>
+        <p>Oh oh, falló la compra ._.</p>
+        <p className="mensaje-secundario">
+          Ver <Link to="/transactions" style={{ textDecoration: 'none', color: 'blue' }}>mis transacciones</Link>
+        </p>
+      </MessageBox>
+    );
 };
 
 export default WebPayFail;

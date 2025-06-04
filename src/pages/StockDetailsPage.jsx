@@ -82,31 +82,45 @@ export const StockDetails = () => {
 
   }, [symbol, currentPage]); // Solo se ejecuta cuando cambia el símbolo del stock o la página actual
 
-  const handlePurchase = (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem('token');
-    if (!token) {
-      location.replace('/login')
-    }
-    else {
-      const responseRegister = axios.post(`${import.meta.env.VITE_BACKEND_URL}/requests`,
-        { symbol:stock.symbol, quantity: quantity },               // body como objeto JS
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          }
-        }
-      )
-      .then(response => {
-        console.log(response);
-        navigate('/transactions');
-      })
-      .catch(error => {
-        console.error('Error al realizar la compra', error);
+const handlePurchase = async (e) => {
+  e.preventDefault();
+  const token = localStorage.getItem('token');
+  if (!token) {
+    location.replace('/login')
+  } else {
+    try {
+      const responseBuy = await fetch('http://localhost:3000/requests', {
+        method: 'POST',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ symbol, quantity })
       });
+
+      // Verificamos si la respuesta fue exitosa (status 200)
+      if (responseBuy.ok) {
+        const responseData = await responseBuy;
+        console.log(responseData);
+
+        // Si esperas un HTML o algo diferente, usa responseBuy.text() en lugar de responseBuy.json()
+        // Si es un formulario HTML como parece por el código original:
+        const html = await responseBuy.text();
+        
+        // Mostramos el HTML que devuelve el backend
+        document.open();
+        document.write(html);  // Si el backend devuelve un formulario HTML o contenido
+        document.close();
+      } else {
+        console.error('Error en la compra', responseBuy.statusText);
+      }
+    } catch (error) {
+      console.error('Error al realizar la compra', error);
     }
-  };
+  }
+};
+
 
   const toggleHistory = () => {
     setShowHistory(!showHistory); // Alternar la visibilidad del historial
