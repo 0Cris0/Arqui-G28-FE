@@ -1,17 +1,18 @@
+import { useEffect, useState } from 'react';
 import '../styles/pages/PredictionsPage.css';
 
 import PredictionCardSummary from '../components/PredictionCardSummary';
+import { getPredictions } from '../helpers/getPredictions';
 
 const PredictionsPage = () => {
+  const [predictions, setPredictions] = useState([]);
+  const userId = 3;
 
-  const mockPrediction = {
-    symbol: 'AAPL',
-    n_stocks: 10,
-    precio_antiguo: 140.5,
-    precio_actual: 150.0,
-    prediccion_precio: 162.3,
-    prediccion_dinero: 1623.0,
-  };
+  useEffect(() => {
+    getPredictions(userId)
+      .then(data => setPredictions(data))
+      .catch(err => console.error('Error loading predictions:', err));
+  }, [userId]);
 
   return (
     <div className="predictions-page">
@@ -19,9 +20,13 @@ const PredictionsPage = () => {
             <h1 className="predictions-title">Predicciones</h1>
         </div>
         <div className="prediction-cards-container">
-            <PredictionCardSummary prediction={mockPrediction} />
-            <PredictionCardSummary prediction={mockPrediction} />
-            <PredictionCardSummary prediction={mockPrediction} />
+            {predictions.length > 0 ? (
+              predictions.map((prediction, index) => (
+                <PredictionCardSummary key={index} prediction={prediction} />
+              ))
+            ) : (
+              <p className="no-predictions-text">No hay predicciones aún</p>
+            )}
         </div>
     </div>
   );

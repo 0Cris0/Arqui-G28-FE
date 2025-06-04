@@ -131,3 +131,8 @@
   opacity: 0.4;
 }
 
+.no-predictions-text {
+  color: #ccc;
+  font-style: italic;
+  margin-top: 1rem;
+}

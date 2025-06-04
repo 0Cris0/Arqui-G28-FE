@@ -29,6 +29,8 @@ function LandingPage() {
             <Button href='/login' variant='detalle'>Log-in</Button>
             <Button href='/signup' variant='detalle'>Sign-up</Button>
           </div>
+
+          <h3>Workers está {'/heartbeat'}</h3> 
         </div>
       </div>
 
