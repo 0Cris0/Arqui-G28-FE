@@ -15,6 +15,7 @@ import PredictionsPage from './pages/PredictionsPage';
 import PredictionDetailPage from './pages/PredictionDetailPage';
 import WebPayApprove from './pages/WebPayApprove';
 import WebPayFail from './pages/WebPayFail';
+import ReservedStocksPage from './pages/ReservedStocksPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/stocks" element={<StocksPage />} />
+        <Route path="/reserved-stocks" element={<ReservedStocksPage />} />
         <Route path="/transactions" element={<TransactionsPage />} />
         <Route path="/stocks/:symbol" element={<StockDetails />} />
         <Route path="/login" element={<LoginPage />} />

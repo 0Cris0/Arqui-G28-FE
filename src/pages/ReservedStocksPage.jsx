@@ -2,13 +2,13 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import { Button, Col, Form, InputGroup } from 'react-bootstrap';
-import { StockGeneral } from '../components/stock_general';
+import { ReservedStockGeneral } from '../components/reserved_stock_general';
 import { useNavigate } from 'react-router-dom';
 
 import '../styles/pages/stockGeneral.css'
 import '../styles/buttons.css'
 
-function StocksPage() {
+function ReservedStocksPage() {
   const navigate = useNavigate();
   let counter = 0;
   const [stocks, setStocks] = useState([]); // Almacenamos los stocks obtenidos
@@ -26,14 +26,14 @@ function StocksPage() {
   });
 
   const handleRedirect = () => {
-    navigate('/reserved-stocks');
+    navigate('/stocks');
   };
 
   useEffect(() => {
     // Función para obtener los stocks con paginación
     const fetchStocks = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reservedstocks/`, {
           params: {
             page: currentPage,
             count: 12,
@@ -45,7 +45,7 @@ function StocksPage() {
 
         setStocks(response.data.data);
         
-        const dataTotalPages = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/`)
+        const dataTotalPages = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reservedstocks/`)
         const totalPages = dataTotalPages.data.totalEntries
         setTotalPages(Math.ceil(totalPages / 12));
       } catch (error) {
@@ -76,7 +76,7 @@ function StocksPage() {
     setFilters(filtersTemp); // Aplicamos los filtros temporales
 /*     console.log("Actualizando filtros...");
     console.log(filters); */
-    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/grouped`, {
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reservedstocks`, {
       params: {
         page: currentPage,
         count: 12,
@@ -88,7 +88,7 @@ function StocksPage() {
     .then((response) => {
       setStocks(response.data.data);
 
-      const dataTotalPages = axios.get(`${import.meta.env.VITE_BACKEND_URL}/stocks/grouped`)
+      const dataTotalPages = axios.get(`${import.meta.env.VITE_BACKEND_URL}/reservedstocks`)
       const totalPages = dataTotalPages.data.totalEntries
       setTotalPages(Math.ceil(totalPages / 12));
     })
@@ -160,9 +160,9 @@ function StocksPage() {
         </Form>
       </div>
       <div className='titulo-page d-flex justify-content-between align-items-center'>
-        <h1>Mercado de Stocks</h1>
+        <h1>Mercado Reservado</h1>
         <Button variant="primary" id="mercado-privado-btn" onClick={handleRedirect}>
-          Mercado Reservado
+          Mercado de Stocks
         </Button>
       </div>
 
@@ -173,7 +173,7 @@ function StocksPage() {
           {leftColumnStocks.map((stock) => (
             counter++,
             <div key={counter} className="stock-item">
-              <StockGeneral {...stock} />
+              <ReservedStockGeneral {...stock} />
             </div>
           ))}
         </div>
@@ -183,7 +183,7 @@ function StocksPage() {
           {centerColumnStocks.map((stock) => (
             counter++,
             <div key={counter} className="stock-item">
-              <StockGeneral {...stock} />
+              <ReservedStockGeneral {...stock} />
             </div>
           ))}
         </div>
@@ -193,7 +193,7 @@ function StocksPage() {
           {rightColumnStocks.map((stock) => (
             counter++,
             <div key={counter} className="stock-item">
-              <StockGeneral {...stock} />
+              <ReservedStockGeneral {...stock} />
             </div>
           ))}
         </div>
@@ -223,4 +223,4 @@ function StocksPage() {
   );
 }
 
-export default StocksPage;
+export default ReservedStocksPage;
