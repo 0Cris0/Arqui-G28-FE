@@ -9,6 +9,28 @@ import '../styles/navbar.css';
 export const StocksNavbar = () => {
   const { user } = useCurrentUser();
   const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const fetchAdminStatus = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admins`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        setIsAdmin(response.data.isAdmin === true);
+      } catch (error) {
+        console.error("Error al verificar si es admin", error);
+      }
+    };
+
+    fetchAdminStatus();
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -23,16 +45,17 @@ export const StocksNavbar = () => {
           <img id='StonksLogo' src={StonksLogo} alt="Stonks Logo" />
         </Navbar.Brand>
 
-        {/* Primer grupo de enlaces (Nav1) */}
         <Nav className="nav-left active nabvar.left">
           <a className="navbar-nav active linksnavbar" href="/">Inicio</a>
           <a className="navbar-nav active linksnavbar" href="/stocks">Stocks</a>
           <a className="navbar-nav active linksnavbar" href="/transactions">Mis transacciones</a>
           <a className="navbar-nav active linksnavbar" href="/wallet">Mi billetera</a>
+          {isAdmin && (
+            <a className="navbar-nav active linksnavbar" href="/subastas">Subastas</a>
+          )}
         </Nav>
       </div>
 
-      {/* Contenedor de la parte derecha (usuario y logout) */}
       <div className="contenedor_derecha">
         <Nav className="nav-right active nabvar-right">
           {user ? (
