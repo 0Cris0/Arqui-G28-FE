@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Row, Col, Table, Pagination } from 'react-bootstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom'; // Importamos useParams para obtener el 'symbol' de la URL

@@ -8,7 +8,7 @@
     "timestamp": "2025-04-28T21:24:59.410Z",
 }; */
 
-import { useNavigate } from 'react-router-dom';
+import React, { useNavigate } from 'react-router-dom';
 
 import { formatDate } from '../helpers/formatDate';
 

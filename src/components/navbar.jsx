@@ -1,5 +1,5 @@
 import { Nav, Navbar } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StonksLogo from '../assets/imgs/logo.webp';
 import { useNavigate } from 'react-router-dom';
