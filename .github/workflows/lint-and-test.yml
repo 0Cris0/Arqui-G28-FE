@@ -20,9 +20,9 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        working-directory: ./api
+        working-directory: .
         run: yarn install --frozen-lockfile
 
       - name: Run ESLint
-        working-directory: ./api
+        working-directory: .
         run: yarn lint
