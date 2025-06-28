@@ -33,10 +33,10 @@ jobs:
 
       - name: Sync S3 bucket
         run: |
-          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
+          aws s3 sync dist/ s3://g28-stocksapp --delete
 
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --distribution-id E3RMTEBD8G4T47 \
             --paths "/*"
