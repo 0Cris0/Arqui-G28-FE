@@ -94,7 +94,7 @@
 .filtros{
   background-color: rgba(105, 105, 105, 0.768);
   display: grid;
-  padding-top: 12%;
+  padding-top: 140px;
   align-items: center;
   border-radius: 0.3rem;
 }
@@ -106,4 +106,18 @@
   align-items: center;
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+.titulo-page {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#mercado-privado-btn {
+  margin-left: 30px;
+  margin-top: 5px;
+  background-color: dimgray;
+  padding: 1em;
+  border-radius: 1em;
+  border: 0.2em solid greenyellow;
 }
