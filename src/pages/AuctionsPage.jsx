@@ -38,7 +38,6 @@ export const AuctionsPage = () => {
 
   return (
     <div className="subastas-container">
-      <div className="cuadro-central"></div>
     </div>
   );
 };
