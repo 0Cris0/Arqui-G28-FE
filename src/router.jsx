@@ -18,6 +18,8 @@ import WebPayFailPage from './pages/WebPayFail';
 import ReservedStocksPage from './pages/ReservedStocksPage';
 import ReservedStocksDetailsPage from './pages/ReservedStocksDetailsPage';
 
+import AuctionsPage from './pages/AuctionsPage';
+
 function App() {
   return (
     <Router>
@@ -40,6 +42,7 @@ function App() {
         <Route path="/prediction" element={<PredictionDetailPage />} />
         <Route path="/webpay/approve" element={<WebPayApprovePage />} />
         <Route path="/webpay/fail" element={<WebPayFailPage />} />
+        <Route path="/auctions" element={<AuctionsPage />} />
       </Routes>
     </Router>
   );
