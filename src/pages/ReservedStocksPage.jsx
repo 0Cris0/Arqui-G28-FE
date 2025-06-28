@@ -4,6 +4,7 @@ import Pagination from 'react-bootstrap/Pagination';
 import { Button, Col, Form, InputGroup } from 'react-bootstrap';
 import { ReservedStockGeneral } from '../components/reserved_stock_general';
 import { useNavigate } from 'react-router-dom';
+import { useCurrentUser } from '../helpers/useCurrentUser';
 
 import '../styles/pages/stockGeneral.css'
 import '../styles/buttons.css'
@@ -11,6 +12,7 @@ import '../styles/buttons.css'
 function ReservedStocksPage() {
   const navigate = useNavigate();
   let counter = 0;
+  const { user } = useCurrentUser();
   const [stocks, setStocks] = useState([]); // Almacenamos los stocks obtenidos
   const [currentPage, setCurrentPage] = useState(1); // Página actual
   const [totalPages, setTotalPages] = useState(1); // Total de páginas
@@ -30,10 +32,13 @@ function ReservedStocksPage() {
   };
 
   useEffect(() => {
-    // Función para obtener los stocks con paginación
     const fetchStocks = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reserved/stocks`, {
+        const endpoint = user?.isAdmin
+          ? `${import.meta.env.VITE_BACKEND_URL}/reserved/stocks/all`
+          : `${import.meta.env.VITE_BACKEND_URL}/reserved/stocks`;
+
+        const response = await axios.get(endpoint, {
           params: {
             page: currentPage,
             count: 12,
@@ -44,22 +49,20 @@ function ReservedStocksPage() {
         });
 
         setStocks(response.data.data);
-        
-        const dataTotalPages = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reserved/stocks`)
-        const totalPages = dataTotalPages.data.totalEntries
-        setTotalPages(Math.ceil(totalPages / 12));
+
+        const totalEntries = response.data.totalEntries;
+        setTotalPages(Math.ceil(totalEntries / 12));
       } catch (error) {
         console.error('Error fetching stocks:', error);
       }
     };
 
-    fetchStocks(); // Llamamos a la función para obtener los stocks
-
-  }, [currentPage, filters]); // Se ejecuta cuando cambia la página o los filtros
+    fetchStocks();
+  }, [currentPage, filters, user]);
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage); // Cambiamos la página actual si es válida
+      setCurrentPage(newPage);
     }
   };
 
@@ -73,44 +76,20 @@ function ReservedStocksPage() {
   };
 
   const applyFilters = async () => {
-    setFilters(filtersTemp); // Aplicamos los filtros temporales
-/*     console.log("Actualizando filtros...");
-    console.log(filters); */
-    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reserved/stocks`, {
-      params: {
-        page: currentPage,
-        count: 12,
-        quantity: filters.quantity,
-        price: filters.price,
-        date: filters.date
-      }
-    })
-    .then((response) => {
-      setStocks(response.data.data);
+    setFilters(filtersTemp);
+  };
 
-      const dataTotalPages = axios.get(`${import.meta.env.VITE_BACKEND_URL}/reserved/stocks`)
-      const totalPages = dataTotalPages.data.totalEntries
-      setTotalPages(Math.ceil(totalPages / 12));
-    })
-    .catch((error) => {
-      console.error('Error fetching stocks:', error);
-    });
-  }
-
-
-  // Dividimos los stocks en tres columnas de manera ordenada
   const leftColumnStocks = [];
   const centerColumnStocks = [];
   const rightColumnStocks = [];
 
   stocks.forEach((stock, index) => {
-    // Distribuimos los stocks en las tres columnas
     if (index % 3 === 0) {
-      leftColumnStocks.push(stock); // Índices 0, 3, 6, 9, ...
+      leftColumnStocks.push(stock);
     } else if (index % 3 === 1) {
-      centerColumnStocks.push(stock); // Índices 1, 4, 7, 10, ...
+      centerColumnStocks.push(stock);
     } else {
-      rightColumnStocks.push(stock); // Índices 2, 5, 8, 11, ...
+      rightColumnStocks.push(stock);
     }
   });
 
@@ -153,7 +132,7 @@ function ReservedStocksPage() {
             type="button"
             variant="opcion"
             id="boton_filtrar"
-            onClick={() => applyFilters()} // Resetear a la primera página
+            onClick={() => applyFilters()}
           >
             Filtrar
           </Button>
@@ -166,10 +145,8 @@ function ReservedStocksPage() {
         </Button>
       </div>
 
-      {/* Contenedor de stocks en tres columnas */}
       <div className="page-container-stocks">
         <div className="left-column-stocks">
-          {/* Mostrar los stocks en la columna izquierda */}
           {leftColumnStocks.map((stock) => (
             counter++,
             <div key={counter} className="stock-item">
@@ -179,7 +156,6 @@ function ReservedStocksPage() {
         </div>
 
         <div className="center-column-stocks">
-          {/* Mostrar los stocks en la columna central */}
           {centerColumnStocks.map((stock) => (
             counter++,
             <div key={counter} className="stock-item">
@@ -189,7 +165,6 @@ function ReservedStocksPage() {
         </div>
 
         <div className="right-column-stocks">
-          {/* Mostrar los stocks en la columna derecha */}
           {rightColumnStocks.map((stock) => (
             counter++,
             <div key={counter} className="stock-item">
@@ -199,7 +174,6 @@ function ReservedStocksPage() {
         </div>
       </div>
 
-      {/* Paginación */}
       <div className='paginacion'>
         <Pagination className='paginacion'>
           <Col className='col_paginacion'>

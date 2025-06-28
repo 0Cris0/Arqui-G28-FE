@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 import '../styles/pages/stockDetails.css';
 import '../styles/buttons.css';
+import { Eye, EyeSlash } from 'react-bootstrap-icons';
+
 
 export const ReservedStockDetailsPage = () => {
   const navigate = useNavigate();
@@ -130,6 +132,13 @@ export const ReservedStockDetailsPage = () => {
         <div key={stock.symbol} className="contenedor_detalles_stock">
           <div className="titulo_detalles_stock">
             <h2>
+              {isAdmin && (
+                available ? (
+                  <Eye style={{ marginRight: '15px', color: 'greenyellow' }} />
+                ) : (
+                  <EyeSlash style={{ marginRight: '15px', color: 'gray' }} />
+                )
+              )}
               {stock.symbol}
               {stock.discount > 0 && (
                 <span style={{ color: 'gold', fontSize: '0.8em', marginLeft: '20px' }}>
