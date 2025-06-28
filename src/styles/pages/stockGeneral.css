@@ -74,8 +74,18 @@
   align-items: center;
   color:black
 }
+
+.contenedor_titulo_auction{
+  display: flex;
+  justify-content: center;
+}
 .titulo_stock{
   margin: 0.5em;
+}
+
+.titulo_auction{
+  font-size: xx-large;
+  text-align: center;
 }
 
 .contenedor_info_stock{
@@ -89,6 +99,10 @@
 
 #precio_stock{
   color:greenyellow
+}
+#precio_auction{
+  color:greenyellow;
+  font-size: x-large;
 }
 
 .filtros{
@@ -110,8 +124,12 @@
 
 .titulo-page {
   width: 100%;
+  font-size: xx-large;
   margin-bottom: 20px;
+  margin-top: 7em;
 }
+
+
 
 #mercado-privado-btn {
   margin-left: 30px;
