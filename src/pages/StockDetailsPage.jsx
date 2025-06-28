@@ -11,7 +11,7 @@ export const StockDetails = () => {
   const navigate = useNavigate();
   const { symbol } = useParams(); // Obtenemos el símbolo del stock de la URL
   const [stock, setStock] = useState(null); // Para almacenar los detalles del stock
-  
+
   const [quantity, setQuantity] = useState(1); // Cantidad que el usuario quiere comprar
   const [purchaseHistory, setPurchaseHistory] = useState([]); // Histórico de compras
   const [showHistory, setShowHistory] = useState(false); // Estado para controlar la visibilidad del historial
@@ -177,6 +177,11 @@ const handlePurchase = async (e) => {
                 />
               </form>
               <Button onClick={handlePurchase} type="submit" variant='detalle' className='sel_cantidad'>Comprar</Button>
+            </div>
+            <div className='formulario_botones_superiores'>
+              <Button onClick={() => navigate('/reserved/stocks')} variant='outline-secondary'>
+                Volver
+              </Button>
             </div>
           </div>
         </div>

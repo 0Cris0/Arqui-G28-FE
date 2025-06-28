@@ -141,3 +141,10 @@
   padding: 1rem;
 }
 /* ----------------------------------- */
+
+.formulario_botones_superiores {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}

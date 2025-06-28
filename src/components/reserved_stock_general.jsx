@@ -90,7 +90,6 @@ export const ReservedStockGeneral = (stock) => {
           </Col>
         </Row>
       </Container>
-
       <Container className='contenedor_info_stock'>
         <Row>
           <Col>
