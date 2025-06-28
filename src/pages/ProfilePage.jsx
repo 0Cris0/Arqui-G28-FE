@@ -1,22 +1,40 @@
-import React, { useState } from 'react';
-import { Button } from 'react-bootstrap'; // Importamos el componente Button de React-Bootstrap
+import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-import '../styles/buttons.css'
+import '../styles/buttons.css';
 
 export const ProfilePage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios.get(`${import.meta.env.VITE_BACKEND_URL}/profile`, {
+        headers: { Authorization: `Bearer ${token}` }
+      }).catch(() => {
+        localStorage.removeItem('token');
+        navigate('/login');
+      });
+    } else {
+      navigate('/login');
+    }
+  }, [navigate]);
+
   return (
     <div className='contenedor_centrado'>
       <div className='contenedor_wallet'>
         <Button 
           variant="opcion" 
-          onClick={() => window.location.href = '/wallet'} // Redirige a la página de billetera
+          onClick={() => window.location.href = '/wallet'}
         >
           Mi billetera
         </Button>
-        <br /><br /> {/* Espaciado entre los botones */}
+        <br /><br />
         <Button 
           variant="opcion" 
-          onClick={() => window.location.href = '/transactions'} // Redirige a la página de transacciones
+          onClick={() => window.location.href = '/transactions'}
         >
           Mis transacciones
         </Button>

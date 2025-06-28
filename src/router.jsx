@@ -13,8 +13,10 @@ import ProfilePage from './pages/ProfilePage';
 import RequestDetailPage from './pages/RequestDetailPage';
 import PredictionsPage from './pages/PredictionsPage';
 import PredictionDetailPage from './pages/PredictionDetailPage';
-import WebPayApprove from './pages/WebPayApprove';
-import WebPayFail from './pages/WebPayFail';
+import WebPayApprovePage from './pages/WebPayApprove';
+import WebPayFailPage from './pages/WebPayFail';
+import ReservedStocksPage from './pages/ReservedStocksPage';
+import ReservedStocksDetailsPage from './pages/ReservedStocksDetailsPage';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/stocks" element={<StocksPage />} />
+        <Route path="/reserved/stocks" element={<ReservedStocksPage />} />
+        <Route path="/reserved/stocks/:id" element={<ReservedStocksDetailsPage />} />
         <Route path="/transactions" element={<TransactionsPage />} />
         <Route path="/stocks/:symbol" element={<StockDetails />} />
         <Route path="/login" element={<LoginPage />} />
@@ -34,8 +38,8 @@ function App() {
         <Route path="/transaction" element={<RequestDetailPage />} />
         <Route path="/predictions" element={<PredictionsPage />} />
         <Route path="/prediction" element={<PredictionDetailPage />} />
-        <Route path="/webpay/approve" element={<WebPayApprove />} />
-        <Route path="/webpay/fail" element={<WebPayFail />} />
+        <Route path="/webpay/approve" element={<WebPayApprovePage />} />
+        <Route path="/webpay/fail" element={<WebPayFailPage />} />
       </Routes>
     </Router>
   );

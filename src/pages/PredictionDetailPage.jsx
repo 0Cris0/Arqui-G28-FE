@@ -1,9 +1,23 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useCurrentUser } from '../helpers/useCurrentUser';
 import '../styles/pages/DetailPage.css';
 
 const PredictionDetailPage = () => {
     const location = useLocation();
     const { prediction } = location.state || {};
+    const { user } = useCurrentUser();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!user) {
+            navigate('/login');
+        }
+    }, [user, navigate]);
+
+    if (!prediction) {
+        return <div>No hay predicción disponible.</div>;
+    }
 
     return (
         <div className="request-container">
@@ -16,8 +30,8 @@ const PredictionDetailPage = () => {
                 </div>
 
                 <div className="request-row price-block">
-                <span className="label price-label">Precio del Stock</span>
-                <div className="vertical-divider" />
+                    <span className="label price-label">Precio del Stock</span>
+                    <div className="vertical-divider" />
                     <div className="value stacked-values improved-prices">
                         <div className="price-row">
                             <span className="sub-label">Antiguo:</span>

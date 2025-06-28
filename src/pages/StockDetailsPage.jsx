@@ -86,7 +86,6 @@ const handlePurchase = async (e) => {
   e.preventDefault();
   const token = localStorage.getItem('token');
   console.log(token)
-  console.log("Ese era el token")
   if (!token) {
     location.replace('/login')
   } else {
@@ -103,17 +102,19 @@ const handlePurchase = async (e) => {
 
       // Verificamos si la respuesta fue exitosa (status 200)
       if (responseBuy.ok) {
-        const responseData = await responseBuy;
-        console.log(responseData);
+        const responseData = await responseBuy.json(); // backend te debe devolver { url, token }
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = responseData.url;
 
-        // Si esperas un HTML o algo diferente, usa responseBuy.text() en lugar de responseBuy.json()
-        // Si es un formulario HTML como parece por el código original:
-        const html = await responseBuy.text();
-        
-        // Mostramos el HTML que devuelve el backend
-        document.open();
-        document.write(html);  // Si el backend devuelve un formulario HTML o contenido
-        document.close();
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'token_ws';
+        input.value = responseData.token;
+        form.appendChild(input);
+
+        document.body.appendChild(form);
+        form.submit();
       } else {
         console.error('Error en la compra', responseBuy.statusText);
       }
