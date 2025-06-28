@@ -86,7 +86,6 @@ const handlePurchase = async (e) => {
   e.preventDefault();
   const token = localStorage.getItem('token');
   console.log(token)
-  console.log("Ese era el token")
   if (!token) {
     location.replace('/login')
   } else {
