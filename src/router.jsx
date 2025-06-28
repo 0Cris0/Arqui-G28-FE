@@ -20,6 +20,7 @@ import ReservedStocksDetailsPage from './pages/ReservedStocksDetailsPage';
 
 import AuctionsPage from './pages/Auctions/AuctionsPage';
 import AuctionsCreatePage from './pages/Auctions/AuctionsCreate';
+import AuctionDetailPage from './pages/Auctions/AuctionDetail';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Route path="/webpay/fail" element={<WebPayFailPage />} />
         <Route path="/auctions" element={<AuctionsPage />} />
         <Route path="/auctions/create/:id" element={<AuctionsCreatePage />} />
+        <Route path="/auctions/:auctionId" element={<AuctionDetailPage />} />
       </Routes>
     </Router>
   );
