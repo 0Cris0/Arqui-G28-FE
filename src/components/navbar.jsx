@@ -51,7 +51,7 @@ export const StocksNavbar = () => {
           <a className="navbar-nav active linksnavbar" href="/transactions">Mis transacciones</a>
           <a className="navbar-nav active linksnavbar" href="/wallet">Mi billetera</a>
           {isAdmin && (
-            <a className="navbar-nav active linksnavbar" href="/subastas">Subastas</a>
+            <a className="navbar-nav active linksnavbar" href="/auctions">Subastas</a>
           )}
         </Nav>
       </div>
