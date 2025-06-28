@@ -21,7 +21,7 @@ export const ReservedStockDetailsPage = () => {
     const fetchStockDetails = async () => {
       try {
         const reservedResponse = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/reserved/stocks/${id}`
+          `${import.meta.env.VITE_BACKEND_URL}/reservedstocks/${id}`
         );
 
         if (reservedResponse.data && Object.keys(reservedResponse.data).length !== 0) {
@@ -99,7 +99,7 @@ export const ReservedStockDetailsPage = () => {
     const clampedDiscount = Math.min(10, Math.max(0, parseFloat(discount)));
     try {
       await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/reserved/stocks/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/admins/reservedstocks/${id}`,
         {
           available: available,
           discount: clampedDiscount / 100

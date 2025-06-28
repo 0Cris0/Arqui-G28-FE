@@ -33,7 +33,7 @@ function ReservedStocksPage() {
     // Función para obtener los stocks con paginación
     const fetchStocks = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reserved/stocks`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reservedstocks`, {
           params: {
             page: currentPage,
             count: 12,
@@ -45,7 +45,7 @@ function ReservedStocksPage() {
 
         setStocks(response.data.data);
         
-        const dataTotalPages = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reserved/stocks`)
+        const dataTotalPages = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reservedstocks`)
         const totalPages = dataTotalPages.data.totalEntries
         setTotalPages(Math.ceil(totalPages / 12));
       } catch (error) {
@@ -76,7 +76,7 @@ function ReservedStocksPage() {
     setFilters(filtersTemp); // Aplicamos los filtros temporales
 /*     console.log("Actualizando filtros...");
     console.log(filters); */
-    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reserved/stocks`, {
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reservedstocks`, {
       params: {
         page: currentPage,
         count: 12,
@@ -88,7 +88,7 @@ function ReservedStocksPage() {
     .then((response) => {
       setStocks(response.data.data);
 
-      const dataTotalPages = axios.get(`${import.meta.env.VITE_BACKEND_URL}/reserved/stocks`)
+      const dataTotalPages = axios.get(`${import.meta.env.VITE_BACKEND_URL}/reservedstocks`)
       const totalPages = dataTotalPages.data.totalEntries
       setTotalPages(Math.ceil(totalPages / 12));
     })
