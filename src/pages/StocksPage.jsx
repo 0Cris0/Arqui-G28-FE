@@ -26,7 +26,7 @@ function StocksPage() {
   });
 
   const handleRedirect = () => {
-    navigate('/reserved-stocks');
+    navigate('/reserved/stocks');
   };
 
   useEffect(() => {
