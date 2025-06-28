@@ -218,6 +218,18 @@ export const ReservedStockDetailsPage = () => {
           </div>
         </div>
       </div>
+      
+          {isAdmin && (
+      <div className="text-center mt-4">
+        <Button
+          variant="success"
+          onClick={() => navigate(`/auctions/create/${id}`)}
+        >
+          Crear subasta
+        </Button>
+      </div>
+    )}
+
       <br /><br />
     </>
   );
