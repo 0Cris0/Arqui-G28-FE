@@ -1,4 +1,4 @@
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import React, { Button, Container, Row, Col } from 'react-bootstrap';
 import '../styles/pages/stockGeneral.css';
 import '../styles/buttons.css';
 

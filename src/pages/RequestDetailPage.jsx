@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import React, { useLocation } from 'react-router-dom';
 import '../styles/pages/DetailPage.css';
 import { formatDate } from '../helpers/formatDate';
 

@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useCurrentUser } from '../helpers/useCurrentUser';
 import '../styles/pages/DetailPage.css';
