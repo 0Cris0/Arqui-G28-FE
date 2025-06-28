@@ -19,6 +19,8 @@ export function useCurrentUser() {
       }
     })
     .then(response => {
+      //console.log("Datos user de Profile")
+      //console.log(response.data)
       setUser(response.data);
     })
     .catch(err => {

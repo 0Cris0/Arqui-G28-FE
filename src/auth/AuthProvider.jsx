@@ -3,7 +3,7 @@ import { AuthContext } from "./AuthContext";
 import axios from "axios";
 require('dotenv').config()
 
-const backendURL = process.env.BACKEND_URL;
+const backendURL = process.env.VITE_BACKEND_URL;
 
 function AuthProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem("token") || null);

@@ -6,16 +6,24 @@ import { getPredictions } from '../helpers/getPredictions';
 import { useCurrentUser } from '../helpers/useCurrentUser';
 
 const PredictionsPage = () => {
-  const { user } = useCurrentUser();
+  //const user = await useCurrentUser();
+  const { user, loadingUser, error } = useCurrentUser();
   const userId = user?.id;
+  //console.log(userId)
+  //console.log(user)
 
   const [predictions, setPredictions] = useState([]);
 
   useEffect(() => {
-    getPredictions(userId)
-      .then(data => setPredictions(data))
-      .catch(err => console.error('Error loading predictions:', err));
-  }, [userId]);
+    if(userId != undefined){
+      getPredictions(userId)
+      //getPredictions("AAAAAAAAAAAAAAAAAA")
+      //getPredictions(localStorage.getItem('token'))
+        .then(data => setPredictions(data))
+        .catch(err => console.error('Error loading predictions:', err));
+    }
+    
+  }, [user]);
 
   return (
     <div className="predictions-page">
