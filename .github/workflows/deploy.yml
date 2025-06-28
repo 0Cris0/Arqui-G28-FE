@@ -2,7 +2,7 @@ name: Deploy Static Frontend to S3
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
   workflow_run:
     workflows: ["Lint & Test"]
