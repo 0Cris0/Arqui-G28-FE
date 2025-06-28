@@ -74,7 +74,7 @@ function AuctionsPage() {
                 <h2 className="titulo_stock">{auction.symbol}</h2>
               </Col>
               <Col className="text-end">
-                <h2 className="titulo_stock" id="precio_stock">${auction.price}</h2>
+                <h2 id="operation">{auction.operation}</h2>
               </Col>
             </Row>
           </Container>
@@ -101,7 +101,7 @@ function AuctionsPage() {
 
   return (
     <>
-      <div className="titulo-page d-flex justify-content-between align-items-center">
+      <div className="titulo_auction">
         <h1>
           {activeTab === 'offers' && 'Auction Offers'}
           {activeTab === 'self' && 'Our Auctions'}

@@ -10,6 +10,7 @@ import '../styles/pages/stockGeneral.css'
 import '../styles/buttons.css'
 
 function ReservedStocksPage() {
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   let counter = 0;
   const { user } = useCurrentUser();
@@ -35,8 +36,8 @@ function ReservedStocksPage() {
     const fetchStocks = async () => {
       try {
         const endpoint = user?.isAdmin
-          ? `${import.meta.env.VITE_BACKEND_URL}/reserved/stocks/all`
-          : `${import.meta.env.VITE_BACKEND_URL}/reserved/stocks`;
+          ? `${import.meta.env.VITE_BACKEND_URL}/admins/reservedstocks`
+          : `${import.meta.env.VITE_BACKEND_URL}/reservedstocks`;
 
         const response = await axios.get(endpoint, {
           params: {
@@ -46,7 +47,12 @@ function ReservedStocksPage() {
             price: filters.price,
             date: filters.date
           }
-        });
+          ,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        })
+        ;
 
         setStocks(response.data.data);
 

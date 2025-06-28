@@ -7,6 +7,12 @@
   flex-wrap: wrap;
   padding: 20px 0;
 }
+.titulo_auction{
+  margin-top: 8em;
+  font-size: x-large;
+  text-shadow: 0.7rem 0.7rem 0.5rem black;
+  animation: color-change 4s infinite;;
+}
 
 .left-column-stocks,
 .center-column-stocks,
@@ -20,6 +26,10 @@
 }
 
 /* -------------------- CARD DE SUBASTA -------------------- */
+#operation{
+  color: greenyellow;
+  text-transform:uppercase;
+}
 
 .stock-item {
   width: 100%;
@@ -36,12 +46,28 @@
   transition: transform 0.3s ease-in-out;
 }
 
+.contenedor_auction_general {
+  margin: 1em;
+  background-color: dimgray;
+  padding: 1em;
+  border-radius: 1em;
+  border: 0.2em solid greenyellow;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+
 .contenedor_stock_general:hover {
   transform: scale(1.05);
 }
 
 /* -------------------- CABECERA DE LA CARD -------------------- */
 
+.descripcion_auction{
+  text-align: left;
+  color: black
+}
 .contenedor_titulo_stock {
   display: flex;
   justify-content: space-between;

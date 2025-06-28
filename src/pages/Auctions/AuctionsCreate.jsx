@@ -21,7 +21,7 @@ function AuctionsCreatePage() {
       try {
         const token = localStorage.getItem('token');
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/reservedstocks/${id}`,
+          `${import.meta.env.VITE_BACKEND_URL}/admins/reservedstocks/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

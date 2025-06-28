@@ -13,6 +13,18 @@ function AuctionsPage() {
 
   const [auction, setAuctionInfo] = useState({});
   const [loading, setLoading] = useState(false);
+  const formattedDate = new Date(auction.timestamp).toLocaleString('en-GB', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    }).replace(",", "");
+const [date, time] = formattedDate.split(' ');
+    const timeFormatted = time.slice(0, 5);
+    const formattedTimestamp = `${date} (${timeFormatted})`;
 
   useEffect(() => {
     const fetchAuctionDetails = async () => {
@@ -50,32 +62,31 @@ function AuctionsPage() {
         <h1>Detalles de la Subasta</h1>
       </div>
 
-      <Container className="contenedor_stock_general">
-        <Row className="mb-4">
-          <Col>
-            <p className="titulo_stock"><b>Stock:</b> {auction.symbol}</p>
-            <p className="titulo_stock"><b>Cantidad:</b> {auction.quantity}</p>
-            <p className="titulo_stock"><b>Grupo:</b> {auction.group_id}</p>
-            <p className="titulo_stock"><b>Operación:</b> {auction.operation}</p>
-            <p className="titulo_stock">
-            <b>Fecha:</b>{' '}
-            {auction.timestamp
-                ? new Date(auction.timestamp).toLocaleString('es-CL', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false
-                })
-                : 'N/A'}
-            </p>
+      <div className="contenedor_stock_general">
+          <Container className="contenedor_titulo_stock">
+            <Row>
+              <Col>
+                <h2 className="titulo_stock">{auction.symbol}</h2>
+              </Col>
+              <Col className="text-end">
+                <h2 id="operation">{auction.operation}</h2>
+              </Col>
+            </Row>
+          </Container>
 
-
+          <Container className="contenedor_info_stock">
+            <Row>
+              <Col>
+                <p><b>Cantidad:</b> {auction.quantity || 'Pendiente'}</p>
+                <p><b>Grupo:</b> {auction.group_id}</p>
+                <p><b>Fecha:</b> {formattedTimestamp}</p>
+              </Col>
+            </Row>
             {/* Conditionally render buttons */}
             {auction.group_id !== 28 && auction.operation === 'offer' && (
-              <div className="mt-3">
+              <div className="botones_auction">
                 <Button
+                  id="bTrue"
                   variant="success"
                   onClick={() => handleResponse(true)}
                   disabled={loading}
@@ -84,6 +95,7 @@ function AuctionsPage() {
                   Aceptar
                 </Button>
                 <Button
+                  id="bFalse"
                   variant="danger"
                   onClick={() => handleResponse(false)}
                   disabled={loading}
@@ -92,9 +104,9 @@ function AuctionsPage() {
                 </Button>
               </div>
             )}
-          </Col>
-        </Row>
-      </Container>
+          </Container>
+        </div>
+
     </>
   );
 }

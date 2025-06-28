@@ -9,6 +9,7 @@ import '../styles/buttons.css';
 import { Eye, EyeSlash } from 'react-bootstrap-icons';
 
 export const ReservedStockDetailsPage = () => {
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const { id } = useParams();
   const [stock, setStock] = useState(null);
@@ -22,7 +23,11 @@ export const ReservedStockDetailsPage = () => {
     const fetchStockDetails = async () => {
       try {
         const reservedResponse = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/reservedstocks/${id}`
+          `${import.meta.env.VITE_BACKEND_URL}/admins/reservedstocks/${id}`,{
+            headers: {
+            Authorization: `Bearer ${token}`,
+          }
+          }
         );
 
         if (reservedResponse.data && Object.keys(reservedResponse.data).length !== 0) {
