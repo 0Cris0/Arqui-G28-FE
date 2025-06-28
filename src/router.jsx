@@ -17,6 +17,7 @@ import WebPayApprovePage from './pages/WebPayApprove';
 import WebPayFailPage from './pages/WebPayFail';
 import ReservedStocksPage from './pages/ReservedStocksPage';
 import ReservedStocksDetailsPage from './pages/ReservedStocksDetailsPage';
+import AuctionsPage from './pages/AuctionsPage';
 
 import AuctionsPage from './pages/Auctions/AuctionsPage';
 import AuctionsCreatePage from './pages/Auctions/AuctionsCreate';

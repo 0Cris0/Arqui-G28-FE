@@ -1,9 +1,32 @@
+import { useEffect, useState } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import '../styles/pages/stockGeneral.css';
 import '../styles/buttons.css';
+import { Eye, EyeSlash } from 'react-bootstrap-icons';
+import axios from 'axios';
 
 export const ReservedStockGeneral = (stock) => {
-  // Formatear la fecha y hora
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  // Verificar si el usuario es admin
+  useEffect(() => {
+    const checkAdmin = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admins`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setIsAdmin(response.data.isAdmin);
+      } catch (error) {
+        console.error('Error al verificar admin:', error);
+      }
+    };
+    checkAdmin();
+  }, []);
+
+  // 🕓 Formatear la fecha
   const formattedDate = new Date(stock.timestamp).toLocaleString('en-GB', {
     year: 'numeric',
     month: '2-digit',
@@ -25,15 +48,22 @@ export const ReservedStockGeneral = (stock) => {
     : stock.price;
 
   const discountPercent = hasDiscount
-    ? `-${(stock.discount * 100).toFixed(0)}%`
+    ? `-${(stock.discount * 100).toFixed(1)}%`
     : null;
 
   return (
-    <div className='contenedor_stock_general' key={stock.symbol}> 
+    <div className='contenedor_stock_general' key={stock.symbol}>
       <Container className='contenedor_titulo_stock'>
         <Row>
           <Col>
             <h2 className='titulo_stock'>
+              {isAdmin && (
+                stock.available ? (
+                  <Eye style={{ marginRight: '15px', color: 'greenyellow' }} />
+                ) : (
+                  <EyeSlash style={{ marginRight: '15px', color: 'gray' }} />
+                )
+              )}
               {stock.symbol}
               {hasDiscount && (
                 <span style={{ color: 'gold', fontSize: '0.8em', marginLeft: '10px' }}>
@@ -60,7 +90,6 @@ export const ReservedStockGeneral = (stock) => {
           </Col>
         </Row>
       </Container>
-      
       <Container className='contenedor_info_stock'>
         <Row>
           <Col>

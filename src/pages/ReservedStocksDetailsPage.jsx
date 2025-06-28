@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import '../styles/pages/stockDetails.css';
 import '../styles/buttons.css';
+import { Eye, EyeSlash } from 'react-bootstrap-icons';
 
 export const ReservedStockDetailsPage = () => {
   const navigate = useNavigate();
@@ -130,6 +131,13 @@ export const ReservedStockDetailsPage = () => {
         <div key={stock.symbol} className="contenedor_detalles_stock">
           <div className="titulo_detalles_stock">
             <h2>
+              {isAdmin && (
+                available ? (
+                  <Eye style={{ marginRight: '15px', color: 'greenyellow' }} />
+                ) : (
+                  <EyeSlash style={{ marginRight: '15px', color: 'gray' }} />
+                )
+              )}
               {stock.symbol}
               {stock.discount > 0 && (
                 <span style={{ color: 'gold', fontSize: '0.8em', marginLeft: '20px' }}>
@@ -186,35 +194,42 @@ export const ReservedStockDetailsPage = () => {
                 </Button>
               </div>
             ) : (
-              <div className='formulario_edicion'>
-                <Button onClick={() => setEditMode(!editMode)} variant='detalle'>Editar</Button>
-                {editMode && (
-                  <div className='formulario_admin' style={{ marginTop: '20px' }}>
-                    <Form.Check
-                      type="switch"
-                      id="available-switch"
-                      label="Disponible"
-                      checked={available}
-                      onChange={(e) => setAvailable(e.target.checked)}
+              editMode && (
+                <div className='formulario_admin' style={{ marginTop: '20px' }}>
+                  <Form.Check
+                    type="switch"
+                    id="available-switch"
+                    label="Disponible"
+                    checked={available}
+                    onChange={(e) => setAvailable(e.target.checked)}
+                  />
+                  <Form.Group controlId="discountInput">
+                    <Form.Label>Descuento (%)</Form.Label>
+                    <Form.Control
+                      type="number"
+                      min={0}
+                      max={10}
+                      step={0.1}
+                      value={discount}
+                      onChange={(e) => setDiscount(e.target.value)}
                     />
-                    <Form.Group controlId="discountInput">
-                      <Form.Label>Descuento (%)</Form.Label>
-                      <Form.Control
-                        type="number"
-                        min={0}
-                        max={10}
-                        step={0.1}
-                        value={discount}
-                        onChange={(e) => setDiscount(e.target.value)}
-                      />
-                    </Form.Group>
-                    <Button onClick={handleSave} variant='detalle' style={{ marginTop: '10px' }}>
-                      Guardar cambios
-                    </Button>
-                  </div>
-                )}
-              </div>
+                  </Form.Group>
+                  <Button onClick={handleSave} variant='detalle' style={{ marginTop: '10px' }}>
+                    Guardar cambios
+                  </Button>
+                </div>
+              )
             )}
+            <div className='formulario_botones_superiores'>
+              <Button onClick={() => navigate('/reserved/stocks')} variant='outline-secondary'>
+                Volver
+              </Button>
+              {isAdmin && (
+                <Button onClick={() => setEditMode(!editMode)} variant='detalle'>
+                  Editar
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </div>
