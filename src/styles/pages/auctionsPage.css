@@ -1,0 +1,132 @@
+/* -------------------- ESTRUCTURA GENERAL -------------------- */
+
+.page-container-stocks {
+  display: flex;
+  justify-content: space-between;
+  gap: 0px;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+
+.left-column-stocks,
+.center-column-stocks,
+.right-column-stocks {
+  flex: 1 1 33%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* -------------------- CARD DE SUBASTA -------------------- */
+
+.stock-item {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.contenedor_stock_general {
+  margin: 1em;
+  background-color: dimgray;
+  padding: 1em;
+  border-radius: 1em;
+  border: 0.2em solid greenyellow;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-in-out;
+}
+
+.contenedor_stock_general:hover {
+  transform: scale(1.05);
+}
+
+/* -------------------- CABECERA DE LA CARD -------------------- */
+
+.contenedor_titulo_stock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  padding-bottom: 1em;
+}
+
+.titulo_stock {
+  margin: 0.5em;
+  color: white;
+  font-size: 1.5rem;
+}
+
+#precio_stock {
+  color: greenyellow;
+  font-size: 1.2rem;
+}
+
+/* -------------------- INFORMACIÓN DE LA CARD -------------------- */
+
+.contenedor_info_stock {
+  text-align: left;
+  font-weight: bolder;
+  color: white;
+  padding-top: 1em;
+}
+
+.contenedor_info_stock b {
+  color: #1a1a1a;
+}
+
+/* -------------------- BOTÓN DENTRO DE LA CARD -------------------- */
+
+.boton_stock_individual {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.boton_stock_individual .btn {
+  background-color: greenyellow;
+  border: none;
+  color: black;
+  font-weight: bold;
+  padding: 0.6em 1.2em;
+  border-radius: 0.5em;
+  font-size: 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.boton_stock_individual .btn:hover {
+  background-color: #b2ff59;
+  color: black;
+}
+
+/* -------------------- TABS -------------------- */
+
+.mb-3 .btn {
+  font-weight: bold;
+  border-radius: 0.5em;
+  margin-right: 0.5em;
+}
+
+.mb-3 .btn-outline-primary {
+  background-color: transparent;
+  border: 2px solid greenyellow;
+  color: greenyellow;
+}
+
+.mb-3 .btn-outline-primary:hover {
+  background-color: greenyellow;
+  color: black;
+}
+
+.mb-3 .btn-primary,
+.mb-3 .active {
+  background-color: greenyellow !important;
+  border-color: greenyellow !important;
+  color: black !important;
+}
+
+/* -------------------- TÍTULO -------------------- */
+
+.titulo-page {
+  width: 100%;
+  margin-bottom: 20px;
+  color: white;
+}
