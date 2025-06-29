@@ -6,24 +6,23 @@ import '../styles/pages/DetailPage.css';
 const PredictionDetailPage = () => {
     const location = useLocation();
     const { prediction } = location.state || {};
-    const { user } = useCurrentUser();
+    const { user, loadingUser } = useCurrentUser();
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (loadingUser) return; // ⏳ Esperar a que termine de cargar
         if (!user) {
             navigate('/login');
         }
-    }, [user, navigate]);
+    }, [user, loadingUser, navigate]);
 
     if (!prediction) {
         return <div>No hay predicción disponible.</div>;
     }
-
-    return (
+  return (
         <div className="request-container">
             <h1 className="title">Predicción de {prediction.symbol}</h1>
             <div className="request-card">
-
                 <div className="request-row">
                     <span className="label">Cantidad:</span>
                     <span className="value">{prediction.n_stocks}</span>
