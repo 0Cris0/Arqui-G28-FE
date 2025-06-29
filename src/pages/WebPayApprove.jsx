@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; // Importamos Link
 import '../styles/pages/webpay.css';
 import '../styles/buttons.css';
