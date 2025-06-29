@@ -6,6 +6,17 @@ import PredictionCardSummary from '../components/PredictionCardSummary';
 import { getPredictions } from '../helpers/getPredictions';
 import { useCurrentUser } from '../helpers/useCurrentUser';
 
+
+const validateUser = async (user) => {
+    if (!user)
+    {
+      navigate('/login');
+      return;
+    }
+}
+
+
+
 const PredictionsPage = () => {
   //const user = await useCurrentUser();
   const { user, loadingUser, error } = useCurrentUser();
@@ -14,12 +25,8 @@ const PredictionsPage = () => {
 
   const [predictions, setPredictions] = useState([]);
 
+  
   useEffect(() => {
-    if (!user) {
-      navigate('/login');
-      return;
-    }
-
     getPredictions(userId)
       .then(data => setPredictions(data))
       .catch(err => console.error('Error loading predictions:', err));
